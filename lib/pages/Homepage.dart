@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,7 +13,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color(0xFFD7DEE8),
+        backgroundColor: const Color(0xFFD7DEE8),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -25,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Container(
               height: 80,
-              decoration: BoxDecoration(color: Color(0xFF024578)),
+              decoration: const BoxDecoration(color: Color(0xFF024578)),
             ),
             Positioned(
               top: 80,
@@ -36,27 +34,27 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       width: 400,
-                      padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
-                      child: Text(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+                      child: const Text(
                         'Aavash Lamichhane',
                         style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Container(
                       width: 400,
-                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: const Text(
                         'Rs.xxxx',
                         style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
                     ),
                     Container(
                       width: 400,
-                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: const Text(
                         'Available Balance',
                         style:
                             TextStyle(color: Color(0xFF818181), fontSize: 12),
@@ -71,7 +69,7 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 height: 400,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xFF3C6E98),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
@@ -85,18 +83,18 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.all(20),
-                      padding: EdgeInsets.fromLTRB(25, 10, 0, 0),
+                      margin: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.fromLTRB(25, 10, 0, 0),
                       width: 300,
                       height: 80,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Color(0xFFD9D9D9),
                           borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: Column(
+                      child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
+                            padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
                             child: Icon(
                               Icons.access_alarm_rounded,
                               size: 40,
@@ -111,8 +109,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text(
+                      margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: const Text(
                         'Expenses',
                         style: TextStyle(
                             color: Colors.black,
@@ -124,8 +122,8 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Container(
-                            margin: EdgeInsets.all(30),
-                            padding: EdgeInsets.all(20),
+                            margin: const EdgeInsets.all(30),
+                            padding: const EdgeInsets.all(20),
                             width: 200,
                             height: 150,
                             decoration: BoxDecoration(
@@ -133,19 +131,19 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(10)),
                             child: Row(
                               children: [
-                                Text(
+                                const Text(
                                   'Food & Drinks',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 25,
                                 ),
                                 Container(
                                   width: 30, // Adjusted width to fit the icon
                                   height: 35,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Color(0xFF526D82),
                                   ),
@@ -153,8 +151,8 @@ class _HomePageState extends State<HomePage> {
                                     child: IconButton(
                                       onPressed: () {},
                                       iconSize: 20,
-                                      icon:
-                                          Icon(Icons.arrow_forward_ios_rounded),
+                                      icon: const Icon(
+                                          Icons.arrow_forward_ios_rounded),
                                       color: Colors.white,
                                     ),
                                   ),

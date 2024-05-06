@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "457756482148",
+    "project_id": "tranzac-934cd",
+    "storage_bucket": "tranzac-934cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457756482148:android:c24c89eeb131c7ec6ddd71",
+        "android_client_info": {
+          "package_name": "com.example.tranzac"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADpZa-PApLpzBhPh8ZPEpSj2feldLGCLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

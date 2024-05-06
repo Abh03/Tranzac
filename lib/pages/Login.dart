@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -16,7 +13,7 @@ class _LoginState extends State<Login> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color(0xFFD7DEE8),
+        backgroundColor: const Color(0xFFD7DEE8),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -26,8 +23,8 @@ class _LoginState extends State<Login> {
           Column(
             children: [
               Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 03),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 03),
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(0.0),
                     topRight: Radius.circular(0.0),
@@ -42,30 +39,30 @@ class _LoginState extends State<Login> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     IconButton(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       onPressed: () {},
-                      icon: Icon(Icons.arrow_back),
+                      icon: const Icon(Icons.arrow_back),
                       color: Colors.white,
                       iconSize: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 1,
                     ),
                     Center(
                       child: Container(
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                               'LOGO',
                               style: TextStyle(fontSize: 30),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             RichText(
                               text: TextSpan(
                                 text: "Welcome to ",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.white,
                                 ),
@@ -104,11 +101,11 @@ class _LoginState extends State<Login> {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(05),
-                        color: Color(0xFFD9D9D9),
+                        color: const Color(0xFFD9D9D9),
                       ),
-                      margin: EdgeInsets.fromLTRB(20, 30, 20, 10),
+                      margin: const EdgeInsets.fromLTRB(20, 30, 20, 10),
                       width: 250,
-                      child: Row(
+                      child: const Row(
                         children: [
                           Padding(padding: EdgeInsets.fromLTRB(2, 20, 20, 20)),
                           Icon(Icons.mail),
@@ -125,11 +122,11 @@ class _LoginState extends State<Login> {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(05),
-                        color: Color(0xFFD9D9D9),
+                        color: const Color(0xFFD9D9D9),
                       ),
-                      margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                       width: 250,
-                      child: Row(
+                      child: const Row(
                         children: [
                           Padding(padding: EdgeInsets.fromLTRB(2, 20, 20, 20)),
                           Icon(Icons.lock),
@@ -144,32 +141,32 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(05),
-                          color: Color(0xFF526D82),
+                          color: const Color(0xFF526D82),
                         ),
-                        margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                        margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
                         width: 250,
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Log In',
                             style: TextStyle(color: Colors.white, fontSize: 24),
                           ),
                         )),
                     Container(
-                      child: Text(
+                      child: const Text(
                         'Forgot Password?',
                         style:
                             TextStyle(color: Color(0Xff526D82), fontSize: 15),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(40, 10, 20, 10),
-                      child: Row(children: [
+                      padding: const EdgeInsets.fromLTRB(40, 10, 20, 10),
+                      child: const Row(children: [
                         Text(
                           'Don\'t have an account?',
                           style: TextStyle(color: Colors.black, fontSize: 15),
