@@ -33,14 +33,16 @@ class _BudgetState extends State<Budget> {
             right: 10,
             height: MediaQuery.of(context).size.height * 0.2,
             child: Container(
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Color(0xFF3C6E98),
+                color: const Color(0xFF3C6E98),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Center(
+              child: const Align(
+                alignment: Alignment.centerLeft,
                 child: Text(
                   'My Expenses',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -64,9 +66,9 @@ class _BudgetState extends State<Budget> {
             right: 0,
             bottom: MediaQuery.of(context).size.height * 0.1,
             child: Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: SfCircularChart(
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 series: [
                   DoughnutSeries(
                     dataSource: chartData,
