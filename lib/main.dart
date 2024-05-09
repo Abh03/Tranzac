@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tranzac/pages/Abstract.dart';
 import 'firebase_options.dart';
 import 'package:tranzac/pages/Login.dart';
