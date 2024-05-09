@@ -26,11 +26,12 @@ class _MyWidgetState extends State<Abstract> {
     Split(),
   ];
   final PageStorageBucket pgB = PageStorageBucket();
-  Widget currentScreen = HomePage();
+  Widget currentScreen = const HomePage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFD7DEE8),
       appBar: AppBar(
         backgroundColor: const Color(0xFF024578),
         leading: IconButton(
@@ -94,7 +95,7 @@ class _MyWidgetState extends State<Abstract> {
       bottomNavigationBar: BottomAppBar(
         color: const Color(0xFF024578),
         shape: const CircularNotchedRectangle(),
-        notchMargin: 10,
+        notchMargin: 9,
         child: Container(
           height: 50,
           child: Row(

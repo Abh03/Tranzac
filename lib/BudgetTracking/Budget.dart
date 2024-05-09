@@ -37,8 +37,8 @@ class _BudgetState extends State<Budget> {
                 color: Color(0xFF3C6E98),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Center(
-                child: const Text(
+              child: const Center(
+                child: Text(
                   'My Expenses',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -49,7 +49,7 @@ class _BudgetState extends State<Budget> {
             top: MediaQuery.of(context).size.height * 0.2 + 10,
             left: 10,
             right: 10,
-            child: Align(
+            child: const Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Categories',
@@ -77,7 +77,7 @@ class _BudgetState extends State<Budget> {
                     explode: true,
                     pointColorMapper: (data, _) => data[2],
                     dataLabelMapper: (data, _) => data[0].toString() + ' %',
-                    dataLabelSettings: DataLabelSettings(
+                    dataLabelSettings: const DataLabelSettings(
                         isVisible: true,
                         textStyle: TextStyle(
                             fontSize: 12, color: Colors.white),
