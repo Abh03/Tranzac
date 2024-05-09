@@ -13,7 +13,6 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: const Color(0xFFD7DEE8),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,

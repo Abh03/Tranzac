@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tranzac/pages/Signup.dart';
 
 class Splash extends StatelessWidget {
   const Splash({super.key});
@@ -40,7 +41,9 @@ class Splash extends StatelessWidget {
                   width: 150,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp()));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFF526D82),
@@ -64,7 +67,9 @@ class Splash extends StatelessWidget {
                   width: 150,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp()));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFF526D82),

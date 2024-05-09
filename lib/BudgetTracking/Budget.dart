@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class _BudgetState extends State<Budget> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text("Budget Tracking"),),
+
     );
   }
 }
