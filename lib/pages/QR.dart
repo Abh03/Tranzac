@@ -2,9 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tranzac/pages/Login.dart';
 import 'package:tranzac/pages/Signup.dart';
-import 'package:camera/camera.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:path_provider/path_provider.dart';
+
 
 class QR extends StatefulWidget {
   const QR({super.key});
