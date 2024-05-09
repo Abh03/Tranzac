@@ -45,6 +45,18 @@ class _BudgetState extends State<Budget> {
               ),
             ),
           ),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.2 + 10,
+            left: 10,
+            right: 10,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Categories',
+                style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
           // Doughnut chart
           Positioned(
             top: MediaQuery.of(context).size.height * 0.2,
