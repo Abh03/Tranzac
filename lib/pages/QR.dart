@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:tranzac/pages/Login.dart';
 import 'package:tranzac/pages/Signup.dart';
 
@@ -11,9 +12,12 @@ class QR extends StatefulWidget {
   State<QR> createState() => _QRState();
 }
 
+
 class _QRState extends State<QR> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color(0xFFD7DEE8),
       appBar: AppBar(
@@ -31,7 +35,7 @@ class _QRState extends State<QR> {
         children: [
           Container( //1
             margin: const EdgeInsets.all(10),
-            height:MediaQuery.of(context).size.height*0.15,
+            height:height*0.15,
             decoration: BoxDecoration(
               color: const Color(0xFF3C6E98),
               borderRadius: BorderRadius.circular(20),
@@ -78,7 +82,7 @@ class _QRState extends State<QR> {
                           child: const Text(
                               'Scanner',
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 19,
                               color: Color(0xFF024578),
                             ),
                           ),
@@ -108,7 +112,7 @@ class _QRState extends State<QR> {
                           child: const Text(
                               'My QR Code',
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 19,
                               color: Color(0xFF024578),
                             ),
                           ),
@@ -119,7 +123,24 @@ class _QRState extends State<QR> {
                 ),
               ],
             ),
-          )  //1
+          ),  //1
+           Container(
+             margin: EdgeInsets.only(
+               top: height * 0.2,
+               right: width * 0.1,
+               left: width * 0.1,
+               bottom: height * 0.1
+             ),
+             child: MobileScanner(
+               controller: MobileScannerController(
+                 detectionSpeed: DetectionSpeed.noDuplicates,
+               ),
+               onDetect: (capture) {
+                 final List<Barcode> barcodes = capture.barcodes;
+                   print('Barcode found: ${barcodes.first.rawValue}');
+               },
+             ),
+           )
         ],
       )
     );

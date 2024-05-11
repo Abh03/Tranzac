@@ -8,6 +8,8 @@ import 'package:tranzac/pages/splash.dart';
 import 'package:tranzac/pages/Signup.dart';
 import 'package:tranzac/pages/Homepage.dart';
 
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
