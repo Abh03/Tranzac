@@ -23,52 +23,73 @@ class _BudgetState extends State<Budget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFD7DEE8),
+      backgroundColor: const Color(0xFFD7DEE8),
       body: Stack(
         children: [
-          // Container
+// Container
           Positioned(
             top: 10,
             left: 10,
             right: 10,
-            height: MediaQuery.of(context).size.height * 0.2,
+            height: MediaQuery.of(context).size.height * 0.18,
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: const Color(0xFF3C6E98),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'My Expenses',
-                  style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-                ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'My Expenses',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    '01 January 2024',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(width: 16),
+                  Text(
+                    'Rs. 4000 left',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Out of Rs. 18000 budget',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
             ),
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.2 + 10,
-            left: 10,
-            right: 10,
-            child: const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Categories',
-                style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          // Doughnut chart
+
           Positioned(
             top: MediaQuery.of(context).size.height * 0.2,
+            left: 10,
+            child: const Text(
+              'Categories',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+// Doughnut chart
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.1,
             left: 0,
             right: 0,
-            bottom: MediaQuery.of(context).size.height * 0.1,
+            bottom: 30,
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
               child: SfCircularChart(
-                margin: const EdgeInsets.all(0),
+                margin: EdgeInsets.all(0),
                 series: [
                   DoughnutSeries(
                     dataSource: chartData,
@@ -81,57 +102,80 @@ class _BudgetState extends State<Budget> {
                     dataLabelMapper: (data, _) => data[0].toString() + ' %',
                     dataLabelSettings: const DataLabelSettings(
                         isVisible: true,
-                        textStyle: TextStyle(
-                            fontSize: 12, color: Colors.white),
+                        textStyle: TextStyle(fontSize: 12, color: Colors.white),
                         labelPosition: ChartDataLabelPosition.inside),
                   )
                 ],
               ),
             ),
           ),
-          // Legend Container
+// Legend Container
           Positioned(
             left: 10,
             right: 10,
-            top: MediaQuery.of(context).size.height * 0.65,
+            bottom: -35,
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Color(0xFFD9D9D9),
-                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  for (var data in chartData)
-                    Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // Adjust spacing between rows
+                  children: [
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 5,
                       children: [
-                        Container(
-                          width: 10,
-                          height: 10,
-                          color: data[2],
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          data[1],
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          '${data[0]}%',
-                          style: TextStyle(color: Colors.black),
-                        ),
+                        for (var data in chartData.take(chartData.length ~/ 2))  // First half
+                          Row(
+                            children: [
+                              Container(
+                                width: 10,
+                                height: 10,
+                                color: data[2],
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                data[1],
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                '${data[0]}%',
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        for (var data in chartData.skip(chartData.length ~/ 2)) // Second half
+                          Row(
+                            children: [
+                              Container(
+                                width: 10,
+                                height: 10,
+                                color: data[2],
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                data[1],
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                '${data[0]}%',
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
                       ],
                     ),
-                ],
+                  ]
               ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
 }
-
-
-
