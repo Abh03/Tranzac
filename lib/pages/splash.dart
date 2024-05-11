@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tranzac/pages/Login.dart';
 import 'package:tranzac/pages/Signup.dart';
 
 class Splash extends StatelessWidget {
@@ -6,6 +7,10 @@ class Splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    EdgeInsets margin_welcome = EdgeInsets.only(top: height * 0.15);
+    EdgeInsets margin_buttons = EdgeInsets.only(top: height * 0.7);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -22,7 +27,8 @@ class Splash extends StatelessWidget {
           ),
           Center(
             child: Container(
-              padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
+              alignment: Alignment.center,
+              margin: margin_welcome ,
               width: 250,
               child: const Text(
                 "Welcome to Tranzac",
@@ -31,9 +37,9 @@ class Splash extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            top: 650,
-            left: 40,
+          Container(
+            margin: margin_buttons,
+            alignment: Alignment.topCenter,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -42,7 +48,7 @@ class Splash extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -54,15 +60,13 @@ class Splash extends StatelessWidget {
                       ),
                     ),
                     child: const Text(
-                      "Register",
+                      "Log In",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 25),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 20,
-                ),
+
                 SizedBox(
                   width: 150,
                   height: 50,

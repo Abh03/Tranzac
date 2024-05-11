@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tranzac/pages/Signup.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -10,6 +11,10 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    EdgeInsets margin_LOGO = EdgeInsets.only(top: height * 0.15);
+    EdgeInsets margin_container = EdgeInsets.only(top: height * 0.05);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -23,7 +28,7 @@ class _LoginState extends State<Login> {
           Column(
             children: [
               Container(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 03),
+                alignment: Alignment.center,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(0.0),
@@ -38,18 +43,12 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                      padding: const EdgeInsets.all(20),
-                      onPressed: () {},
-                      icon: const Icon(Icons.arrow_back),
-                      color: Colors.white,
-                      iconSize: 30,
-                    ),
                     const SizedBox(
                       height: 1,
                     ),
                     Center(
                       child: Container(
+                        margin: margin_LOGO,
                         child: Column(
                           children: [
                             const Text(
@@ -86,9 +85,9 @@ class _LoginState extends State<Login> {
               ),
             ],
           ),
-          Positioned(
-              top: 250,
-              left: 38,
+          Container(
+              margin: margin_container,
+              alignment: Alignment.center,
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
@@ -174,11 +173,7 @@ class _LoginState extends State<Login> {
                         SizedBox(
                           width: 5,
                         ),
-                        Text(
-                          'Sign Up ',
-                          style:
-                              TextStyle(color: Color(0Xff526D82), fontSize: 15),
-                        )
+
                       ]),
                     ),
                   ],

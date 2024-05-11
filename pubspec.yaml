@@ -38,6 +38,9 @@ dependencies:
   cupertino_icons: ^1.0.6
   icons_plus: ^4.0.0
   mobile_scanner: ^5.0.0
+  cloud_firestore: ^4.17.3
+  firebase_auth: ^4.19.5
+  firebase_storage: ^11.7.5
 
 
 dev_dependencies:
