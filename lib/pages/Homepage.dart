@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -7,26 +12,26 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+List chartData = [
+  [20, 'Rent', Color.fromRGBO(202, 73, 140, 1.0)],
+  [18, 'Food', Color.fromRGBO(211, 107, 159, 1.0)],
+  [35, 'Education', Color.fromRGBO(185, 119, 172, 1.0)],
+  [6, 'Transportation', Color.fromRGBO(230, 191, 206, 1.0)],
+  [17, 'Entertainment', Color.fromRGBO(241, 164, 230, 1.0)],
+  [4, 'Others', Color.fromRGBO(207, 155, 189, 1.0)],
+];
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [
-            Container(
-              height: 80,
-              decoration: const BoxDecoration(color: Color(0xFF024578)),
-            ),
             Positioned(
-              top: 80,
-              left: 05,
+              left: 10,
               child: Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -40,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 5,
+                      height: 1,
                     ),
                     Container(
                       width: 400,
@@ -64,9 +69,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Positioned(
-              top: 200,
+              top: 120,
               child: Container(
-                height: 400,
+                height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   color: Color(0xFF3C6E98),
@@ -117,54 +122,160 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Container(
-                      child: Column(
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
                         children: [
                           Container(
-                            margin: const EdgeInsets.all(30),
-                            padding: const EdgeInsets.all(20),
-                            width: 200,
-                            height: 150,
+                            margin: EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Row(
-                              children: [
-                                const Text(
-                                  'Food & Drinks',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                const SizedBox(
-                                  width: 25,
-                                ),
-                                Container(
-                                  width: 30, // Adjusted width to fit the icon
-                                  height: 35,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color(0xFF526D82),
-                                  ),
-                                  child: Center(
-                                    child: IconButton(
-                                      onPressed: () {},
-                                      iconSize: 20,
-                                      icon: const Icon(
-                                          Icons.arrow_forward_ios_rounded),
-                                      color: Colors.white,
+                                color: Color(0xFFD9D9D9),
+                                borderRadius: BorderRadius.circular(20)),
+                            width: 200,
+                            height: 200,
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Food & Drinks",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Container(
+                                            width: 40,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xFF526D82),
+                                            ),
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                )
-                              ],
+                                  Container(),
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 70, 90, 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Rs.1200 left",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Color(0xFF526D82),
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            "out of 2000",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          Container(),
-                          Container(),
-                          Container()
+                          Container(
+                            margin: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                color: Color(0xFFD9D9D9),
+                                borderRadius: BorderRadius.circular(20)),
+                            width: 200,
+                            height: 200,
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Shopping",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Container(
+                                            width: 40,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xFF526D82),
+                                            ),
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(),
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 70, 90, 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Rs.1200 left",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Color(0xFF526D82),
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            "out of 2000",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

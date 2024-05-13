@@ -12,7 +12,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    EdgeInsets margin_box = EdgeInsets.only(top: height*0.23);
+    EdgeInsets margin_box = EdgeInsets.only(top: height * 0.23);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -27,7 +27,7 @@ class _SignUpState extends State<SignUp> {
             Column(
               children: [
                 Container(
-                  height: height*0.35,
+                  height: height * 0.35,
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(0.0),
@@ -64,7 +64,7 @@ class _SignUpState extends State<SignUp> {
             ),
             Container(
                 margin: margin_box,
-                height: height*0.65,
+                height: height * 0.65,
                 alignment: Alignment.center,
                 child: Container(
                   padding: const EdgeInsets.all(20),
