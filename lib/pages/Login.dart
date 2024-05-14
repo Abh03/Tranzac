@@ -31,8 +31,6 @@ class _LoginState extends State<Login> {
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(0.0),
-                    topRight: Radius.circular(0.0),
                     bottomLeft: Radius.circular(50.0),
                     bottomRight: Radius.circular(50.0),
                   ),
@@ -43,9 +41,7 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 1,
-                    ),
+                    
                     Center(
                       child: Container(
                         margin: margin_LOGO,

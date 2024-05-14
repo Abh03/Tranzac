@@ -21,7 +21,7 @@ void main() async {
       '/login': (context) => const Login(),
       '/signup': (context) => const SignUp(),
       '/homepage': (context) => const HomePage(),
-      '/abstract': (context) => const Abstract()
+      '/abstract': (context) => const   Abstract()
     },
   ));
 }

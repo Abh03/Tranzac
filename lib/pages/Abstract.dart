@@ -37,7 +37,7 @@ class _MyWidgetState extends State<Abstract> {
         leading: IconButton(
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: ((context) => Profile())));
+                context, MaterialPageRoute(builder: ((context) => const Profile())));
           },
           icon: const Icon(
             Icons.person_4_outlined,
@@ -52,7 +52,7 @@ class _MyWidgetState extends State<Abstract> {
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: ((context) => Notify())));
+                  context, MaterialPageRoute(builder: ((context) => const Notify())));
             },
             icon: const Icon(
               Icons.notifications_active_outlined,
@@ -66,7 +66,7 @@ class _MyWidgetState extends State<Abstract> {
           IconButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => Settings())));
+                  MaterialPageRoute(builder: ((context) => const Settings())));
             },
             icon: const Icon(
               Icons.settings_outlined,
@@ -108,7 +108,7 @@ class _MyWidgetState extends State<Abstract> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = HomePage();
+                          currentScreen = const HomePage();
                           currentTab = 0;
                         });
                       },
@@ -129,7 +129,7 @@ class _MyWidgetState extends State<Abstract> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = Statement();
+                          currentScreen = const Statement();
                           currentTab = 1;
                         });
                       },
@@ -151,7 +151,7 @@ class _MyWidgetState extends State<Abstract> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = Budget();
+                          currentScreen = const Budget();
                           currentTab = 2;
                         });
                       },
@@ -172,7 +172,7 @@ class _MyWidgetState extends State<Abstract> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = Split();
+                          currentScreen = const Split();
                           currentTab = 3;
                         });
                       },
