@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tranzac/pages/Login.dart';
+import 'package:tranzac/pages/login.dart';
 import 'package:tranzac/pages/Signup.dart';
 
 class Splash extends StatelessWidget {
@@ -8,9 +8,9 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    EdgeInsets margin_welcome = EdgeInsets.only(top: height * 0.15);
-    EdgeInsets margin_buttons = EdgeInsets.only(top: height * 0.7);
+    //double width = MediaQuery.of(context).size.width;
+    EdgeInsets marginWelcome = EdgeInsets.only(top: height * 0.15);
+    EdgeInsets marginButtons = EdgeInsets.only(top: height * 0.7);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -28,7 +28,7 @@ class Splash extends StatelessWidget {
           Center(
             child: Container(
               alignment: Alignment.center,
-              margin: margin_welcome ,
+              margin: marginWelcome ,
               width: 250,
               child: const Text(
                 "Welcome to Tranzac",
@@ -38,7 +38,7 @@ class Splash extends StatelessWidget {
             ),
           ),
           Container(
-            margin: margin_buttons,
+            margin: marginButtons,
             alignment: Alignment.topCenter,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

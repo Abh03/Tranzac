@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tranzac/pages/Signup.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,9 +11,9 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    EdgeInsets margin_LOGO = EdgeInsets.only(top: height * 0.15);
-    EdgeInsets margin_container = EdgeInsets.only(top: height * 0.05);
+    //double width = MediaQuery.of(context).size.width;
+    EdgeInsets marginLogo = EdgeInsets.only(top: height * 0.15);
+    EdgeInsets marginContainer = EdgeInsets.only(top: height * 0.05);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -48,7 +47,7 @@ class _LoginState extends State<Login> {
                     ),
                     Center(
                       child: Container(
-                        margin: margin_LOGO,
+                        margin: marginLogo,
                         child: Column(
                           children: [
                             const Text(
@@ -86,7 +85,7 @@ class _LoginState extends State<Login> {
             ],
           ),
           Container(
-              margin: margin_container,
+              margin: marginContainer,
               alignment: Alignment.center,
               child: Container(
                 decoration: BoxDecoration(
@@ -153,12 +152,9 @@ class _LoginState extends State<Login> {
                             style: TextStyle(color: Colors.white, fontSize: 24),
                           ),
                         )),
-                    Container(
-                      child: const Text(
-                        'Forgot Password?',
-                        style:
-                            TextStyle(color: Color(0Xff526D82), fontSize: 15),
-                      ),
+                    const Text(
+                      'Forgot Password?',
+                      style: TextStyle(color: Color(0Xff526D82), fontSize: 15),
                     ),
                     const SizedBox(
                       height: 10,
@@ -173,7 +169,6 @@ class _LoginState extends State<Login> {
                         SizedBox(
                           width: 5,
                         ),
-
                       ]),
                     ),
                   ],

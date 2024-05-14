@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,12 +8,12 @@ class HomePage extends StatefulWidget {
 }
 
 List chartData = [
-  [20, 'Rent', Color.fromRGBO(202, 73, 140, 1.0)],
-  [18, 'Food', Color.fromRGBO(211, 107, 159, 1.0)],
-  [35, 'Education', Color.fromRGBO(185, 119, 172, 1.0)],
-  [6, 'Transportation', Color.fromRGBO(230, 191, 206, 1.0)],
-  [17, 'Entertainment', Color.fromRGBO(241, 164, 230, 1.0)],
-  [4, 'Others', Color.fromRGBO(207, 155, 189, 1.0)],
+  [20, 'Rent', const Color.fromRGBO(202, 73, 140, 1.0)],
+  [18, 'Food', const Color.fromRGBO(211, 107, 159, 1.0)],
+  [35, 'Education', const Color.fromRGBO(185, 119, 172, 1.0)],
+  [6, 'Transportation', const Color.fromRGBO(230, 191, 206, 1.0)],
+  [17, 'Entertainment', const Color.fromRGBO(241, 164, 230, 1.0)],
+  [4, 'Others', const Color.fromRGBO(207, 155, 189, 1.0)],
 ];
 
 class _HomePageState extends State<HomePage> {
@@ -32,40 +27,38 @@ class _HomePageState extends State<HomePage> {
           children: [
             Positioned(
               left: 10,
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 400,
-                      padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                      child: const Text(
-                        'Aavash Lamichhane',
-                        style: TextStyle(color: Colors.black, fontSize: 20),
-                      ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 400,
+                    padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+                    child: const Text(
+                      'Aavash Lamichhane',
+                      style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
-                    const SizedBox(
-                      height: 1,
+                  ),
+                  const SizedBox(
+                    height: 1,
+                  ),
+                  Container(
+                    width: 400,
+                    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    child: const Text(
+                      'Rs.xxxx',
+                      style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
-                    Container(
-                      width: 400,
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: const Text(
-                        'Rs.xxxx',
-                        style: TextStyle(color: Colors.black, fontSize: 20),
-                      ),
+                  ),
+                  Container(
+                    width: 400,
+                    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    child: const Text(
+                      'Available Balance',
+                      style:
+                          TextStyle(color: Color(0xFF818181), fontSize: 12),
                     ),
-                    Container(
-                      width: 400,
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: const Text(
-                        'Available Balance',
-                        style:
-                            TextStyle(color: Color(0xFF818181), fontSize: 12),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Positioned(
@@ -122,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     SingleChildScrollView(
@@ -130,147 +123,135 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         children: [
                           Container(
-                            margin: EdgeInsets.all(15),
+                            margin: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Color(0xFFD9D9D9),
+                                color: const Color(0xFFD9D9D9),
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 200,
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(15.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Food & Drinks",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Container(
-                                            width: 40,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Color(0xFF526D82),
-                                            ),
-                                            child: Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        "Food & Drinks",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    ),
+                                      Container(
+                                        width: 40,
+                                        height: 30,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Color(0xFF526D82),
+                                        ),
+                                        child: const Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Container(),
-                                  Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 70, 90, 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Rs.1200 left",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Color(0xFF526D82),
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                          Text(
-                                            "out of 2000",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w700),
-                                          )
-                                        ],
+                                ),
+                                Container(),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      0, 70, 90, 10),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Rs.1200 left",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Color(0xFF526D82),
+                                            fontWeight: FontWeight.w700),
                                       ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                      Text(
+                                        "out of 2000",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.all(15),
+                            margin: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Color(0xFFD9D9D9),
+                                color: const Color(0xFFD9D9D9),
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 200,
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(15.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Shopping",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Container(
-                                            width: 40,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Color(0xFF526D82),
-                                            ),
-                                            child: Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        "Shopping",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    ),
+                                      Container(
+                                        width: 40,
+                                        height: 30,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Color(0xFF526D82),
+                                        ),
+                                        child: const Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Container(),
-                                  Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 70, 90, 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Rs.1200 left",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Color(0xFF526D82),
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                          Text(
-                                            "out of 2000",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w700),
-                                          )
-                                        ],
+                                ),
+                                Container(),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      0, 70, 90, 10),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Rs.1200 left",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Color(0xFF526D82),
+                                            fontWeight: FontWeight.w700),
                                       ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                      Text(
+                                        "out of 2000",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ],

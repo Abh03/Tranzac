@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:tranzac/pages/Abstract.dart';
-import 'firebase_options.dart';
-import 'package:tranzac/pages/Login.dart';
+import 'package:tranzac/pages/abstract.dart';
+import 'package:tranzac/pages/login.dart';
 import 'package:tranzac/pages/splash.dart';
-import 'package:tranzac/pages/Signup.dart';
-import 'package:tranzac/pages/Homepage.dart';
-
-
+import 'package:tranzac/pages/signup.dart';
+import 'package:tranzac/pages/homepage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
