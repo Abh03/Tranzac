@@ -66,141 +66,143 @@ class _SignUpState extends State<SignUp> {
                 margin: margin_box,
                 height: height * 0.65,
                 alignment: Alignment.center,
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  width: 310,
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                      color: Colors.white),
-                  child: Column(
-                    children: [
-                      const Center(
-                        child: Text(
-                          'Sign Up',
-                          style:
-                              TextStyle(fontSize: 25, color: Color(0xFF526D82)),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                        width: 280,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(05)),
-                            color: Color(0xFFD9D9D9)),
-                        child: const Text(
-                          'Enter your first name',
-                          style:
-                              TextStyle(color: Color(0xFF818181), fontSize: 15),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                        width: 280,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(05)),
-                            color: Color(0xFFD9D9D9)),
-                        child: const Text(
-                          'Enter your middle name',
-                          style:
-                              TextStyle(color: Color(0xFF818181), fontSize: 15),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                        width: 280,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(05)),
-                            color: Color(0xFFD9D9D9)),
-                        child: const Text(
-                          'Enter your last name',
-                          style:
-                              TextStyle(color: Color(0xFF818181), fontSize: 15),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                        width: 280,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(05)),
-                            color: Color(0xFFD9D9D9)),
-                        child: const Text(
-                          'Enter your mobile number',
-                          style:
-                              TextStyle(color: Color(0xFF818181), fontSize: 15),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                        width: 280,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(05)),
-                            color: Color(0xFFD9D9D9)),
-                        child: const Text(
-                          'Enter your email address',
-                          style:
-                              TextStyle(color: Color(0xFF818181), fontSize: 15),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                        width: 280,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(05)),
-                            color: Color(0xFFD9D9D9)),
-                        child: const Text(
-                          'Re-enter your password',
-                          style:
-                              TextStyle(color: Color(0xFF818181), fontSize: 15),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                        width: 280,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(05)),
-                            color: Color(0xFF526D82)),
-                        child: const Text(
-                          'Sign Up ',
-                          textAlign: TextAlign.center,
-                          style:
-                              TextStyle(color: Color(0xFFFFFFFF), fontSize: 18),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Already have an account?',
-                            style: TextStyle(color: Colors.black, fontSize: 12),
+                child: SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    width: 310,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        color: Colors.white),
+                    child: Column(
+                      children: [
+                        const Center(
+                          child: Text(
+                            'Sign Up',
+                            style:
+                                TextStyle(fontSize: 25, color: Color(0xFF526D82)),
                           ),
-                          SizedBox(
-                            width: 5,
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                          width: 280,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(05)),
+                              color: Color(0xFFD9D9D9)),
+                          child: const Text(
+                            'Enter your first name',
+                            style:
+                                TextStyle(color: Color(0xFF818181), fontSize: 15),
                           ),
-                          Text(
-                            'Log In',
-                            style: TextStyle(
-                                color: Color(0xFF526D82), fontSize: 12),
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                          width: 280,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(05)),
+                              color: Color(0xFFD9D9D9)),
+                          child: const Text(
+                            'Enter your middle name',
+                            style:
+                                TextStyle(color: Color(0xFF818181), fontSize: 15),
                           ),
-                        ],
-                      )
-                    ],
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                          width: 280,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(05)),
+                              color: Color(0xFFD9D9D9)),
+                          child: const Text(
+                            'Enter your last name',
+                            style:
+                                TextStyle(color: Color(0xFF818181), fontSize: 15),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                          width: 280,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(05)),
+                              color: Color(0xFFD9D9D9)),
+                          child: const Text(
+                            'Enter your mobile number',
+                            style:
+                                TextStyle(color: Color(0xFF818181), fontSize: 15),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                          width: 280,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(05)),
+                              color: Color(0xFFD9D9D9)),
+                          child: const Text(
+                            'Enter your email address',
+                            style:
+                                TextStyle(color: Color(0xFF818181), fontSize: 15),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                          width: 280,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(05)),
+                              color: Color(0xFFD9D9D9)),
+                          child: const Text(
+                            'Re-enter your password',
+                            style:
+                                TextStyle(color: Color(0xFF818181), fontSize: 15),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                          width: 280,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(05)),
+                              color: Color(0xFF526D82)),
+                          child: const Text(
+                            'Sign Up ',
+                            textAlign: TextAlign.center,
+                            style:
+                                TextStyle(color: Color(0xFFFFFFFF), fontSize: 18),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Already have an account?',
+                              style: TextStyle(color: Colors.black, fontSize: 12),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              'Log In',
+                              style: TextStyle(
+                                  color: Color(0xFF526D82), fontSize: 12),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ))
           ],
