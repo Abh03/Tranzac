@@ -18,6 +18,7 @@ List chartData = [
 ];
 
 class _BudgetState extends State<Budget> {
+  late SelectionBehavior _selectionBehavior;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

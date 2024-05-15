@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:tranzac/constants.dart';
 
 class Statement extends StatefulWidget {
   const Statement({super.key});
@@ -12,7 +14,7 @@ class _StatementState extends State<Statement> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color(0xFFD7DEE8),
+        color: kBackgroundColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,7 +25,7 @@ class _StatementState extends State<Statement> {
               height: 110,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color(0xFF02457A)),
+                  color: kActiveIconColor),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -44,56 +46,58 @@ class _StatementState extends State<Statement> {
                         const SizedBox(
                           height: 5,
                         ),
-                        Row(
-                          children: [
-                            Container(
-                              width: 220,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(05)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.search,
-                                      color: Color(0xFF02457A),
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text("Search")
-                                  ],
+                        Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 220,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(05)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.search,
+                                        color: kActiveIconColor,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text("Search")
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Container(
-                              width: 80,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.filter_list,
-                                      color: Color(0xFF02457A),
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text('Filter')
-                                  ],
-                                ),
+                              SizedBox(
+                                width: 20,
                               ),
-                            )
-                          ],
+                              Container(
+                                width: 80,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.filter_list,
+                                        color: kActiveIconColor,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text('Filter')
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),
@@ -145,7 +149,7 @@ class _StatementState extends State<Statement> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: Colors.red),
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -188,8 +192,8 @@ class _StatementState extends State<Statement> {
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.lightGreen),
+                                style:
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
@@ -246,7 +250,7 @@ class _StatementState extends State<Statement> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: Colors.red),
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -289,8 +293,8 @@ class _StatementState extends State<Statement> {
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.lightGreen),
+                                style:
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
