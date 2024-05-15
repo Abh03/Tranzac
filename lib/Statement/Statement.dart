@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:tranzac/constants.dart';
 
 class Statement extends StatefulWidget {
   const Statement({super.key});
@@ -15,7 +16,7 @@ class _StatementState extends State<Statement> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFD7DEE8),
+        color: kBackgroundColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +27,7 @@ class _StatementState extends State<Statement> {
               height: 110,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Color(0xFF02457A)),
+                  color: kActiveIconColor),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -62,7 +63,7 @@ class _StatementState extends State<Statement> {
                                     children: [
                                       Icon(
                                         Icons.search,
-                                        color: Color(0xFF02457A),
+                                        color: kActiveIconColor,
                                       ),
                                       SizedBox(
                                         width: 5,
@@ -87,7 +88,7 @@ class _StatementState extends State<Statement> {
                                     children: [
                                       Icon(
                                         Icons.filter_list,
-                                        color: Color(0xFF02457A),
+                                        color: kActiveIconColor,
                                       ),
                                       SizedBox(
                                         width: 5,
@@ -150,7 +151,7 @@ class _StatementState extends State<Statement> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: Colors.red),
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -193,8 +194,8 @@ class _StatementState extends State<Statement> {
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.lightGreen),
+                                style:
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
@@ -251,7 +252,7 @@ class _StatementState extends State<Statement> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: Colors.red),
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -294,8 +295,8 @@ class _StatementState extends State<Statement> {
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.lightGreen),
+                                style:
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',

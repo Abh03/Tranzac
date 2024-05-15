@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:tranzac/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,11 +13,15 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-List chartData = [
-  [20, 'Rent', Color.fromRGBO(202, 73, 140, 1.0)],
-  [18, 'Food', Color.fromRGBO(211, 107, 159, 1.0)],
+List Data = [
+  [40, 'Food', Color.fromRGBO(211, 107, 159, 1.0)],
+  [60, "Rest", Color(0XFFBBBBBB)],
+  [40, 'Shopping', Color.fromRGBO(202, 73, 140, 1.0)],
+  [60, "Rest", Color(0XFFBBBBBB)],
   [35, 'Education', Color.fromRGBO(185, 119, 172, 1.0)],
+  [65, "Rest", Color(0XFFBBBBBB)],
   [6, 'Transportation', Color.fromRGBO(230, 191, 206, 1.0)],
+  [94, "Rest", Color(0XFFBBBBBB)],
   [17, 'Entertainment', Color.fromRGBO(241, 164, 230, 1.0)],
   [4, 'Others', Color.fromRGBO(207, 155, 189, 1.0)],
 ];
@@ -33,6 +38,8 @@ class _HomePageState extends State<HomePage> {
             Positioned(
               left: 10,
               child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -60,8 +67,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                       child: const Text(
                         'Available Balance',
-                        style:
-                            TextStyle(color: Color(0xFF818181), fontSize: 12),
+                        style: TextStyle(color: klightTextColor, fontSize: 12),
                       ),
                     ),
                   ],
@@ -74,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
-                  color: Color(0xFF3C6E98),
+                  color: kSecondBackgroundColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
                     topRight: Radius.circular(50.0),
@@ -102,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                             child: Icon(
                               Icons.access_alarm_rounded,
                               size: 40,
-                              color: Color(0xFF526D82),
+                              color: kSecondBackgroundColor,
                             ),
                           ),
                           Text(
@@ -113,12 +119,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      margin: const EdgeInsets.fromLTRB(25, 0, 0, 0),
                       child: const Text(
                         'Expenses',
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 18,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -132,16 +138,17 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             margin: EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Color(0xFFD9D9D9),
+                                color: kLightGreyColor,
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
-                            height: 200,
+                            height: 220,
                             child: Container(
                               child: Column(
                                 children: [
                                   Container(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(15.0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -153,26 +160,51 @@ class _HomePageState extends State<HomePage> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           Container(
-                                            width: 40,
-                                            height: 30,
+                                            width: 30,
+                                            height: 20,
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: Color(0xFF526D82),
+                                              color: kSecondBackgroundColor,
                                             ),
                                             child: Icon(
                                               Icons.arrow_forward_ios,
                                               color: Colors.white,
+                                              size: 15,
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                  Container(),
+                                  SizedBox(
+                                    height: 0,
+                                  ),
+                                  Container(
+                                    height: 120,
+                                    width: 300,
+                                    child: SfCircularChart(
+                                      series: [
+                                        DoughnutSeries(
+                                          dataSource: Data.sublist(0, 2),
+                                          yValueMapper: (data, _) => data[0],
+                                          xValueMapper: (data, _) => data[1],
+                                          radius: '70%',
+                                          innerRadius: '85%',
+                                          explode: true,
+                                          pointColorMapper: (data, _) =>
+                                              data[2],
+                                          // dataLabelMapper: (data, _) =>
+                                          //     data[0].toString() + ' %',
+                                          // dataLabelSettings: DataLabelSettings(
+                                          //     isVisible: true),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   Container(
                                     child: Padding(
                                       padding: const EdgeInsets.fromLTRB(
-                                          0, 70, 90, 10),
+                                          0, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -183,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                                             "Rs.1200 left",
                                             style: TextStyle(
                                                 fontSize: 15,
-                                                color: Color(0xFF526D82),
+                                                color: kSecondBackgroundColor,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           Text(
@@ -191,6 +223,7 @@ class _HomePageState extends State<HomePage> {
                                             style: TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white,
+                                                letterSpacing: 1,
                                                 fontWeight: FontWeight.w700),
                                           )
                                         ],
@@ -204,16 +237,17 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             margin: EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Color(0xFFD9D9D9),
+                                color: kLightGreyColor,
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
-                            height: 200,
+                            height: 220,
                             child: Container(
                               child: Column(
                                 children: [
                                   Container(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(15.0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -225,26 +259,47 @@ class _HomePageState extends State<HomePage> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           Container(
-                                            width: 40,
-                                            height: 30,
+                                            width: 30,
+                                            height: 20,
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: Color(0xFF526D82),
+                                              color: kSecondBackgroundColor,
                                             ),
                                             child: Icon(
                                               Icons.arrow_forward_ios,
                                               color: Colors.white,
+                                              size: 15,
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                  Container(),
+                                  SizedBox(
+                                    height: 0,
+                                  ),
+                                  Container(
+                                    height: 120,
+                                    width: 300,
+                                    child: SfCircularChart(
+                                      series: [
+                                        DoughnutSeries(
+                                          dataSource: Data.sublist(1, 3),
+                                          yValueMapper: (data, _) => data[0],
+                                          xValueMapper: (data, _) => data[1],
+                                          radius: '70%',
+                                          innerRadius: '85%',
+                                          explode: true,
+                                          pointColorMapper: (data, _) =>
+                                              data[2],
+                                        )
+                                      ],
+                                    ),
+                                  ),
                                   Container(
                                     child: Padding(
                                       padding: const EdgeInsets.fromLTRB(
-                                          0, 70, 90, 10),
+                                          0, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -255,7 +310,7 @@ class _HomePageState extends State<HomePage> {
                                             "Rs.1200 left",
                                             style: TextStyle(
                                                 fontSize: 15,
-                                                color: Color(0xFF526D82),
+                                                color: kSecondBackgroundColor,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           Text(
@@ -263,6 +318,7 @@ class _HomePageState extends State<HomePage> {
                                             style: TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white,
+                                                letterSpacing: 1,
                                                 fontWeight: FontWeight.w700),
                                           )
                                         ],

@@ -20,6 +20,7 @@ List chartData = [
 ];
 
 class _BudgetState extends State<Budget> {
+  late SelectionBehavior _selectionBehavior;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,7 +129,8 @@ class _BudgetState extends State<Budget> {
                       spacing: 10,
                       runSpacing: 5,
                       children: [
-                        for (var data in chartData.take(chartData.length ~/ 2))  // First half
+                        for (var data in chartData
+                            .take(chartData.length ~/ 2)) // First half
                           Row(
                             children: [
                               Container(
@@ -148,7 +150,8 @@ class _BudgetState extends State<Budget> {
                               ),
                             ],
                           ),
-                        for (var data in chartData.skip(chartData.length ~/ 2)) // Second half
+                        for (var data in chartData
+                            .skip(chartData.length ~/ 2)) // Second half
                           Row(
                             children: [
                               Container(
@@ -170,8 +173,7 @@ class _BudgetState extends State<Budget> {
                           ),
                       ],
                     ),
-                  ]
-              ),
+                  ]),
             ),
           )
         ],
