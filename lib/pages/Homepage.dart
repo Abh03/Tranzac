@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     SingleChildScrollView(
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         children: [
                           Container(
-                            margin: EdgeInsets.all(15),
+                            margin: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
                                 color: kLightGreyColor,
                                 borderRadius: BorderRadius.circular(20)),
@@ -235,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.all(15),
+                            margin: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
                                 color: kLightGreyColor,
                                 borderRadius: BorderRadius.circular(20)),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tranzac/pages/Login.dart';
+import 'package:tranzac/pages/login.dart';
 import 'package:tranzac/pages/Signup.dart';
 import 'package:tranzac/constants.dart';
 
@@ -9,9 +9,9 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    EdgeInsets margin_welcome = EdgeInsets.only(top: height * 0.15);
-    EdgeInsets margin_buttons = EdgeInsets.only(top: height * 0.7);
+    //double width = MediaQuery.of(context).size.width;
+    EdgeInsets marginWelcome = EdgeInsets.only(top: height * 0.15);
+    EdgeInsets marginButtons = EdgeInsets.only(top: height * 0.7);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
