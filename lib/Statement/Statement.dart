@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:tranzac/constants.dart';
 
 class Statement extends StatefulWidget {
   const Statement({super.key});
@@ -15,18 +14,18 @@ class _StatementState extends State<Statement> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFD7DEE8),
+        color: kBackgroundColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width,
               height: 110,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Color(0xFF02457A)),
+                  color: kActiveIconColor),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -35,7 +34,7 @@ class _StatementState extends State<Statement> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "Statement",
                           textAlign: TextAlign.start,
                           style: TextStyle(
@@ -44,7 +43,7 @@ class _StatementState extends State<Statement> {
                               fontWeight: FontWeight.bold,
                               letterSpacing: 2),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Container(
@@ -62,7 +61,7 @@ class _StatementState extends State<Statement> {
                                     children: [
                                       Icon(
                                         Icons.search,
-                                        color: Color(0xFF02457A),
+                                        color: kActiveIconColor,
                                       ),
                                       SizedBox(
                                         width: 5,
@@ -87,7 +86,7 @@ class _StatementState extends State<Statement> {
                                     children: [
                                       Icon(
                                         Icons.filter_list,
-                                        color: Color(0xFF02457A),
+                                        color: kActiveIconColor,
                                       ),
                                       SizedBox(
                                         width: 5,
@@ -106,30 +105,30 @@ class _StatementState extends State<Statement> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
+              margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
               // padding: EdgeInsets.all(25),
-              child: Text(
+              child: const Text(
                 'Fri , Mar 29',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
             Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width,
               height: 130,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.white),
-              child: Column(
+              child: const Column(
                 children: [
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
                           width: 120,
                           child: Text(
                             'Transferred  to Karib Maharjan',
@@ -141,8 +140,8 @@ class _StatementState extends State<Statement> {
                         width: 40,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
                           width: 150,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -150,7 +149,7 @@ class _StatementState extends State<Statement> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: Colors.red),
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -164,7 +163,7 @@ class _StatementState extends State<Statement> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0, 2, 8, 0),
+                    padding: EdgeInsets.fromLTRB(8.0, 2, 8, 0),
                     child: Divider(
                       height: 2,
                     ),
@@ -172,8 +171,8 @@ class _StatementState extends State<Statement> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
                           width: 120,
                           child: Text(
                             'Transferred from Nabil Bank Ltd.',
@@ -185,16 +184,16 @@ class _StatementState extends State<Statement> {
                         width: 40,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
                           width: 150,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.lightGreen),
+                                style:
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
@@ -211,26 +210,26 @@ class _StatementState extends State<Statement> {
               ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
+              margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
               // padding: EdgeInsets.all(25),
-              child: Text(
+              child: const Text(
                 'Thu , Mar 28',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
             Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width,
               height: 130,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.white),
-              child: Column(
+              child: const Column(
                 children: [
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
                           width: 120,
                           child: Text(
                             'Transferred  to Karib Maharjan',
@@ -242,8 +241,8 @@ class _StatementState extends State<Statement> {
                         width: 40,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
                           width: 150,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -251,7 +250,7 @@ class _StatementState extends State<Statement> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: Colors.red),
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -265,7 +264,7 @@ class _StatementState extends State<Statement> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0, 2, 8, 0),
+                    padding: EdgeInsets.fromLTRB(8.0, 2, 8, 0),
                     child: Divider(
                       height: 2,
                     ),
@@ -273,8 +272,8 @@ class _StatementState extends State<Statement> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
                           width: 120,
                           child: Text(
                             'Transferred from Nabil Bank Ltd.',
@@ -286,16 +285,16 @@ class _StatementState extends State<Statement> {
                         width: 40,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
                           width: 150,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.lightGreen),
+                                style:
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',

@@ -1,7 +1,8 @@
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:tranzac/pages/Login.dart';
+import 'package:tranzac/pages/login.dart';
 import 'package:tranzac/pages/Signup.dart';
 
 
@@ -137,7 +138,7 @@ class _QRState extends State<QR> {
                ),
                onDetect: (capture) {
                  final List<Barcode> barcodes = capture.barcodes;
-                   print('Barcode found: ${barcodes.first.rawValue}');
+                   log('Barcode found: ${barcodes.first.rawValue}');
                },
              ),
            )

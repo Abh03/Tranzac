@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:tranzac/BudgetTracking/Budget.dart';
+import 'package:tranzac/BudgetTracking/budget.dart';
 import 'package:tranzac/Notification/Notification.dart';
 import 'package:tranzac/Profile/Profile.dart';
 import 'package:tranzac/Settings/Settings.dart';
-import 'package:tranzac/Splitwise/Split.dart';
+import 'package:tranzac/Splitwise/split.dart';
 import 'package:tranzac/Statement/Statement.dart';
 import 'package:tranzac/pages/Homepage.dart';
 import 'package:tranzac/pages/QR.dart';
@@ -19,11 +18,11 @@ class Abstract extends StatefulWidget {
 class _MyWidgetState extends State<Abstract> {
   int currentTab = 0;
   final List<Widget> screens = [
-    HomePage(),
-    Statement(),
-    QR(),
-    Budget(),
-    Split(),
+    const HomePage(),
+    const Statement(),
+    const QR(),
+    const Budget(),
+    const Split(),
   ];
   final PageStorageBucket pgB = PageStorageBucket();
   Widget currentScreen = const HomePage();
@@ -36,8 +35,8 @@ class _MyWidgetState extends State<Abstract> {
         backgroundColor: const Color(0xFF024578),
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: ((context) => const Profile())));
+            Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => const Profile())));
           },
           icon: const Icon(
             Icons.person_4_outlined,
@@ -51,8 +50,8 @@ class _MyWidgetState extends State<Abstract> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: ((context) => const Notify())));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => const Notify())));
             },
             icon: const Icon(
               Icons.notifications_active_outlined,
@@ -96,7 +95,7 @@ class _MyWidgetState extends State<Abstract> {
         color: const Color(0xFF024578),
         shape: const CircularNotchedRectangle(),
         notchMargin: 9,
-        child: Container(
+        child: SizedBox(
           height: 50,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
