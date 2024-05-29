@@ -9,7 +9,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    //double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     EdgeInsets marginWelcome = EdgeInsets.only(top: height * 0.15);
     EdgeInsets marginButtons = EdgeInsets.only(top: height * 0.7);
     return Scaffold(
@@ -18,7 +18,7 @@ class Splash extends StatelessWidget {
         elevation: 0,
       ),
       extendBodyBehindAppBar: true,
-      body: Container(
+      body: SizedBox(
         width: width,
         height: height,
         child: Stack(
@@ -32,7 +32,7 @@ class Splash extends StatelessWidget {
             Center(
               child: Container(
                 alignment: Alignment.center,
-                margin: margin_welcome,
+                margin: marginWelcome,
                 width: 250,
                 child: const Text(
                   "Welcome to Tranzac",
@@ -42,7 +42,7 @@ class Splash extends StatelessWidget {
               ),
             ),
             Container(
-              margin: margin_buttons,
+              margin: marginButtons,
               alignment: Alignment.topCenter,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -106,5 +106,16 @@ class Splash extends StatelessWidget {
         ),
       ),
     );
+    // return Scaffold(
+    //   body: StreamBuilder(
+    //       stream: FirebaseAuth.instance.authStateChanges(),
+    //       builder: (context, snapshot) {
+    //         if (snapshot.hasData) {
+    //           return const Abstract();
+    //         } else {
+
+    //         }
+    //       }),
+    // );
   }
 }
