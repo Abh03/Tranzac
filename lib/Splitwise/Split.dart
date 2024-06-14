@@ -1,5 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tranzac/Splitwise/settleup.dart';
+
+final user = FirebaseAuth.instance;
+final friendref = FirebaseFirestore.instance
+    .collection('Users')
+    .doc(user.currentUser!.email)
+    .collection('Friends');
+
+final groupref = FirebaseFirestore.instance
+    .collection('Users')
+    .doc(user.currentUser!.email)
+    .collection('Groups');
 
 class Split extends StatefulWidget {
   const Split({super.key});
@@ -9,55 +22,293 @@ class Split extends StatefulWidget {
 }
 
 class _SplitState extends State<Split> {
+  final friend = TextEditingController();
+  final group = TextEditingController();
+
+  @override
+  void dispose() {
+    friend.dispose();
+    group.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Column(
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          body: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "FRIENDS",
-                      style: TextStyle(fontSize: 30),
+              const TabBar(
+                  indicatorColor: Color(0xFF024578),
+                  labelColor: Color(0xFF024578),
+                  tabs: [
+                    Tab(
+                      icon: Icon(Icons.person),
+                      text: "Friends",
                     ),
-                    ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.add,
-                          color: Colors.black,
-                        ),
-                        label: const Text(
-                          "Add Friends",
-                          style: TextStyle(color: Colors.black),
-                        ))
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    ListTile(
-                        leading: const Icon(Icons.person),
-                        title: const Text("Jane Doe"),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SettleUp()));
-                        })
-                  ],
-                ),
+                    Tab(
+                      icon: Icon(Icons.groups),
+                      text: "Groups",
+                    )
+                  ]),
+              Expanded(
+                child: TabBarView(children: [
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateColor.resolveWith(
+                                  (states) => const Color(0xFF024578)),
+                              foregroundColor: MaterialStateColor.resolveWith(
+                                  (states) => Colors.white)),
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      actionsPadding: const EdgeInsets.all(10),
+                                      actions: [
+                                        TextFormField(
+                                          controller: friend,
+                                          keyboardType: TextInputType.name,
+                                          decoration: InputDecoration(
+                                              hintText:
+                                                  "Enter your friend's name",
+                                              labelText: "Name",
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10))),
+                                        ),
+                                        Center(
+                                          child: ElevatedButton(
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateColor
+                                                          .resolveWith((states) =>
+                                                              const Color(
+                                                                  0xFF024578)),
+                                                  foregroundColor:
+                                                      MaterialStateColor
+                                                          .resolveWith(
+                                                              (states) => Colors
+                                                                  .white)),
+                                              onPressed: () {
+                                                friendref
+                                                    .doc(friend.text)
+                                                    .set({
+                                                      'Name': friend.text.trim()
+                                                    })
+                                                    .whenComplete(() =>
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                const SnackBar(
+                                                          backgroundColor:
+                                                              Colors.green,
+                                                          content: Center(
+                                                              child: Text(
+                                                                  "Added successfully",
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          'FiraSans'))),
+                                                          duration: Duration(
+                                                              seconds: 3),
+                                                        )))
+                                                    .then((value) =>
+                                                        Navigator.pop(context));
+                                              },
+                                              child: const Text("Add")),
+                                        )
+                                      ],
+                                    ));
+                          },
+                          icon: const Icon(Icons.person_add_alt_1),
+                          label: const Text("Add friends")),
+                      const Divider(),
+                      Expanded(
+                        child: StreamBuilder(
+                            stream: friendref.snapshots(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.active) {
+                                if (snapshot.hasData) {
+                                  return ListView.separated(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    itemCount: snapshot.data!.docs.length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        leading: const CircleAvatar(
+                                          backgroundColor: Color(0xff024578),
+                                          foregroundColor: Colors.white,
+                                          child: Icon(Icons.person),
+                                        ),
+                                        title: Text(
+                                            '${snapshot.data!.docs[index]["Name"]}'),
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SettleUp(
+                                                        friend:
+                                                            "${snapshot.data!.docs[index]["Name"]}",
+                                                      )));
+                                        },
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) =>
+                                        const Divider(),
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(
+                                    child: Text(snapshot.hasError.toString()),
+                                  );
+                                } else {
+                                  return const Center(
+                                      child: Text(
+                                    "Try adding some friends",
+                                    style: TextStyle(fontSize: 25),
+                                  ));
+                                }
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            }),
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateColor.resolveWith(
+                                  (states) => const Color(0xFF024578)),
+                              foregroundColor: MaterialStateColor.resolveWith(
+                                  (states) => Colors.white)),
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      actionsPadding: const EdgeInsets.all(10),
+                                      actions: [
+                                        TextFormField(
+                                          controller: group,
+                                          keyboardType: TextInputType.name,
+                                          decoration: InputDecoration(
+                                              hintText:
+                                                  "Enter your group's name",
+                                              labelText: "Name",
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10))),
+                                        ),
+                                        Center(
+                                          child: ElevatedButton(
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateColor
+                                                          .resolveWith((states) =>
+                                                              const Color(
+                                                                  0xFF024578)),
+                                                  foregroundColor:
+                                                      MaterialStateColor
+                                                          .resolveWith(
+                                                              (states) => Colors
+                                                                  .white)),
+                                              onPressed: () {
+                                                groupref
+                                                    .doc(group.text)
+                                                    .set({
+                                                      'Name': group.text.trim()
+                                                    })
+                                                    .whenComplete(() =>
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                const SnackBar(
+                                                          backgroundColor:
+                                                              Colors.green,
+                                                          content: Center(
+                                                              child: Text(
+                                                                  "Added successfully",
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          'FiraSans'))),
+                                                          duration: Duration(
+                                                              seconds: 3),
+                                                        )))
+                                                    .then((value) =>
+                                                        Navigator.pop(context));
+                                              },
+                                              child: const Text("Add")),
+                                        )
+                                      ],
+                                    ));
+                          },
+                          icon: const Icon(Icons.group_add),
+                          label: const Text("Create group")),
+                      const Divider(),
+                      Expanded(
+                        child: StreamBuilder(
+                            stream: groupref.snapshots(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.active) {
+                                if (snapshot.hasData) {
+                                  return ListView.separated(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    itemCount: snapshot.data!.docs.length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        leading: const CircleAvatar(
+                                          backgroundColor: Color(0xff024578),
+                                          foregroundColor: Colors.white,
+                                          child: Icon(Icons.groups),
+                                        ),
+                                        title: Text(
+                                            '${snapshot.data!.docs[index]["Name"]}'),
+                                        onTap: () {},
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) =>
+                                        const Divider(),
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(
+                                    child: Text(snapshot.hasError.toString()),
+                                  );
+                                } else {
+                                  return const Center(
+                                      child: Text(
+                                    "Try creating a group",
+                                    style: TextStyle(fontSize: 25),
+                                  ));
+                                }
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            }),
+                      )
+                    ],
+                  ),
+                ]),
               )
             ],
-          )
-        ],
-      ),
-    );
+          ),
+        ));
   }
 }

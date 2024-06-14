@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:tranzac/pages/login.dart';
 
-final collref = FirebaseFirestore.instance.collection('Users');
 final user = FirebaseAuth.instance;
+final collref = FirebaseFirestore.instance.collection('Users');
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -113,145 +113,158 @@ class _ProfileState extends State<Profile> {
                             .where("Email", isEqualTo: user.currentUser!.email)
                             .snapshots(),
                         builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return ListView.builder(
-                                itemCount: snapshot.data!.docs.length,
-                                itemBuilder: ((context, index) {
-                                  return Column(
-                                    children: [
-                                      ListTile(
-                                        title: const Text('DOB',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold)),
-                                        subtitle: Text(
-                                            '${snapshot.data!.docs[index]["Date of birth"]}',
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16)),
-                                        leading: const Icon(
-                                            CupertinoIcons.calendar,
-                                            color: Colors.white,
-                                            size: 28),
-                                      ),
-                                      const Divider(),
-                                      ListTile(
-                                        title: const Text('Occupation',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold)),
-                                        subtitle: Text(
-                                            '${snapshot.data!.docs[index]["Occupation"]}',
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16)),
-                                        leading: const Icon(CupertinoIcons.bag,
-                                            color: Colors.white, size: 28),
-                                      ),
-                                      const Divider(),
-                                      ListTile(
-                                        title: const Text('Gender',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold)),
-                                        subtitle: Text(
-                                            '${snapshot.data!.docs[index]["Gender"]}',
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16)),
-                                        leading: const Icon(
-                                            LineAwesome.mars_solid,
-                                            color: Colors.white,
-                                            size: 28),
-                                      ),
-                                      const Divider(),
-                                      ListTile(
-                                        title: const Text('Address',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold)),
-                                        subtitle: Text(
-                                            '${snapshot.data!.docs[index]["Address.current"]}',
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16)),
-                                        leading: const Icon(
-                                            CupertinoIcons.map_pin_ellipse,
-                                            color: Colors.white,
-                                            size: 28),
-                                      ),
-                                      const Divider(),
-                                      const ListTile(
-                                        title: Text('Bank Accounts',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold)),
-                                        subtitle: Text(
-                                            'Manage your linked bank accounts',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16)),
-                                        leading: Icon(
-                                            CupertinoIcons.money_dollar,
-                                            color: Colors.white,
-                                            size: 28),
-                                        trailing: Icon(
-                                            CupertinoIcons.arrow_right,
-                                            color: Colors.white,
-                                            size: 28),
-                                      ),
-                                      const Divider(),
-                                      ListTile(
-                                        title: const Text('Log Out',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold)),
-                                        subtitle: const Text(
-                                            'Sign out from this device',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16)),
-                                        leading: const Icon(
-                                            LineAwesome.sign_out_alt_solid,
-                                            color: Colors.white,
-                                            size: 28),
-                                        onTap: () {
-                                          FirebaseAuth.instance
-                                              .signOut()
-                                              .whenComplete(() =>
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                          const SnackBar(
-                                                    backgroundColor:
-                                                        Colors.green,
-                                                    content: Center(
-                                                        child: Text(
-                                                            "Logged out successfully",
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'FiraSans'))),
-                                                    duration:
-                                                        Duration(seconds: 3),
-                                                  )))
-                                              .then((value) => Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const Login())));
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                }));
+                          if (snapshot.connectionState ==
+                              ConnectionState.active) {
+                            if (snapshot.hasData) {
+                              return ListView.builder(
+                                  itemCount: snapshot.data!.docs.length,
+                                  itemBuilder: ((context, index) {
+                                    return Column(
+                                      children: [
+                                        ListTile(
+                                          title: const Text('DOB',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold)),
+                                          subtitle: Text(
+                                              '${snapshot.data!.docs[index]["Date of birth"]}',
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16)),
+                                          leading: const Icon(
+                                              CupertinoIcons.calendar,
+                                              color: Colors.white,
+                                              size: 28),
+                                        ),
+                                        const Divider(),
+                                        ListTile(
+                                          title: const Text('Occupation',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold)),
+                                          subtitle: Text(
+                                              '${snapshot.data!.docs[index]["Occupation"]}',
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16)),
+                                          leading: const Icon(
+                                              CupertinoIcons.bag,
+                                              color: Colors.white,
+                                              size: 28),
+                                        ),
+                                        const Divider(),
+                                        ListTile(
+                                          title: const Text('Gender',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold)),
+                                          subtitle: Text(
+                                              '${snapshot.data!.docs[index]["Gender"]}',
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16)),
+                                          leading: const Icon(
+                                              LineAwesome.mars_solid,
+                                              color: Colors.white,
+                                              size: 28),
+                                        ),
+                                        const Divider(),
+                                        ListTile(
+                                          title: const Text('Address',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold)),
+                                          subtitle: Text(
+                                              '${snapshot.data!.docs[index]["Address.current"]}',
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16)),
+                                          leading: const Icon(
+                                              CupertinoIcons.map_pin_ellipse,
+                                              color: Colors.white,
+                                              size: 28),
+                                        ),
+                                        const Divider(),
+                                        const ListTile(
+                                          title: Text('Bank Accounts',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold)),
+                                          subtitle: Text(
+                                              'Manage your linked bank accounts',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16)),
+                                          leading: Icon(
+                                              CupertinoIcons.money_dollar,
+                                              color: Colors.white,
+                                              size: 28),
+                                          trailing: Icon(
+                                              CupertinoIcons.arrow_right,
+                                              color: Colors.white,
+                                              size: 28),
+                                        ),
+                                        const Divider(),
+                                        ListTile(
+                                          title: const Text('Log Out',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold)),
+                                          subtitle: const Text(
+                                              'Sign out from this device',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16)),
+                                          leading: const Icon(
+                                              LineAwesome.sign_out_alt_solid,
+                                              color: Colors.white,
+                                              size: 28),
+                                          onTap: () {
+                                            FirebaseAuth.instance
+                                                .signOut()
+                                                .whenComplete(() =>
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                            const SnackBar(
+                                                      backgroundColor:
+                                                          Colors.green,
+                                                      content: Center(
+                                                          child: Text(
+                                                              "Logged out successfully",
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'FiraSans'))),
+                                                      duration:
+                                                          Duration(seconds: 3),
+                                                    )))
+                                                .then((value) => Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const Login())));
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  }));
+                            } else if (snapshot.hasError) {
+                              return Center(
+                                child: Text(snapshot.hasError.toString()),
+                              );
+                            } else {
+                              return const Center(child: Text("No Data"));
+                            }
                           } else {
                             return const Center(
-                                child: CircularProgressIndicator());
+                              child: CircularProgressIndicator(),
+                            );
                           }
                         }))
               ],
