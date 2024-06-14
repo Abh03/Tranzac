@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SettleUp extends StatelessWidget {
@@ -71,6 +73,13 @@ class SettleUp extends StatelessWidget {
     );
   }
 }
+
+final user = FirebaseAuth.instance;
+final collref = FirebaseFirestore.instance
+    .collection('Users')
+    .doc(user.currentUser!.email)
+    .collection('Friends')
+    .doc("friend");
 
 Widget lt(String x, String y) {
   return ListTile(

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:tranzac/pages/login.dart';
 
-final collref = FirebaseFirestore.instance.collection('Users');
 final user = FirebaseAuth.instance;
+final collref = FirebaseFirestore.instance.collection('Users');
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

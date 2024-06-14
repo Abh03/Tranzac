@@ -94,7 +94,6 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    
                     Center(
                       child: Container(
                         margin: marginLogo,
@@ -214,6 +213,7 @@ class _LoginState extends State<Login> {
                               showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
+                                        actionsPadding: const EdgeInsets.all(10),
                                         actions: [
                                           TextFormField(
                                             controller: fmail,
@@ -227,22 +227,25 @@ class _LoginState extends State<Login> {
                                                         BorderRadius.circular(
                                                             10))),
                                           ),
-                                          ElevatedButton(
-                                              style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStateColor
-                                                          .resolveWith((states) =>
-                                                              const Color(
-                                                                  0xFF024578)),
-                                                  foregroundColor:
-                                                      MaterialStateColor
-                                                          .resolveWith(
-                                                              (states) => Colors
-                                                                  .white)),
-                                              onPressed: () {
-                                                reset(fmail.text, context);
-                                              },
-                                              child: const Text("Send link"))
+                                          Center(
+                                            child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateColor
+                                                            .resolveWith((states) =>
+                                                                const Color(
+                                                                    0xFF024578)),
+                                                    foregroundColor:
+                                                        MaterialStateColor
+                                                            .resolveWith(
+                                                                (states) =>
+                                                                    Colors
+                                                                        .white)),
+                                                onPressed: () {
+                                                  reset(fmail.text, context);
+                                                },
+                                                child: const Text("Send link")),
+                                          )
                                         ],
                                       ));
                             },
