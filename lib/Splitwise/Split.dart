@@ -126,41 +126,59 @@ class _SplitState extends State<Split> {
                                       ],
                                     ));
                           },
-                          icon: const Icon(Icons.add_circle),
+                          icon: const Icon(Icons.person_add_alt_1),
                           label: const Text("Add friends")),
                       const Divider(),
                       Expanded(
                         child: StreamBuilder(
                             stream: friendref.snapshots(),
                             builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                return ListView.separated(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  itemCount: snapshot.data!.docs.length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      leading: const Icon(Icons.person),
-                                      title: Text(
-                                          '${snapshot.data!.docs[index]["Name"]}'),
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const SettleUp()));
-                                      },
-                                    );
-                                  },
-                                  separatorBuilder: (context, index) =>
-                                      const Divider(),
-                                );
+                              if (snapshot.connectionState ==
+                                  ConnectionState.active) {
+                                if (snapshot.hasData) {
+                                  return ListView.separated(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    itemCount: snapshot.data!.docs.length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        leading: const CircleAvatar(
+                                          backgroundColor: Color(0xff024578),
+                                          foregroundColor: Colors.white,
+                                          child: Icon(Icons.person),
+                                        ),
+                                        title: Text(
+                                            '${snapshot.data!.docs[index]["Name"]}'),
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SettleUp(
+                                                        friend:
+                                                            "${snapshot.data!.docs[index]["Name"]}",
+                                                      )));
+                                        },
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) =>
+                                        const Divider(),
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(
+                                    child: Text(snapshot.hasError.toString()),
+                                  );
+                                } else {
+                                  return const Center(
+                                      child: Text(
+                                    "Try adding some friends",
+                                    style: TextStyle(fontSize: 25),
+                                  ));
+                                }
                               } else {
                                 return const Center(
-                                    child: Text(
-                                  "Try adding some friends",
-                                  style: TextStyle(fontSize: 25),
-                                ));
+                                  child: CircularProgressIndicator(),
+                                );
                               }
                             }),
                       )
@@ -238,36 +256,50 @@ class _SplitState extends State<Split> {
                                       ],
                                     ));
                           },
-                          icon: const Icon(Icons.add_circle),
+                          icon: const Icon(Icons.group_add),
                           label: const Text("Create group")),
                       const Divider(),
                       Expanded(
                         child: StreamBuilder(
                             stream: groupref.snapshots(),
                             builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                return ListView.separated(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  itemCount: snapshot.data!.docs.length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      leading: const Icon(Icons.groups),
-                                      title: Text(
-                                          '${snapshot.data!.docs[index]["Name"]}'),
-                                      onTap: () {
-                                      },
-                                    );
-                                  },
-                                  separatorBuilder: (context, index) =>
-                                      const Divider(),
-                                );
+                              if (snapshot.connectionState ==
+                                  ConnectionState.active) {
+                                if (snapshot.hasData) {
+                                  return ListView.separated(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    itemCount: snapshot.data!.docs.length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        leading: const CircleAvatar(
+                                          backgroundColor: Color(0xff024578),
+                                          foregroundColor: Colors.white,
+                                          child: Icon(Icons.groups),
+                                        ),
+                                        title: Text(
+                                            '${snapshot.data!.docs[index]["Name"]}'),
+                                        onTap: () {},
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) =>
+                                        const Divider(),
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(
+                                    child: Text(snapshot.hasError.toString()),
+                                  );
+                                } else {
+                                  return const Center(
+                                      child: Text(
+                                    "Try creating a group",
+                                    style: TextStyle(fontSize: 25),
+                                  ));
+                                }
                               } else {
                                 return const Center(
-                                    child: Text(
-                                  "Try creating a group",
-                                  style: TextStyle(fontSize: 25),
-                                ));
+                                  child: CircularProgressIndicator(),
+                                );
                               }
                             }),
                       )

@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tranzac/pages/Login.dart';
-import 'package:tranzac/pages/signup.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -13,25 +13,66 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-        child: Column(
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const SignUp()));
-                },
-                child: const Text("Sign up")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
-                },
-                child: const Text("Log in"))
-          ],
+        appBar: AppBar(
+          title: const Text("Settings"),
+          backgroundColor: const Color(0xff024578),
+          foregroundColor: Colors.white,
         ),
-      ),
-    );
+        body: ListView.builder(
+            itemCount: 1,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.help),
+                    title: const Text("Help"),
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => const AlertDialog(
+                                actions: [
+                                  Text(
+                                      "This is help.Please help me I am under the water,please.Here too much raining uhuhuhuhuhu")
+                                ],
+                              ));
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.accessibility_outlined),
+                    title: const Text("About us"),
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => const AlertDialog(
+                                actions: [Text("This is about us. lol")],
+                              ));
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.logout),
+                    title: const Text("Log Out"),
+                    onTap: () {
+                      FirebaseAuth.instance
+                          .signOut()
+                          .whenComplete(() => ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                backgroundColor: Colors.green,
+                                content: Center(
+                                    child: Text("Logged out successfully",
+                                        style:
+                                            TextStyle(fontFamily: 'FiraSans'))),
+                                duration: Duration(seconds: 3),
+                              )))
+                          .then((value) => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Login())));
+                    },
+                  )
+                ],
+              );
+            }));
   }
 }
