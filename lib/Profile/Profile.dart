@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/login.dart';
 
 final user = FirebaseAuth.instance;
@@ -56,7 +57,7 @@ class _ProfileState extends State<Profile> {
                   margin: const EdgeInsets.symmetric(horizontal: 16),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: const Color(0xff3c6e98),
+                    color: kActiveIconColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Column(
@@ -105,7 +106,7 @@ class _ProfileState extends State<Profile> {
                 Container(
                     margin: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: const Color(0xff3c6e98),
+                      color: kActiveIconColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: StreamBuilder(
