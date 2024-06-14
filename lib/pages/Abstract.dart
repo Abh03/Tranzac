@@ -3,7 +3,7 @@ import 'package:tranzac/BudgetTracking/budget.dart';
 import 'package:tranzac/Notification/Notification.dart';
 import 'package:tranzac/Profile/profile.dart';
 import 'package:tranzac/Settings/Settings.dart';
-import 'package:tranzac/Splitwise/split.dart';
+import 'package:tranzac/Splitwise/Split.dart';
 import 'package:tranzac/Statement/Statement.dart';
 import 'package:tranzac/pages/Homepage.dart';
 import 'package:tranzac/pages/QR.dart';
@@ -22,7 +22,7 @@ class _MyWidgetState extends State<Abstract> {
     const Statement(),
     const QR(),
     const Budget(),
-    const Split(),
+    const Splitwise(),
   ];
   final PageStorageBucket pgB = PageStorageBucket();
   Widget currentScreen = const HomePage();
@@ -171,7 +171,7 @@ class _MyWidgetState extends State<Abstract> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = const Split();
+                          currentScreen = const Splitwise();
                           currentTab = 3;
                         });
                       },

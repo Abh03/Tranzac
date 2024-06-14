@@ -14,14 +14,14 @@ final groupref = FirebaseFirestore.instance
     .doc(user.currentUser!.email)
     .collection('Groups');
 
-class Split extends StatefulWidget {
-  const Split({super.key});
+class Splitwise extends StatefulWidget {
+  const Splitwise({super.key});
 
   @override
-  State<Split> createState() => _SplitState();
+  State<Splitwise> createState() => _SplitState();
 }
 
-class _SplitState extends State<Split> {
+class _SplitState extends State<Splitwise> {
   final friend = TextEditingController();
   final group = TextEditingController();
 
