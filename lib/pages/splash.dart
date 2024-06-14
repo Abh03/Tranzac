@@ -18,7 +18,7 @@ class Splash extends StatelessWidget {
         elevation: 0,
       ),
       extendBodyBehindAppBar: true,
-      body: Container(
+      body: SizedBox(
         width: width,
         height: height,
         child: Stack(
@@ -106,5 +106,16 @@ class Splash extends StatelessWidget {
         ),
       ),
     );
+    // return Scaffold(
+    //   body: StreamBuilder(
+    //       stream: FirebaseAuth.instance.authStateChanges(),
+    //       builder: (context, snapshot) {
+    //         if (snapshot.hasData) {
+    //           return const Abstract();
+    //         } else {
+
+    //         }
+    //       }),
+    // );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:tranzac/constants.dart';
+import 'package:flutter/cupertino.dart';
 
 class Budget extends StatefulWidget {
   const Budget({super.key});
@@ -18,23 +20,37 @@ List chartData = [
 ];
 
 class _BudgetState extends State<Budget> {
-  late SelectionBehavior _selectionBehavior;
+  List<PieChartSectionData> getSections() {
+    return chartData.map((data) {
+      return PieChartSectionData(
+        color: data[2],
+        value: data[0].toDouble(),
+        title: '${data[0]}%',
+        titleStyle: const TextStyle(fontSize: 12, color: Colors.white),
+        radius: 70,
+      );
+    }).toList();
+  }
+
+  bool _isWeeklyHovered = false;
+  bool _isMonthlyHovered = false;
+  bool _isYearlyHovered = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFD7DEE8),
+      backgroundColor: kBackgroundColor,
       body: Stack(
         children: [
-// Container
           Positioned(
             top: 10,
             left: 10,
             right: 10,
-            height: MediaQuery.of(context).size.height * 0.18,
+            height: MediaQuery.of(context).size.height * 0.17,
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color(0xFF3C6E98),
+                color: kActiveIconColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Column(
@@ -44,71 +60,133 @@ class _BudgetState extends State<Budget> {
                   Text(
                     'My Expenses',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    '01 January 2024',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  SizedBox(width: 16),
-                  Text(
-                    'Rs. 4000 left',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    'Out of Rs. 18000 budget',
-                    style: TextStyle(color: Colors.white),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.account_balance_wallet, color: Colors.white),
+                          SizedBox(width: 8),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Remaining Budget',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Rs. 4000',
+                                style: TextStyle(color: Colors.green, fontSize: 15),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(CupertinoIcons.money_dollar_circle, color: Colors.white, size: 28),
+                          SizedBox(width: 8),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                'Total Budget',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Rs. 18000',
+                                style: TextStyle(color: Colors.white, fontSize: 15),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
           ),
-
           Positioned(
             top: MediaQuery.of(context).size.height * 0.2,
             left: 10,
-            child: const Text(
-              'Categories',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold),
+            right: 10,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 2),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(60),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: _isWeeklyHovered ? Colors.blue : Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: _buildHoverButton('Weekly', _isWeeklyHovered, () {
+                      setState(() {
+                        _isWeeklyHovered = !_isWeeklyHovered;
+                      });
+                    }),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: _isMonthlyHovered ? Colors.blue : Colors.transparent,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: _buildHoverButton('Monthly', _isMonthlyHovered, () {
+                      setState(() {
+                        _isMonthlyHovered = !_isMonthlyHovered;
+                      });
+                    }),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: _isYearlyHovered ? Colors.blue : Colors.transparent,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: _buildHoverButton('Yearly', _isYearlyHovered, () {
+                      setState(() {
+                        _isYearlyHovered = !_isYearlyHovered;
+                      });
+                    }),
+                  ),
+                ],
+              ),
             ),
           ),
-// Doughnut chart
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.1,
+            top: MediaQuery.of(context).size.height * 0.15,
             left: 0,
             right: 0,
             bottom: 30,
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: SfCircularChart(
-                margin: const EdgeInsets.all(0),
-                series: [
-                  DoughnutSeries(
-                    dataSource: chartData,
-                    yValueMapper: (data, _) => data[0],
-                    xValueMapper: (data, _) => data[1],
-                    radius: '70%',
-                    innerRadius: '45%',
-                    explode: true,
-                    pointColorMapper: (data, _) => data[2],
-                    dataLabelMapper: (data, _) => '${data[0]} %',
-                    dataLabelSettings: const DataLabelSettings(
-                        isVisible: true,
-                        textStyle: TextStyle(fontSize: 12, color: Colors.white),
-                        labelPosition: ChartDataLabelPosition.inside),
-                  )
-                ],
+              child: PieChart(
+                PieChartData(
+                  sections: getSections(),
+                  centerSpaceRadius: 50,
+                  sectionsSpace: 2,
+                ),
               ),
             ),
           ),
-// Legend Container
           Positioned(
             left: 10,
             right: 10,
@@ -119,16 +197,15 @@ class _BudgetState extends State<Budget> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Column(
+              child: SingleChildScrollView(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  // Adjust spacing between rows
                   children: [
                     Wrap(
                       spacing: 10,
                       runSpacing: 5,
                       children: [
-                        for (var data in chartData
-                            .take(chartData.length ~/ 2)) // First half
+                        for (var data in chartData.take(chartData.length ~/ 2))
                           Row(
                             children: [
                               Container(
@@ -148,8 +225,7 @@ class _BudgetState extends State<Budget> {
                               ),
                             ],
                           ),
-                        for (var data in chartData
-                            .skip(chartData.length ~/ 2)) // Second half
+                        for (var data in chartData.skip(chartData.length ~/ 2))
                           Row(
                             children: [
                               Container(
@@ -171,11 +247,33 @@ class _BudgetState extends State<Budget> {
                           ),
                       ],
                     ),
-                  ]),
+                  ],
+                ),
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
+
+  Widget _buildHoverButton(String text, bool isHovered, VoidCallback onHover) {
+    return MouseRegion(
+      onEnter: (_) => onHover(),
+      onExit: (_) => onHover(),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        child: Text(
+          text,
+          style: const TextStyle(color: Colors.black, fontSize: 16),
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(const MaterialApp(
+    home: Budget(),
+  ));
 }

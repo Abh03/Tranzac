@@ -1,5 +1,6 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tranzac/constants.dart';
 
 class Statement extends StatefulWidget {
@@ -22,84 +23,45 @@ class _StatementState extends State<Statement> {
             Container(
               margin: const EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width,
-              height: 110,
+              height: 70,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: kActiveIconColor),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Column(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Statement",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 2),
+                    const Text(
+                      "Statement",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2),
+                    ),
+                    Container(
+                      width: 80,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.filter_list,
+                              color: kActiveIconColor,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text('Filter')
+                          ],
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 220,
-                                height: 35,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(05)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.search,
-                                        color: kActiveIconColor,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text("Search")
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Container(
-                                width: 80,
-                                height: 35,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.filter_list,
-                                        color: kActiveIconColor,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text('Filter')
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
+                      ),
                     ),
                   ],
                 ),
@@ -110,10 +72,10 @@ class _StatementState extends State<Statement> {
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-              // padding: EdgeInsets.all(25),
               child: const Text(
                 'Fri , Mar 29',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+
               ),
             ),
             Container(
@@ -148,13 +110,12 @@ class _StatementState extends State<Statement> {
                             children: [
                               Text(
                                 'Rs.300',
-                                style:
-                                    TextStyle(fontSize: 15, color: kRedColor),
+                                style: TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
+                                style:
+                                TextStyle(fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -193,12 +154,12 @@ class _StatementState extends State<Statement> {
                               Text(
                                 'Rs.2500',
                                 style:
-                                    TextStyle(fontSize: 15, color: kGreenColor),
+                                TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
+                                style:
+                                TextStyle(fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -211,7 +172,6 @@ class _StatementState extends State<Statement> {
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-              // padding: EdgeInsets.all(25),
               child: const Text(
                 'Thu , Mar 28',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -249,13 +209,12 @@ class _StatementState extends State<Statement> {
                             children: [
                               Text(
                                 'Rs.300',
-                                style:
-                                    TextStyle(fontSize: 15, color: kRedColor),
+                                style: TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
+                                style:
+                                TextStyle(fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -294,12 +253,12 @@ class _StatementState extends State<Statement> {
                               Text(
                                 'Rs.2500',
                                 style:
-                                    TextStyle(fontSize: 15, color: kGreenColor),
+                                TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
+                                style:
+                                TextStyle(fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),

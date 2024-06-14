@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tranzac/constants.dart';
 
@@ -14,16 +10,16 @@ class HomePage extends StatefulWidget {
 }
 
 List Data = [
-  [40, 'Food', Color.fromRGBO(211, 107, 159, 1.0)],
-  [60, "Rest", Color(0XFFBBBBBB)],
-  [40, 'Shopping', Color.fromRGBO(202, 73, 140, 1.0)],
-  [60, "Rest", Color(0XFFBBBBBB)],
-  [35, 'Education', Color.fromRGBO(185, 119, 172, 1.0)],
-  [65, "Rest", Color(0XFFBBBBBB)],
-  [6, 'Transportation', Color.fromRGBO(230, 191, 206, 1.0)],
-  [94, "Rest", Color(0XFFBBBBBB)],
-  [17, 'Entertainment', Color.fromRGBO(241, 164, 230, 1.0)],
-  [4, 'Others', Color.fromRGBO(207, 155, 189, 1.0)],
+  [40, 'Food', const Color.fromRGBO(211, 107, 159, 1.0)],
+  [60, "Rest", const Color(0XFFBBBBBB)],
+  [40, 'Shopping', const Color.fromRGBO(202, 73, 140, 1.0)],
+  [60, "Rest", const Color(0XFFBBBBBB)],
+  [35, 'Education', const Color.fromRGBO(185, 119, 172, 1.0)],
+  [65, "Rest", const Color(0XFFBBBBBB)],
+  [6, 'Transportation', const Color.fromRGBO(230, 191, 206, 1.0)],
+  [94, "Rest", const Color(0XFFBBBBBB)],
+  [17, 'Entertainment', const Color.fromRGBO(241, 164, 230, 1.0)],
+  [4, 'Others', const Color.fromRGBO(207, 155, 189, 1.0)],
 ];
 
 class _HomePageState extends State<HomePage> {
@@ -37,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Positioned(
               left: 10,
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: Column(
@@ -153,7 +149,7 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
+                                          const Text(
                                             "Food & Drinks",
                                             style: TextStyle(
                                                 fontSize: 16,
@@ -162,11 +158,11 @@ class _HomePageState extends State<HomePage> {
                                           Container(
                                             width: 30,
                                             height: 20,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: kSecondBackgroundColor,
                                             ),
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.arrow_forward_ios,
                                               color: Colors.white,
                                               size: 15,
@@ -176,10 +172,10 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 0,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: 120,
                                     width: 300,
                                     child: SfCircularChart(
@@ -202,8 +198,8 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
+                                    child: const Padding(
+                                      padding: EdgeInsets.fromLTRB(
                                           0, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:
@@ -252,7 +248,7 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
+                                          const Text(
                                             "Shopping",
                                             style: TextStyle(
                                                 fontSize: 16,
@@ -261,11 +257,11 @@ class _HomePageState extends State<HomePage> {
                                           Container(
                                             width: 30,
                                             height: 20,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: kSecondBackgroundColor,
                                             ),
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.arrow_forward_ios,
                                               color: Colors.white,
                                               size: 15,
@@ -275,10 +271,10 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 0,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: 120,
                                     width: 300,
                                     child: SfCircularChart(
@@ -297,8 +293,8 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
+                                    child: const Padding(
+                                      padding: EdgeInsets.fromLTRB(
                                           0, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:

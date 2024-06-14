@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tranzac/BudgetTracking/budget.dart';
 import 'package:tranzac/Notification/Notification.dart';
-import 'package:tranzac/Profile/Profile.dart';
+import 'package:tranzac/Profile/profile.dart';
 import 'package:tranzac/Settings/Settings.dart';
 import 'package:tranzac/Splitwise/split.dart';
 import 'package:tranzac/Statement/Statement.dart';
