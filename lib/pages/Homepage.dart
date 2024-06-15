@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tranzac/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tranzac/pages/sendmoney.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -108,20 +109,28 @@ class _HomePageState extends State<HomePage> {
                           ),
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 20),
-                          child: const Row(
+                          child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(
+                              const Icon(
                                 CupertinoIcons.money_dollar_circle,
                                 size: 28,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 10),
-                              Text(
-                                'Send Money',
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.white),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const SendMoney()),
+                                  );
+                                },
+                                child: const Text(
+                                  'Send Money',
+                                  style: TextStyle(fontSize: 16, color: Colors.white),
+                                ),
                               ),
+
                             ],
                           ),
                         ),

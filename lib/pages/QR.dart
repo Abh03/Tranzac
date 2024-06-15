@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:tranzac/pages/login.dart';
+import 'package:tranzac/pages/Login.dart';
 import 'package:tranzac/pages/Signup.dart';
 
 
