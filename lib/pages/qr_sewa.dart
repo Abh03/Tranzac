@@ -6,9 +6,9 @@ class QrSewa extends StatefulWidget {
   final String mobile;
   const QrSewa({Key? key, required this.mobile}) : super(key: key);
 
-  @override
-  _QrSewaState createState() => _QrSewaState();
-}
+    @override
+    _QrSewaState createState() => _QrSewaState();
+  }
 
 class _QrSewaState extends State<QrSewa> {
   late TextEditingController mobileNumberController = TextEditingController();
@@ -23,7 +23,7 @@ class _QrSewaState extends State<QrSewa> {
   @override
   void dispose() {
     mobileNumberController.dispose();
-    amountController.dispose();
+      amountController.dispose();
     super.dispose();
   }
 

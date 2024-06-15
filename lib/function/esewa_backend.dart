@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:esewa_flutter_sdk/esewa_flutter_sdk.dart';
 import 'package:esewa_flutter_sdk/esewa_config.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:tranzac/constant/esewa_client.dart';
 import 'package:esewa_flutter_sdk/esewa_payment.dart';
 import 'package:esewa_flutter_sdk/esewa_payment_success_result.dart';
 
+
+
 class Esewa {
+
   void pay(String mobileNumber, String amount) {
     String product_id = mobileNumber;
     String product_price = amount;
@@ -40,6 +43,9 @@ class Esewa {
   }
 
   void verify(EsewaPaymentSuccessResult result) {
+
     // TODO: after success, call this function to verify transaction
+
+
   }
 }
