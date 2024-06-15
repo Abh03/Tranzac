@@ -36,8 +36,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Positioned(
               left: 10,
-              top: MediaQuery.of(context).padding.top +
-                  12, // Add margin from the app bar
+              top: MediaQuery.of(context).padding.top + 12, // Add margin from the app bar
               child: Container(
                 width: MediaQuery.of(context).size.width *
                     0.95, // Increase width of the container
@@ -108,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.all(Radius.circular(35)),
                           ),
                           padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
+                              vertical: 2, horizontal: 10),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -117,20 +116,25 @@ class _HomePageState extends State<HomePage> {
                                 size: 28,
                                 color: Colors.white,
                               ),
-                              SizedBox(width: 10),
+                              SizedBox(width: 2),
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const SendMoney()),
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SendMoney()),
                                   );
                                 },
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(kActiveIconColor),
+                                ),
                                 child: const Text(
                                   'Send Money',
-                                  style: TextStyle(fontSize: 16, color: Colors.white),
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.white),
                                 ),
                               ),
-
                             ],
                           ),
                         ),

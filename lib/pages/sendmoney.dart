@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
 
-class SendMoney extends StatefulWidget {
-  const SendMoney({super.key});
+class SendMoney extends StatelessWidget {
+  const SendMoney({Key? key}) : super(key: key);
 
-  @override
-  State<SendMoney> createState() => _SendMoneyState();
-}
-
-class _SendMoneyState extends State<SendMoney> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,42 +38,124 @@ class _SendMoneyState extends State<SendMoney> {
             left: 10,
             right: 10,
             top: MediaQuery.of(context).padding.top + 70,
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: kActiveIconColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.grey,
-                    child: Icon(Icons.person, color: Colors.white, size: 50),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: kActiveIconColor,
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: const Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        'Aavash Lamichhane',
-                        style: TextStyle(color: Colors.white, fontSize: 24),
+                      Icon(
+                        Icons.account_balance_wallet,
+                        color: Colors.white,
+                        size: 30,
                       ),
-                      SizedBox(height: 5),
-                      Text(
-                        'Rs. 6500',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        'Available Balance',
-                        style: TextStyle(color: klightTextColor, fontSize: 18),
+                      SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Rs. 6500',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          SizedBox(height: 1),
+                          Text(
+                            'Available Balance',
+                            style: TextStyle(color: klightTextColor, fontSize: 16), // Decreased font size
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        'Mobile Number',
+                        style: TextStyle(
+                          color: kActiveIconColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Enter Mobile Number',
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15,
+                            horizontal: 20,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      const Text(
+                        'Amount',
+                        style: TextStyle(
+                          color: kActiveIconColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10), // Added space here
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Enter Amount To Pay',
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15,
+                            horizontal: 20,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Implement your logic for continue button
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(kActiveIconColor), // Background color
+                          textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(color: Colors.white)), // Text color
+                          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)), // Padding
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                          ), // Button shape
+                        ),
+                        child: const Text(
+                          'Continue',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],
