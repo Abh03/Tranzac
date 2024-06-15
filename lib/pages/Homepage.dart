@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         extendBodyBehindAppBar: true,
-        backgroundColor: kLightGreyColor,
+        backgroundColor: kBackgroundColor,
         body: Stack(
           children: [
             Positioned(
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
-                  color: kLightGreyColor,
+                  color: kBackgroundColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
                     topRight: Radius.circular(50.0),
