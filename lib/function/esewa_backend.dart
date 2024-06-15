@@ -5,41 +5,41 @@ import 'package:tranzac/constant/esewa_client.dart';
 import 'package:esewa_flutter_sdk/esewa_payment.dart';
 import 'package:esewa_flutter_sdk/esewa_payment_success_result.dart';
 
-
-
-class Esewa{
-  pay(){
+class Esewa {
+  void pay(String mobileNumber, String amount) {
+    String product_id = mobileNumber;
+    String product_price = amount;
     try {
       EsewaFlutterSdk.initPayment(
-          esewaConfig: EsewaConfig(
-            environment: Environment.test,
-            clientId: kEsewaClientId,
-            secretId: kEsewaSecretKey,
+        esewaConfig: EsewaConfig(
+          environment: Environment.test,
+          clientId: kEsewaClientId,
+          secretId: kEsewaSecretKey,
+        ),
+        esewaPayment: EsewaPayment(
+          productId: product_id,
+          productName: product_id,
+          productPrice: product_price,
+          callbackUrl: '',
+        ),
+        onPaymentSuccess: (EsewaPaymentSuccessResult result) {
+          debugPrint('SUCCESS');
+          verify(result);
 
-          ),
-          esewaPayment: EsewaPayment(
-            productId: "1d71jd81",
-            productName: "Product One",
-            productPrice: "20",
-            callbackUrl: '',
-          ),
-          onPaymentSuccess: (EsewaPaymentSuccessResult result) {
-            debugPrint('SUCCESS');
-            verify (result);
-          },
-          onPaymentFailure: () {
-            debugPrint('FAILURE');
-          },
-          onPaymentCancellation: () {
-            debugPrint('CANCELLED');
-          }
+        },
+        onPaymentFailure: () {
+          debugPrint('FAILURE');
+        },
+        onPaymentCancellation: () {
+          debugPrint('CANCELLED');
+        },
       );
-    }
-    catch (e) {
+    } catch (e) {
       debugPrint('EXCEPTION');
     }
   }
-  verify (EsewaPaymentSuccessResult result){
+
+  void verify(EsewaPaymentSuccessResult result) {
     // TODO: after success, call this function to verify transaction
   }
 }

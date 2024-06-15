@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/function/esewa_backend.dart';
-class SendMoney extends StatefulWidget {
-  const SendMoney({Key? key}) : super(key: key);
+
+class QrSewa extends StatefulWidget {
+  final String mobile;
+  const QrSewa({Key? key, required this.mobile}) : super(key: key);
 
   @override
-  _SendMoneyState createState() => _SendMoneyState();
+  _QrSewaState createState() => _QrSewaState();
 }
 
-class _SendMoneyState extends State<SendMoney> {
-  final TextEditingController mobileNumberController = TextEditingController();
+class _QrSewaState extends State<QrSewa> {
+  late TextEditingController mobileNumberController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    mobileNumberController = TextEditingController(text: widget.mobile);
+  }
 
   @override
   void dispose() {
@@ -29,7 +37,6 @@ class _SendMoneyState extends State<SendMoney> {
 
   @override
   Widget build(BuildContext context) {
-    final String? esewa_id = ModalRoute.of(context)?.settings.arguments as String?;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -67,16 +74,9 @@ class _SendMoneyState extends State<SendMoney> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xFF024578),
-                        Color(0xFF2a74ad),
-                      ],
-                    ),
+                    color: kActiveIconColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Row(
@@ -85,7 +85,7 @@ class _SendMoneyState extends State<SendMoney> {
                       Icon(
                         Icons.account_balance_wallet,
                         color: Colors.white,
-                        size: 25,
+                        size: 30,
                       ),
                       SizedBox(width: 10),
                       Column(
@@ -93,7 +93,7 @@ class _SendMoneyState extends State<SendMoney> {
                         children: [
                           Text(
                             'Rs. 6500',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                           SizedBox(height: 1),
                           Text(
