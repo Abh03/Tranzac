@@ -42,9 +42,16 @@ class SendMoney extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: kActiveIconColor,
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFF024578),
+                        Color(0xFF2a74ad),
+                      ],
+                    ),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Row(
@@ -53,7 +60,7 @@ class SendMoney extends StatelessWidget {
                       Icon(
                         Icons.account_balance_wallet,
                         color: Colors.white,
-                        size: 30,
+                        size: 25,
                       ),
                       SizedBox(width: 10),
                       Column(
@@ -61,7 +68,7 @@ class SendMoney extends StatelessWidget {
                         children: [
                           Text(
                             'Rs. 6500',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style: TextStyle(color: Colors.white, fontSize: 18),
                           ),
                           SizedBox(height: 1),
                           Text(

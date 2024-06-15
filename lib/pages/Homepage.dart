@@ -40,19 +40,26 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 width: MediaQuery.of(context).size.width *
                     0.95, // Increase width of the container
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: kActiveIconColor,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF024578),
+                      Color(0xFF2a74ad),
+                    ],
+                  ),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
-                      radius: 30,
+                      radius: 20,
                       backgroundColor: Colors.grey,
                       // Example color for the profile icon
-                      child: Icon(Icons.person, color: Colors.white, size: 50),
+                      child: Icon(Icons.person, color: Colors.white, size: 30),
                     ),
                     SizedBox(width: 10),
                     Column(
@@ -60,18 +67,18 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           'Aavash Lamichhane',
-                          style: TextStyle(color: Colors.white, fontSize: 24),
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
-                        SizedBox(height: 5),
+                        SizedBox(height: 2),
                         Text(
                           'Rs. 6500',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                         SizedBox(height: 5),
                         Text(
                           'Available Balance',
                           style:
-                              TextStyle(color: klightTextColor, fontSize: 18),
+                              TextStyle(color: klightTextColor, fontSize: 16),
                         ),
                       ],
                     ),
@@ -80,7 +87,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Positioned(
-              top: 160,
+              top: 125,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width,
