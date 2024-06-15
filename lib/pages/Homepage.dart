@@ -46,9 +46,10 @@ class _HomePageState extends State<HomePage> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xFF024578),
-                      Color(0xFF2a74ad),
+                      kNewAppBarColor,
+                      kGradientChange,
                     ],
+                    stops: [0.35, 1],
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(5),
                         child: Container(
                           decoration: const BoxDecoration(
-                            color: kActiveIconColor,
+                            color: kNewAppBarColor,
                             // Background color of the container
                             borderRadius: BorderRadius.all(Radius.circular(35)),
                           ),
@@ -134,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                                   );
                                 },
                                 style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(kActiveIconColor),
+                                  backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor),
                                 ),
                                 child: const Text(
                                   'Send Money',
@@ -152,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         'Expenses',
                         style: TextStyle(
-                            color: kActiveIconColor,
+                            color: kNewAppBarColor,
                             fontSize: 22,
                             fontWeight: FontWeight.bold),
                       ),
@@ -185,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                                           const Text(
                                             "Food",
                                             style: TextStyle(
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -194,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                                             height: 20,
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: kActiveIconColor,
+                                              color: kNewAppBarColor,
                                             ),
                                             child: const Icon(
                                               Icons.arrow_forward_ios,
@@ -241,14 +242,14 @@ class _HomePageState extends State<HomePage> {
                                             "Rs.800 left",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           Text(
                                             "Out of Rs.3000",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 letterSpacing: 1,
                                                 fontWeight: FontWeight.w700),
                                           )
@@ -281,7 +282,7 @@ class _HomePageState extends State<HomePage> {
                                           const Text(
                                             "Rent",
                                             style: TextStyle(
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -290,7 +291,7 @@ class _HomePageState extends State<HomePage> {
                                             height: 20,
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: kActiveIconColor,
+                                              color: kNewAppBarColor,
                                             ),
                                             child: const Icon(
                                               Icons.arrow_forward_ios,
@@ -337,14 +338,14 @@ class _HomePageState extends State<HomePage> {
                                             "Rs.120 left",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           Text(
                                             "Out of Rs.4000",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 letterSpacing: 1,
                                                 fontWeight: FontWeight.w700),
                                           )
@@ -377,7 +378,7 @@ class _HomePageState extends State<HomePage> {
                                           const Text(
                                             "Education",
                                             style: TextStyle(
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -386,7 +387,7 @@ class _HomePageState extends State<HomePage> {
                                             height: 20,
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: kActiveIconColor,
+                                              color: kNewAppBarColor,
                                             ),
                                             child: const Icon(
                                               Icons.arrow_forward_ios,
@@ -433,14 +434,14 @@ class _HomePageState extends State<HomePage> {
                                             "Rs.0 left",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           Text(
                                             "Out of Rs.42000",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 letterSpacing: 1,
                                                 fontWeight: FontWeight.w700),
                                           )
@@ -473,7 +474,7 @@ class _HomePageState extends State<HomePage> {
                                           const Text(
                                             "Transportation",
                                             style: TextStyle(
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -482,7 +483,7 @@ class _HomePageState extends State<HomePage> {
                                             height: 20,
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: kActiveIconColor,
+                                              color: kNewAppBarColor,
                                             ),
                                             child: const Icon(
                                               Icons.arrow_forward_ios,
@@ -529,14 +530,14 @@ class _HomePageState extends State<HomePage> {
                                             "Rs.100 left",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           Text(
                                             "Out of Rs.400",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 letterSpacing: 1,
                                                 fontWeight: FontWeight.w700),
                                           )
@@ -569,7 +570,7 @@ class _HomePageState extends State<HomePage> {
                                           const Text(
                                             "Entertainment",
                                             style: TextStyle(
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -578,7 +579,7 @@ class _HomePageState extends State<HomePage> {
                                             height: 20,
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: kActiveIconColor,
+                                              color: kNewAppBarColor,
                                             ),
                                             child: const Icon(
                                               Icons.arrow_forward_ios,
@@ -625,14 +626,14 @@ class _HomePageState extends State<HomePage> {
                                             "Rs.150 left",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           Text(
                                             "Out of Rs.1000",
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kActiveIconColor,
+                                                color: kNewAppBarColor,
                                                 letterSpacing: 1,
                                                 fontWeight: FontWeight.w700),
                                           )

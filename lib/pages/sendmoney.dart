@@ -61,7 +61,7 @@ class _SendMoneyState extends State<SendMoney> {
             child: Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: kActiveIconColor),
+                  icon: const Icon(Icons.arrow_back, color: kNewAppBarColor),
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -70,7 +70,7 @@ class _SendMoneyState extends State<SendMoney> {
                 const Text(
                   'Send Money',
                   style: TextStyle(
-                    color: kActiveIconColor,
+                    color: kNewAppBarColor,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -92,8 +92,8 @@ class _SendMoneyState extends State<SendMoney> {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Color(0xFF024578),
-                        Color(0xFF2a74ad),
+                        kNewAppBarColor,
+                        kGradientChange,
                       ],
                     ),
                     borderRadius: BorderRadius.circular(20),
@@ -133,7 +133,7 @@ class _SendMoneyState extends State<SendMoney> {
                       const Text(
                         'Mobile Number',
                         style: TextStyle(
-                          color: kActiveIconColor,
+                          color: kNewAppBarColor,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -159,7 +159,7 @@ class _SendMoneyState extends State<SendMoney> {
                       const Text(
                         'Amount',
                         style: TextStyle(
-                          color: kActiveIconColor,
+                          color: kNewAppBarColor,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -185,7 +185,7 @@ class _SendMoneyState extends State<SendMoney> {
                       const Text(
                         'Categories',
                         style: TextStyle(
-                          color: kActiveIconColor,
+                          color: kNewAppBarColor,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -220,7 +220,7 @@ class _SendMoneyState extends State<SendMoney> {
                                     children: [
                                       Icon(
                                         categoryIcons[category], // Icon for each category
-                                        color: kActiveIconColor, // Icon color
+                                        color: kNewAppBarColor, // Icon color
                                       ),
                                       SizedBox(width: 10),
                                       Text(category), // Text of each category
@@ -236,7 +236,7 @@ class _SendMoneyState extends State<SendMoney> {
                       ElevatedButton(
                         onPressed: sendToEsewaBackend,
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(kActiveIconColor),
+                          backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor),
                           textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(color: Colors.white)),
                           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)),
                           shape: MaterialStateProperty.all<RoundedRectangleBorder>(

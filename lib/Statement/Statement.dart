@@ -32,9 +32,10 @@ class _StatementState extends State<Statement> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF024578),
-                    Color(0xFF2a74ad),
+                    kNewAppBarColor,
+                    kGradientChange,
                   ],
+                  stops: [0.35, 1],
                 ),
               ),
               child: Padding(
@@ -64,7 +65,7 @@ class _StatementState extends State<Statement> {
                           icon: const Icon(Icons.arrow_drop_down),
                           iconSize: 22,
                           elevation: 16,
-                          style: const TextStyle(color: kActiveIconColor),
+                          style: const TextStyle(color: kNewAppBarColor),
                           underline: Container(
                             height: 2,
                             color: Colors.white,
@@ -83,7 +84,7 @@ class _StatementState extends State<Statement> {
                                   if (value == 'Filter')
                                     const Icon(
                                       Icons.filter_list,
-                                      color: kActiveIconColor,
+                                      color: kNewAppBarColor,
                                     ),
                                   if (value == 'Filter')
                                     const SizedBox(width: 5),
@@ -109,7 +110,7 @@ class _StatementState extends State<Statement> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: kActiveIconColor),
+                    color: kNewAppBarColor),
               ),
             ),
             Container(
@@ -211,7 +212,7 @@ class _StatementState extends State<Statement> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: kActiveIconColor),
+                    color: kNewAppBarColor),
               ),
             ),
             Container(

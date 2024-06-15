@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const kNewAppBarColor = Color(0xff21669c);
+const kGradientChange = Color(0xFF5ba5de);
 const kBackgroundColor = Color(0xfffd7dee8);
 const kLightGreyColor = Color(0xFFD9D9D9);
 const kActiveIconColor = Color(0xFF024578);

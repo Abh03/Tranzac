@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
+import 'package:tranzac/constants.dart';
+
 
 class Notify extends StatefulWidget {
   const Notify({super.key});
@@ -52,9 +54,10 @@ class _NotifyState extends State<Notify> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xFF024578),
-                      Color(0xFF2a74ad),
+                      kNewAppBarColor,
+                      kGradientChange,
                     ],
+                    stops: [0.35, 1],
                   ),
                   borderRadius: BorderRadius.circular(15)),
               child: Column(

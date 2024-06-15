@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/function/esewa_backend.dart';
+import 'package:tranzac/constants.dart';
 
 class QrSewa extends StatefulWidget {
   final String mobile;
@@ -49,7 +50,7 @@ class _QrSewaState extends State<QrSewa> {
             child: Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: kActiveIconColor),
+                  icon: const Icon(Icons.arrow_back, color: kNewAppBarColor),
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -58,7 +59,7 @@ class _QrSewaState extends State<QrSewa> {
                 const Text(
                   'Send Money',
                   style: TextStyle(
-                    color: kActiveIconColor,
+                    color: kNewAppBarColor,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -76,7 +77,7 @@ class _QrSewaState extends State<QrSewa> {
                 Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: kActiveIconColor,
+                    color: kNewAppBarColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Row(
@@ -114,7 +115,7 @@ class _QrSewaState extends State<QrSewa> {
                       const Text(
                         'Mobile Number',
                         style: TextStyle(
-                          color: kActiveIconColor,
+                          color: kNewAppBarColor,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -140,7 +141,7 @@ class _QrSewaState extends State<QrSewa> {
                       const Text(
                         'Amount',
                         style: TextStyle(
-                          color: kActiveIconColor,
+                          color: kNewAppBarColor,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -166,7 +167,7 @@ class _QrSewaState extends State<QrSewa> {
                       ElevatedButton(
                         onPressed: sendToEsewaBackend,
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(kActiveIconColor), // Background color
+                          backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor), // Background color
                           textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(color: Colors.white)), // Text color
                           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)), // Padding
                           shape: MaterialStateProperty.all<RoundedRectangleBorder>(

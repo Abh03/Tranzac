@@ -6,6 +6,7 @@ import 'package:tranzac/pages/Login.dart';
 import 'package:tranzac/pages/Signup.dart';
 import 'package:tranzac/pages/qr_sewa.dart';
 import 'package:tranzac/pages/sendmoney.dart';
+import 'package:tranzac/constants.dart';
 
 
 class QR extends StatefulWidget {
@@ -24,7 +25,7 @@ class _QRState extends State<QR> {
     return Scaffold(
       backgroundColor: const Color(0xFFD7DEE8),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF024578),
+        backgroundColor: kNewAppBarColor,
         title: const Center(
           child: Text(
               "QR Code Scanner",
@@ -44,8 +45,8 @@ class _QRState extends State<QR> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Color(0xFF024578),
-                  Color(0xFF2a74ad),
+                  kNewAppBarColor,
+                  kGradientChange,
                 ],
               ),
               borderRadius: BorderRadius.circular(20),
@@ -93,7 +94,7 @@ class _QRState extends State<QR> {
                               'Scanner',
                             style: TextStyle(
                               fontSize: 19,
-                              color: Color(0xFF024578),
+                              color: kNewAppBarColor,
                             ),
                           ),
                         ),
@@ -123,7 +124,7 @@ class _QRState extends State<QR> {
                               'My QR Code',
                             style: TextStyle(
                               fontSize: 19,
-                              color: Color(0xFF024578),
+                              color: kNewAppBarColor,
                             ),
                           ),
                         ),

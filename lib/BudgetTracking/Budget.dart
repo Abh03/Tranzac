@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tranzac/constants.dart';
+import 'package:tranzac/constants.dart';
 
-// Replace with your actual constants.dart file or define kBackgroundColor and kActiveIconColor here
-const Color kBackgroundColor = Color(0xFFE5E5E5);
-const Color kActiveIconColor = Colors.black;
-const Color kRedColor = Colors.red;
-const Color kGreenColor = Colors.green;
 
 class Budget extends StatefulWidget {
   const Budget({super.key});
@@ -74,7 +71,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
         title: const Text(
           'My Expenses',
           style: TextStyle(
-            color: kActiveIconColor,
+            color: kNewAppBarColor,
             fontSize: 24,
             fontWeight: FontWeight.bold,
             letterSpacing: 0.5,
@@ -93,9 +90,10 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF024578),
-                    Color(0xFF2a74ad),
+                    kNewAppBarColor,
+                    kGradientChange,
                   ],
+                  stops: [0.35, 1],
                 ),
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -168,9 +166,9 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
               ),
               child: TabBar(
                 controller: _tabController,
-                labelColor: const Color(0xFF024578),
+                labelColor: kNewAppBarColor,
                 unselectedLabelColor: Colors.black,
-                indicatorColor: const Color(0xFF024578),
+                indicatorColor: kNewAppBarColor,
                 tabs: const [
                   Tab(
                     text: 'Weekly',
@@ -212,7 +210,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: kActiveIconColor,
+                      color: kNewAppBarColor,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -303,9 +301,10 @@ class _DetailPageState extends State<DetailPage> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF024578),
-                    Color(0xFF2a74ad),
+                    kNewAppBarColor,
+                    kGradientChange,
                   ],
+                  stops: [0.35, 1],
                 ),
               ),
               child: Padding(
@@ -333,14 +332,14 @@ class _DetailPageState extends State<DetailPage> {
                         child: DropdownButtonHideUnderline(
                           child: Row(
                             children: [
-                              const Icon(Icons.filter_list, color: kActiveIconColor),
+                              const Icon(Icons.filter_list, color: kNewAppBarColor),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: DropdownButton<String>(
                                   value: _selectedFilter,
-                                  icon: const Icon(Icons.arrow_drop_down, color: kActiveIconColor),
+                                  icon: const Icon(Icons.arrow_drop_down, color: kNewAppBarColor),
                                   iconSize: 24,
-                                  style: const TextStyle(color: kActiveIconColor),
+                                  style: const TextStyle(color: kNewAppBarColor),
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       _selectedFilter = newValue!;
@@ -372,7 +371,7 @@ class _DetailPageState extends State<DetailPage> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: kActiveIconColor),
+                    color: kNewAppBarColor),
               ),
             ),
             Container(
@@ -471,7 +470,7 @@ class _DetailPageState extends State<DetailPage> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: kActiveIconColor),
+                    color: kNewAppBarColor),
               ),
             ),
             Container(
