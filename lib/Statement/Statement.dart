@@ -11,6 +11,8 @@ class Statement extends StatefulWidget {
 }
 
 class _StatementState extends State<Statement> {
+  String _selectedFilter = 'Filter';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +27,7 @@ class _StatementState extends State<Statement> {
               width: MediaQuery.of(context).size.width,
               height: 70,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20),
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -50,24 +52,46 @@ class _StatementState extends State<Statement> {
                           letterSpacing: 2),
                     ),
                     Container(
-                      width: 80,
+                      width: 103,
                       height: 35,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5)),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.filter_list,
-                              color: kActiveIconColor,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text('Filter')
-                          ],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: DropdownButton<String>(
+                          value: _selectedFilter,
+                          icon: const Icon(Icons.arrow_drop_down),
+                          iconSize: 22,
+                          elevation: 16,
+                          style: const TextStyle(color: kActiveIconColor),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.white,
+                          ),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _selectedFilter = newValue!;
+                            });
+                          },
+                          items: <String>['Filter', '7 days', '14 days', '30 days']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Row(
+                                children: [
+                                  if (value == 'Filter')
+                                    const Icon(
+                                      Icons.filter_list,
+                                      color: kActiveIconColor,
+                                    ),
+                                  if (value == 'Filter')
+                                    const SizedBox(width: 5),
+                                  Text(value),
+                                ],
+                              ),
+                            );
+                          }).toList(),
                         ),
                       ),
                     ),
@@ -82,8 +106,10 @@ class _StatementState extends State<Statement> {
               margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
               child: const Text(
                 'Fri , Mar 29',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: kActiveIconColor),
-
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: kActiveIconColor),
               ),
             ),
             Container(
@@ -122,8 +148,8 @@ class _StatementState extends State<Statement> {
                               ),
                               Text(
                                 'Balance: Rs. 4200',
-                                style:
-                                TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -182,7 +208,10 @@ class _StatementState extends State<Statement> {
               margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
               child: const Text(
                 'Thu , Mar 28',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: kActiveIconColor),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: kActiveIconColor),
               ),
             ),
             Container(
@@ -221,8 +250,8 @@ class _StatementState extends State<Statement> {
                               ),
                               Text(
                                 'Balance: Rs. 4200',
-                                style:
-                                TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -282,4 +311,10 @@ class _StatementState extends State<Statement> {
       ),
     );
   }
+}
+
+void main() {
+  runApp(const MaterialApp(
+    home: Statement(),
+  ));
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:tranzac/constants.dart';
 
 // Replace with your actual constants.dart file or define kBackgroundColor and kActiveIconColor here
 const Color kBackgroundColor = Color(0xFFE5E5E5);
 const Color kActiveIconColor = Colors.black;
+const Color kRedColor = Colors.red;
+const Color kGreenColor = Colors.green;
 
 class Budget extends StatefulWidget {
   const Budget({super.key});
@@ -15,12 +16,12 @@ class Budget extends StatefulWidget {
 }
 
 List chartData = [
-  [20, 'Rent', const Color.fromRGBO(202, 73, 140, 1.0)],
+  [20, 'Household', const Color.fromRGBO(202, 73, 140, 1.0)],
   [18, 'Food', const Color.fromRGBO(211, 107, 159, 1.0)],
   [35, 'Education', const Color.fromRGBO(185, 119, 172, 1.0)],
   [6, 'Transportation', const Color.fromRGBO(230, 191, 206, 1.0)],
-  [17, 'Entertainment', const Color.fromRGBO(241, 164, 230, 1.0)],
-  [4, 'Others', const Color.fromRGBO(207, 155, 189, 1.0)],
+  [17, 'Social Life', const Color.fromRGBO(241, 164, 230, 1.0)],
+  [4, 'Health', const Color.fromRGBO(207, 155, 189, 1.0)],
 ];
 
 class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
@@ -50,6 +51,19 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
     }).toList();
   }
 
+  void _onPieChartTapped(int index) {
+    if (index < 0 || index >= chartData.length) return;
+
+    final category = chartData[index][1];
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailPage(category: category),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +77,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
             color: kActiveIconColor,
             fontSize: 24,
             fontWeight: FontWeight.bold,
+            letterSpacing: 0.5,
           ),
         ),
       ),
@@ -243,6 +258,313 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
         sections: getSections(),
         centerSpaceRadius: 50,
         sectionsSpace: 2,
+        pieTouchData: PieTouchData(
+          touchCallback: (FlTouchEvent event, pieTouchResponse) {
+            if (event is FlTapUpEvent && pieTouchResponse != null && pieTouchResponse.touchedSection != null) {
+              final index = pieTouchResponse.touchedSection!.touchedSectionIndex;
+              _onPieChartTapped(index);
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class DetailPage extends StatefulWidget {
+  final String category;
+
+  const DetailPage({super.key, required this.category});
+
+  @override
+  _DetailPageState createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  String _selectedFilter = 'Filter';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: kBackgroundColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 35), // Margin at the top of the page
+            Container(
+              margin: const EdgeInsets.all(20),
+              width: MediaQuery.of(context).size.width,
+              height: 70,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF024578),
+                    Color(0xFF2a74ad),
+                  ],
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.category,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2),
+                    ),
+                    Container(
+                      width: 122,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: DropdownButtonHideUnderline(
+                          child: Row(
+                            children: [
+                              const Icon(Icons.filter_list, color: kActiveIconColor),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: DropdownButton<String>(
+                                  value: _selectedFilter,
+                                  icon: const Icon(Icons.arrow_drop_down, color: kActiveIconColor),
+                                  iconSize: 24,
+                                  style: const TextStyle(color: kActiveIconColor),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      _selectedFilter = newValue!;
+                                    });
+                                  },
+                                  items: <String>['Filter', '7 days', '14 days', '30 days']
+                                      .map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 5),
+            Container(
+              margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+              child: const Text(
+                'Fri , Mar 29',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: kActiveIconColor),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(20),
+              width: MediaQuery.of(context).size.width,
+              height: 130,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), color: Colors.white),
+              child: const Column(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          width: 120,
+                          child: Text(
+                            'Transferred  to Karib Maharjan',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          width: 150,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                'Rs.300',
+                                style: TextStyle(fontSize: 15, color: kRedColor),
+                              ),
+                              Text(
+                                'Balance: Rs. 4200',
+                                style: TextStyle(fontSize: 15, color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(8.0, 2, 8, 0),
+                    child: Divider(
+                      height: 2,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          width: 120,
+                          child: Text(
+                            'Transferred from Nabil Bank Ltd.',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          width: 150,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                'Rs.2500',
+                                style: TextStyle(fontSize: 15, color: kGreenColor),
+                              ),
+                              Text(
+                                'Balance: Rs. 4500',
+                                style: TextStyle(fontSize: 15, color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+              child: const Text(
+                'Thu , Mar 28',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: kActiveIconColor),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(20),
+              width: MediaQuery.of(context).size.width,
+              height: 130,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), color: Colors.white),
+              child: const Column(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          width: 120,
+                          child: Text(
+                            'Transferred  to Karib Maharjan',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          width: 150,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                'Rs.300',
+                                style: TextStyle(fontSize: 15, color: kRedColor),
+                              ),
+                              Text(
+                                'Balance: Rs. 4200',
+                                style: TextStyle(fontSize: 15, color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(8.0, 2, 8, 0),
+                    child: Divider(
+                      height: 2,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          width: 120,
+                          child: Text(
+                            'Transferred from Nabil Bank Ltd.',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          width: 150,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                'Rs.2500',
+                                style: TextStyle(fontSize: 15, color: kGreenColor),
+                              ),
+                              Text(
+                                'Balance: Rs. 4500',
+                                style: TextStyle(fontSize: 15, color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
