@@ -30,7 +30,7 @@ class _MyWidgetState extends State<Abstract> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFD7DEE8),
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         backgroundColor: const Color(0xFF024578),
         leading: IconButton(
