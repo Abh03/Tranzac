@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/function/esewa_backend.dart';
+
 class SendMoney extends StatefulWidget {
   const SendMoney({Key? key}) : super(key: key);
 
@@ -11,6 +12,24 @@ class SendMoney extends StatefulWidget {
 class _SendMoneyState extends State<SendMoney> {
   final TextEditingController mobileNumberController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
+
+  List<String> categories = ['Food', 'Education', 'Household', 'Social Life', 'Pets', 'Transportation', 'Health', 'Beauty', 'Apparel', 'Electronics and Appliances', 'Others' ]; // Your list of categories
+  String? selectedCategory;
+
+  // Map to store icons for each category
+  Map<String, IconData> categoryIcons = {
+    'Food': Icons.fastfood,
+    'Education': Icons.school,
+    'Household': Icons.house_outlined,
+    'Beauty': Icons.face,
+    'Social Life': Icons.people,
+    'Pets': Icons.pets,
+    'Transportation': Icons.emoji_transportation,
+    'Health': Icons.favorite,
+    'Apparel': Icons.backpack,
+    'Electronics and Appliances': Icons.phone_android,
+    'Others': Icons.category, // Added icon for 'Others'
+  };
 
   @override
   void dispose() {
@@ -98,7 +117,7 @@ class _SendMoneyState extends State<SendMoney> {
                           SizedBox(height: 1),
                           Text(
                             'Available Balance',
-                            style: TextStyle(color: klightTextColor, fontSize: 16), // Decreased font size
+                            style: TextStyle(color: klightTextColor, fontSize: 16),
                           ),
                         ],
                       ),
@@ -145,7 +164,7 @@ class _SendMoneyState extends State<SendMoney> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 10), // Added space here
+                      const SizedBox(height: 10),
                       TextField(
                         controller: amountController,
                         decoration: InputDecoration(
@@ -163,17 +182,68 @@ class _SendMoneyState extends State<SendMoney> {
                         ),
                       ),
                       const SizedBox(height: 20),
+                      const Text(
+                        'Categories',
+                        style: TextStyle(
+                          color: kActiveIconColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            isExpanded: true,
+                            value: selectedCategory,
+                            hint: const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Text('Select Category'),
+                            ),
+                            onChanged: (newValue) {
+                              setState(() {
+                                selectedCategory = newValue;
+                              });
+                            },
+                            items: categories.map((category) {
+                              return DropdownMenuItem<String>(
+                                value: category,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        categoryIcons[category], // Icon for each category
+                                        color: kActiveIconColor, // Icon color
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(category), // Text of each category
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: sendToEsewaBackend,
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(kActiveIconColor), // Background color
-                          textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(color: Colors.white)), // Text color
-                          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)), // Padding
+                          backgroundColor: MaterialStateProperty.all<Color>(kActiveIconColor),
+                          textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(color: Colors.white)),
+                          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)),
                           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
-                          ), // Button shape
+                          ),
                         ),
                         child: const Text(
                           'Continue',
@@ -194,4 +264,10 @@ class _SendMoneyState extends State<SendMoney> {
       ),
     );
   }
+}
+
+void main() {
+  runApp(const MaterialApp(
+    home: SendMoney(),
+  ));
 }

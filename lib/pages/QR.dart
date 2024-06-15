@@ -27,7 +27,7 @@ class _QRState extends State<QR> {
         backgroundColor: const Color(0xFF024578),
         title: const Center(
           child: Text(
-              "QR code scanner",
+              "QR Code Scanner",
             style: TextStyle(
               color: Colors.white,
             ),
@@ -38,9 +38,16 @@ class _QRState extends State<QR> {
         children: [
           Container( //1
             margin: const EdgeInsets.all(10),
-            height:height*0.15,
+            height:height*0.16,
             decoration: BoxDecoration(
-              color: const Color(0xFF3C6E98),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFF024578),
+                  Color(0xFF2a74ad),
+                ],
+              ),
               borderRadius: BorderRadius.circular(20),
             ),
             child:  Column(

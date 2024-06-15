@@ -26,7 +26,15 @@ class _StatementState extends State<Statement> {
               height: 70,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: kActiveIconColor),
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF024578),
+                    Color(0xFF2a74ad),
+                  ],
+                ),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
@@ -74,7 +82,7 @@ class _StatementState extends State<Statement> {
               margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
               child: const Text(
                 'Fri , Mar 29',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: kActiveIconColor),
 
               ),
             ),
@@ -174,7 +182,7 @@ class _StatementState extends State<Statement> {
               margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
               child: const Text(
                 'Thu , Mar 28',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: kActiveIconColor),
               ),
             ),
             Container(

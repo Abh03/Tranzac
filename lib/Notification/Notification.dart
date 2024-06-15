@@ -48,7 +48,14 @@ class _NotifyState extends State<Notify> {
               padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                  color: kActiveIconColor,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF024578),
+                      Color(0xFF2a74ad),
+                    ],
+                  ),
                   borderRadius: BorderRadius.circular(15)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
