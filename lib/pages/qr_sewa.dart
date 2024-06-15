@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/function/esewa_backend.dart';
-class SendMoney extends StatefulWidget {
-  const SendMoney({Key? key}) : super(key: key);
+
+class QrSewa extends StatefulWidget {
+  final String mobile;
+  const QrSewa({Key? key, required this.mobile}) : super(key: key);
 
   @override
-  _SendMoneyState createState() => _SendMoneyState();
+  _QrSewaState createState() => _QrSewaState();
 }
 
-class _SendMoneyState extends State<SendMoney> {
-  final TextEditingController mobileNumberController = TextEditingController();
+class _QrSewaState extends State<QrSewa> {
+  late TextEditingController mobileNumberController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    mobileNumberController = TextEditingController(text: widget.mobile);
+  }
 
   @override
   void dispose() {
@@ -29,7 +37,6 @@ class _SendMoneyState extends State<SendMoney> {
 
   @override
   Widget build(BuildContext context) {
-    final String? esewa_id = ModalRoute.of(context)?.settings.arguments as String?;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
