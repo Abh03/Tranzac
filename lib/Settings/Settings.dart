@@ -55,24 +55,28 @@ class _SettingsState extends State<Settings> {
                   ListTile(
                     leading: const Icon(Icons.logout),
                     title: const Text("Log Out"),
-                    onTap: () {
-                      FirebaseAuth.instance
-                          .signOut()
-                          .whenComplete(() => ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                backgroundColor: Colors.green,
-                                content: Center(
-                                    child: Text("Logged out successfully",
-                                        style:
-                                            TextStyle(fontFamily: 'FiraSans'))),
-                                duration: Duration(seconds: 3),
-                              )))
-                          .then((value) => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Login())));
+                    onTap: () async {
+                      await FirebaseAuth.instance.signOut().whenComplete(() {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          backgroundColor: Colors.green,
+                          content: Center(
+                            child: Text(
+                              "Logged out successfully",
+                              style: TextStyle(fontFamily: 'FiraSans'),
+                            ),
+                          ),
+                          duration: Duration(seconds: 3),
+                        ));
+                      });
+
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Login()),
+                            (Route<dynamic> route) => false,
+                      );
                     },
                   )
+
                 ],
               );
             }));

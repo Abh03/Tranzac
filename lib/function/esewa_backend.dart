@@ -4,6 +4,9 @@ import 'package:esewa_flutter_sdk/esewa_config.dart';
 import 'package:tranzac/constant/esewa_client.dart';
 import 'package:esewa_flutter_sdk/esewa_payment.dart';
 import 'package:esewa_flutter_sdk/esewa_payment_success_result.dart';
+import 'package:tranzac/main.dart';
+
+import '../pages/esewa_transactionDetails.dart';
 
 
 
@@ -45,7 +48,10 @@ class Esewa {
   void verify(EsewaPaymentSuccessResult result) {
 
     // TODO: after success, call this function to verify transaction
-    
-
+    navigatorKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (context) => TransactionDetailsPage(transaction: result),
+      ),
+    );
   }
 }
