@@ -69,7 +69,11 @@ class _SplitState extends State<Splitwise> {
                             showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                      actionsPadding: const EdgeInsets.all(10),
+                                      title: const Center(
+                                          child: Text("Add friend")),
+                                      actionsPadding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 15),
                                       actions: [
                                         TextFormField(
                                           controller: friend,
@@ -82,6 +86,9 @@ class _SplitState extends State<Splitwise> {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10))),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
                                         ),
                                         Center(
                                           child: ElevatedButton(
@@ -100,7 +107,9 @@ class _SplitState extends State<Splitwise> {
                                                 friendref
                                                     .doc(friend.text)
                                                     .set({
-                                                      'Name': friend.text.trim()
+                                                      'Name':
+                                                          friend.text.trim(),
+                                                      'Total amount': 0
                                                     })
                                                     .whenComplete(() =>
                                                         ScaffoldMessenger.of(
@@ -177,7 +186,9 @@ class _SplitState extends State<Splitwise> {
                                 }
                               } else {
                                 return const Center(
-                                  child: CircularProgressIndicator(),
+                                  child: CircularProgressIndicator(
+                                    color: Color(0xff024578),
+                                  ),
                                 );
                               }
                             }),
@@ -199,6 +210,7 @@ class _SplitState extends State<Splitwise> {
                             showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
+                                      title: const Text("Add friend"),
                                       actionsPadding: const EdgeInsets.all(10),
                                       actions: [
                                         TextFormField(
@@ -298,7 +310,9 @@ class _SplitState extends State<Splitwise> {
                                 }
                               } else {
                                 return const Center(
-                                  child: CircularProgressIndicator(),
+                                  child: CircularProgressIndicator(
+                                    color: Color(0xff024578),
+                                  ),
                                 );
                               }
                             }),

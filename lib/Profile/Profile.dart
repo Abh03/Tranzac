@@ -264,7 +264,9 @@ class _ProfileState extends State<Profile> {
                             }
                           } else {
                             return const Center(
-                              child: CircularProgressIndicator(),
+                              child: CircularProgressIndicator(
+                                color: Color(0xff024578),
+                              ),
                             );
                           }
                         }))
