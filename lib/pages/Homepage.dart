@@ -34,7 +34,6 @@ List Data = [
   [65, "Rest", const Color(0XFFBBBBBB)],
   [7, 'Others', const Color.fromRGBO(36, 196, 190, 1.0)],
   [93, "Rest", const Color(0XFFBBBBBB)],
-
 ];
 
 class _HomePageState extends State<HomePage> {
@@ -49,7 +48,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             Positioned(
               left: 10,
-              top: MediaQuery.of(context).padding.top + 12, // Add margin from the app bar
+              top: MediaQuery.of(context).padding.top +
+                  12, // Add margin from the app bar
               child: Container(
                 width: MediaQuery.of(context).size.width *
                     0.95, // Increase width of the container
@@ -66,8 +66,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: const Row(
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     CircleAvatar(
                       radius: 20,
@@ -148,10 +149,30 @@ class _HomePageState extends State<HomePage> {
                                   );
                                 },
                                 style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          kNewAppBarColor),
                                 ),
                                 child: const Text(
                                   'Send Money',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.white),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              // Adjust spacing between buttons
+                              ElevatedButton.icon(
+                                onPressed: () {
+                                  // Implement onPressed for Add Expense button
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          kNewAppBarColor),
+                                ),
+                                icon: Icon(Icons.add, size: 28, color: Colors.white,),
+                                label: Text(
+                                  'Add Expense',
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white),
                                 ),
@@ -613,7 +634,7 @@ class _HomePageState extends State<HomePage> {
                                           15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
                                             "Pets",
@@ -655,7 +676,7 @@ class _HomePageState extends State<HomePage> {
                                           innerRadius: '85%',
                                           explode: true,
                                           pointColorMapper: (data, _) =>
-                                          data[2],
+                                              data[2],
                                         )
                                       ],
                                     ),
@@ -663,12 +684,12 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     child: const Padding(
                                       padding:
-                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             "Rs.120 left",
@@ -716,7 +737,7 @@ class _HomePageState extends State<HomePage> {
                                           15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
                                             "Beauty",
@@ -758,7 +779,7 @@ class _HomePageState extends State<HomePage> {
                                           innerRadius: '85%',
                                           explode: true,
                                           pointColorMapper: (data, _) =>
-                                          data[2],
+                                              data[2],
                                         )
                                       ],
                                     ),
@@ -766,12 +787,12 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     child: const Padding(
                                       padding:
-                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             "Rs.120 left",
@@ -819,7 +840,7 @@ class _HomePageState extends State<HomePage> {
                                           15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
                                             "Health",
@@ -861,7 +882,7 @@ class _HomePageState extends State<HomePage> {
                                           innerRadius: '85%',
                                           explode: true,
                                           pointColorMapper: (data, _) =>
-                                          data[2],
+                                              data[2],
                                         )
                                       ],
                                     ),
@@ -869,12 +890,12 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     child: const Padding(
                                       padding:
-                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             "Rs.120 left",
@@ -922,7 +943,7 @@ class _HomePageState extends State<HomePage> {
                                           15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
                                             "Apparel",
@@ -964,7 +985,7 @@ class _HomePageState extends State<HomePage> {
                                           innerRadius: '85%',
                                           explode: true,
                                           pointColorMapper: (data, _) =>
-                                          data[2],
+                                              data[2],
                                         )
                                       ],
                                     ),
@@ -972,12 +993,12 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     child: const Padding(
                                       padding:
-                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             "Rs.120 left",
@@ -1025,12 +1046,12 @@ class _HomePageState extends State<HomePage> {
                                           15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
                                             "Electronics and Appliances",
                                             style: TextStyle(
-                                                color:kNewAppBarColor,
+                                                color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -1067,7 +1088,7 @@ class _HomePageState extends State<HomePage> {
                                           innerRadius: '85%',
                                           explode: true,
                                           pointColorMapper: (data, _) =>
-                                          data[2],
+                                              data[2],
                                         )
                                       ],
                                     ),
@@ -1075,12 +1096,12 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     child: const Padding(
                                       padding:
-                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             "Rs.120 left",
@@ -1231,7 +1252,7 @@ class _HomePageState extends State<HomePage> {
                                           15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
                                             "Others",
@@ -1273,7 +1294,7 @@ class _HomePageState extends State<HomePage> {
                                           innerRadius: '85%',
                                           explode: true,
                                           pointColorMapper: (data, _) =>
-                                          data[2],
+                                              data[2],
                                         )
                                       ],
                                     ),
@@ -1281,12 +1302,12 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     child: const Padding(
                                       padding:
-                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             "Rs.120 left",
