@@ -132,7 +132,7 @@ class _SendMoneyState extends State<SendMoney> {
                           Text(
                             'Available Balance',
                             style:
-                                TextStyle(color: klightTextColor, fontSize: 16),
+                                TextStyle(color: Colors.green, fontSize: 16),
                           ),
                         ],
                       ),
