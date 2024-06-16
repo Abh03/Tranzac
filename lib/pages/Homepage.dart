@@ -12,16 +12,29 @@ class HomePage extends StatefulWidget {
 }
 
 List Data = [
-  [40, 'Food', const Color.fromRGBO(211, 107, 159, 1.0)],
+  [40, 'Food', const Color.fromRGBO(71, 154, 161, 1.0)],
   [60, "Rest", const Color(0XFFBBBBBB)],
-  [40, 'Shopping', const Color.fromRGBO(202, 73, 140, 1.0)],
+  [70, 'Household', const Color.fromRGBO(121, 220, 241, 1.0)],
+  [30, "Rest", const Color(0XFFBBBBBB)],
+  [40, 'Health', const Color.fromRGBO(14, 209, 238, 1.0)],
   [60, "Rest", const Color(0XFFBBBBBB)],
-  [35, 'Education', const Color.fromRGBO(185, 119, 172, 1.0)],
+  [35, 'Education', const Color.fromRGBO(96, 211, 211, 1.0)],
   [65, "Rest", const Color(0XFFBBBBBB)],
-  [6, 'Transportation', const Color.fromRGBO(230, 191, 206, 1.0)],
+  [6, 'Transportation', const Color.fromRGBO(148, 214, 224, 1.0)],
   [94, "Rest", const Color(0XFFBBBBBB)],
-  [17, 'Entertainment', const Color.fromRGBO(241, 164, 230, 1.0)],
-  [4, 'Others', const Color.fromRGBO(207, 155, 189, 1.0)],
+  [50, 'Pets', const Color.fromRGBO(14, 89, 101, 1.0)],
+  [50, "Rest", const Color(0XFFBBBBBB)],
+  [45, 'Beauty', const Color.fromRGBO(127, 189, 197, 1.0)],
+  [55, "Rest", const Color(0XFFBBBBBB)],
+  [92, 'Apparel', const Color.fromRGBO(17, 111, 140, 1.0)],
+  [8, "Rest", const Color(0XFFBBBBBB)],
+  [40, 'Electronics and Appliances', const Color.fromRGBO(1, 72, 100, 1.0)],
+  [60, "Rest", const Color(0XFFBBBBBB)],
+  [35, 'Social Life', const Color.fromRGBO(49, 136, 162, 1.0)],
+  [65, "Rest", const Color(0XFFBBBBBB)],
+  [7, 'Others', const Color.fromRGBO(36, 196, 190, 1.0)],
+  [93, "Rest", const Color(0XFFBBBBBB)],
+
 ];
 
 class _HomePageState extends State<HomePage> {
@@ -168,7 +181,14 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             margin: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Colors.white60,
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
@@ -264,7 +284,14 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             margin: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Colors.white60,
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
@@ -280,7 +307,7 @@ class _HomePageState extends State<HomePage> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
-                                            "Rent",
+                                            "Household",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
@@ -360,7 +387,14 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             margin: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Colors.white60,
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
@@ -456,7 +490,14 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             margin: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Colors.white60,
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
@@ -552,7 +593,529 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             margin: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Colors.white60,
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(20)),
+                            width: 200,
+                            height: 215,
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 15, 15, 2),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            "Pets",
+                                            style: TextStyle(
+                                                color: kNewAppBarColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Container(
+                                            width: 30,
+                                            height: 20,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: kNewAppBarColor,
+                                            ),
+                                            child: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 0,
+                                  ),
+                                  SizedBox(
+                                    height: 120,
+                                    width: 300,
+                                    child: SfCircularChart(
+                                      series: [
+                                        DoughnutSeries(
+                                          dataSource: Data.sublist(1, 3),
+                                          yValueMapper: (data, _) => data[0],
+                                          xValueMapper: (data, _) => data[1],
+                                          radius: '70%',
+                                          innerRadius: '85%',
+                                          explode: true,
+                                          pointColorMapper: (data, _) =>
+                                          data[2],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: const Padding(
+                                      padding:
+                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Rs.120 left",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            "Out of Rs.4000",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                letterSpacing: 1,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(20)),
+                            width: 200,
+                            height: 215,
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 15, 15, 2),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            "Beauty",
+                                            style: TextStyle(
+                                                color: kNewAppBarColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Container(
+                                            width: 30,
+                                            height: 20,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: kNewAppBarColor,
+                                            ),
+                                            child: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 0,
+                                  ),
+                                  SizedBox(
+                                    height: 120,
+                                    width: 300,
+                                    child: SfCircularChart(
+                                      series: [
+                                        DoughnutSeries(
+                                          dataSource: Data.sublist(1, 3),
+                                          yValueMapper: (data, _) => data[0],
+                                          xValueMapper: (data, _) => data[1],
+                                          radius: '70%',
+                                          innerRadius: '85%',
+                                          explode: true,
+                                          pointColorMapper: (data, _) =>
+                                          data[2],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: const Padding(
+                                      padding:
+                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Rs.120 left",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            "Out of Rs.4000",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                letterSpacing: 1,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(20)),
+                            width: 200,
+                            height: 215,
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 15, 15, 2),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            "Health",
+                                            style: TextStyle(
+                                                color: kNewAppBarColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Container(
+                                            width: 30,
+                                            height: 20,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: kNewAppBarColor,
+                                            ),
+                                            child: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 0,
+                                  ),
+                                  SizedBox(
+                                    height: 120,
+                                    width: 300,
+                                    child: SfCircularChart(
+                                      series: [
+                                        DoughnutSeries(
+                                          dataSource: Data.sublist(1, 3),
+                                          yValueMapper: (data, _) => data[0],
+                                          xValueMapper: (data, _) => data[1],
+                                          radius: '70%',
+                                          innerRadius: '85%',
+                                          explode: true,
+                                          pointColorMapper: (data, _) =>
+                                          data[2],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: const Padding(
+                                      padding:
+                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Rs.120 left",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            "Out of Rs.4000",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                letterSpacing: 1,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(20)),
+                            width: 200,
+                            height: 215,
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 15, 15, 2),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            "Apparel",
+                                            style: TextStyle(
+                                                color: kNewAppBarColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Container(
+                                            width: 30,
+                                            height: 20,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: kNewAppBarColor,
+                                            ),
+                                            child: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 0,
+                                  ),
+                                  SizedBox(
+                                    height: 120,
+                                    width: 300,
+                                    child: SfCircularChart(
+                                      series: [
+                                        DoughnutSeries(
+                                          dataSource: Data.sublist(1, 3),
+                                          yValueMapper: (data, _) => data[0],
+                                          xValueMapper: (data, _) => data[1],
+                                          radius: '70%',
+                                          innerRadius: '85%',
+                                          explode: true,
+                                          pointColorMapper: (data, _) =>
+                                          data[2],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: const Padding(
+                                      padding:
+                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Rs.120 left",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            "Out of Rs.4000",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                letterSpacing: 1,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(20)),
+                            width: 200,
+                            height: 215,
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 15, 15, 2),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            "Electronics and Appliances",
+                                            style: TextStyle(
+                                                color:kNewAppBarColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Container(
+                                            width: 30,
+                                            height: 20,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: kNewAppBarColor,
+                                            ),
+                                            child: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 0,
+                                  ),
+                                  SizedBox(
+                                    height: 120,
+                                    width: 300,
+                                    child: SfCircularChart(
+                                      series: [
+                                        DoughnutSeries(
+                                          dataSource: Data.sublist(1, 3),
+                                          yValueMapper: (data, _) => data[0],
+                                          xValueMapper: (data, _) => data[1],
+                                          radius: '70%',
+                                          innerRadius: '85%',
+                                          explode: true,
+                                          pointColorMapper: (data, _) =>
+                                          data[2],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: const Padding(
+                                      padding:
+                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Rs.120 left",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            "Out of Rs.4000",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                letterSpacing: 1,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
@@ -568,7 +1131,7 @@ class _HomePageState extends State<HomePage> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
-                                            "Entertainment",
+                                            "Social Life",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
@@ -631,6 +1194,109 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                           Text(
                                             "Out of Rs.1000",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                letterSpacing: 1,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF80bce8), // Starting color
+                                    Color(0xFFa5d5fa), // Lighter shade
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(20)),
+                            width: 200,
+                            height: 215,
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 15, 15, 2),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            "Others",
+                                            style: TextStyle(
+                                                color: kNewAppBarColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Container(
+                                            width: 30,
+                                            height: 20,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: kNewAppBarColor,
+                                            ),
+                                            child: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 0,
+                                  ),
+                                  SizedBox(
+                                    height: 120,
+                                    width: 300,
+                                    child: SfCircularChart(
+                                      series: [
+                                        DoughnutSeries(
+                                          dataSource: Data.sublist(1, 3),
+                                          yValueMapper: (data, _) => data[0],
+                                          xValueMapper: (data, _) => data[1],
+                                          radius: '70%',
+                                          innerRadius: '85%',
+                                          explode: true,
+                                          pointColorMapper: (data, _) =>
+                                          data[2],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: const Padding(
+                                      padding:
+                                      EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Rs.120 left",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: kNewAppBarColor,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            "Out of Rs.4000",
                                             style: TextStyle(
                                                 fontSize: 12,
                                                 color: kNewAppBarColor,
