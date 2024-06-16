@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/abstract.dart';
+
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 final collref = FirebaseFirestore.instance;
@@ -68,7 +70,16 @@ class _SignUpState extends State<SignUp> {
                         bottomLeft: Radius.circular(50.0),
                         bottomRight: Radius.circular(50.0),
                       ),
-                      color: Color(0xFF024578)),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          kNewAppBarColor,
+                          kGradientChange,
+                        ],
+                        stops: [0.35, 1],
+                      ),
+                  ),
                   child: Container(
                     margin: const EdgeInsets.fromLTRB(10, 15, 0, 0),
                     padding: const EdgeInsets.all(30.0),
@@ -105,7 +116,7 @@ class _SignUpState extends State<SignUp> {
                               child: Text(
                                 'Sign Up',
                                 style: TextStyle(
-                                    fontSize: 25, color: Color(0xFF024578)),
+                                    fontSize: 25, color: kNewAppBarColor),
                               ),
                             ),
                             const SizedBox(
@@ -138,7 +149,7 @@ class _SignUpState extends State<SignUp> {
                                           },
                                           keyboardType: TextInputType.name,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText: "Enter your first name",
                                             labelText: "First name",
                                             border: OutlineInputBorder(
@@ -160,7 +171,7 @@ class _SignUpState extends State<SignUp> {
                                           },
                                           keyboardType: TextInputType.name,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText: "Enter your middle name",
                                             labelText: "Middle name",
                                             border: OutlineInputBorder(
@@ -183,7 +194,7 @@ class _SignUpState extends State<SignUp> {
                                           },
                                           keyboardType: TextInputType.name,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText: "Enter your last name",
                                             labelText: "Last name",
                                             border: OutlineInputBorder(
@@ -206,7 +217,7 @@ class _SignUpState extends State<SignUp> {
                                           },
                                           keyboardType: TextInputType.url,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText:
                                                 "Enter your DoB (dd/mm/yyyy)",
                                             labelText: "Date of Birth",
@@ -261,7 +272,7 @@ class _SignUpState extends State<SignUp> {
                                           },
                                           keyboardType: TextInputType.name,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText: "Enter your occupation",
                                             labelText: "Occupation",
                                             border: OutlineInputBorder(
@@ -316,7 +327,7 @@ class _SignUpState extends State<SignUp> {
                                           },
                                           keyboardType: TextInputType.phone,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText:
                                                 "Enter your mobile number",
                                             labelText: "Mobile number",
@@ -348,7 +359,7 @@ class _SignUpState extends State<SignUp> {
                                           },
                                           keyboardType: TextInputType.name,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText:
                                                 "Enter your Current address",
                                             labelText: "Current address",
@@ -372,7 +383,7 @@ class _SignUpState extends State<SignUp> {
                                           },
                                           keyboardType: TextInputType.name,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText:
                                                 "Enter your Permanent address",
                                             labelText: "Permanent address",
@@ -405,7 +416,7 @@ class _SignUpState extends State<SignUp> {
                                           keyboardType:
                                               TextInputType.emailAddress,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText:
                                                 "Enter your email address",
                                             labelText: "Email address",
@@ -430,7 +441,7 @@ class _SignUpState extends State<SignUp> {
                                           obscureText: true,
                                           keyboardType: TextInputType.text,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText: "Enter your password",
                                             labelText: "Password",
                                             border: OutlineInputBorder(
@@ -452,7 +463,7 @@ class _SignUpState extends State<SignUp> {
                                           obscureText: true,
                                           keyboardType: TextInputType.text,
                                           decoration: const InputDecoration(
-                                            hoverColor: Color(0xFF024578),
+                                            hoverColor: kNewAppBarColor,
                                             hintText: "Re-enter your password",
                                             labelText: "Confirm password",
                                             border: OutlineInputBorder(
@@ -468,8 +479,7 @@ class _SignUpState extends State<SignUp> {
                                               backgroundColor:
                                                   MaterialStateColor
                                                       .resolveWith((states) =>
-                                                          const Color(
-                                                              0xFF024578)),
+                                                  kNewAppBarColor),
                                               foregroundColor:
                                                   MaterialStateColor
                                                       .resolveWith((states) =>

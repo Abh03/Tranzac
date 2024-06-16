@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
+import 'package:tranzac/constants.dart';
+
 
 class Notify extends StatefulWidget {
   const Notify({super.key});
@@ -48,7 +50,15 @@ class _NotifyState extends State<Notify> {
               padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                  color: kActiveIconColor,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      kNewAppBarColor,
+                      kGradientChange,
+                    ],
+                    stops: [0.35, 1],
+                  ),
                   borderRadius: BorderRadius.circular(15)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

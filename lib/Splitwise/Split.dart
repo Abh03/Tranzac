@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tranzac/Splitwise/settleup.dart';
+import 'package:tranzac/constants.dart';
 
 final user = FirebaseAuth.instance;
 final friendref = FirebaseFirestore.instance
@@ -40,8 +41,8 @@ class _SplitState extends State<Splitwise> {
           body: Column(
             children: [
               const TabBar(
-                  indicatorColor: Color(0xFF024578),
-                  labelColor: Color(0xFF024578),
+                  indicatorColor: kNewAppBarColor,
+                  labelColor: kNewAppBarColor,
                   tabs: [
                     Tab(
                       icon: Icon(Icons.person),
@@ -62,7 +63,7 @@ class _SplitState extends State<Splitwise> {
                       ElevatedButton.icon(
                           style: ButtonStyle(
                               backgroundColor: MaterialStateColor.resolveWith(
-                                  (states) => const Color(0xFF024578)),
+                                  (states) => kNewAppBarColor),
                               foregroundColor: MaterialStateColor.resolveWith(
                                   (states) => Colors.white)),
                           onPressed: () {
@@ -152,7 +153,7 @@ class _SplitState extends State<Splitwise> {
                                     itemBuilder: (context, index) {
                                       return ListTile(
                                         leading: const CircleAvatar(
-                                          backgroundColor: Color(0xff024578),
+                                          backgroundColor: kNewAppBarColor,
                                           foregroundColor: Colors.white,
                                           child: Icon(Icons.person),
                                         ),
@@ -203,7 +204,7 @@ class _SplitState extends State<Splitwise> {
                       ElevatedButton.icon(
                           style: ButtonStyle(
                               backgroundColor: MaterialStateColor.resolveWith(
-                                  (states) => const Color(0xFF024578)),
+                                  (states) => kNewAppBarColor),
                               foregroundColor: MaterialStateColor.resolveWith(
                                   (states) => Colors.white)),
                           onPressed: () {
@@ -285,7 +286,7 @@ class _SplitState extends State<Splitwise> {
                                     itemBuilder: (context, index) {
                                       return ListTile(
                                         leading: const CircleAvatar(
-                                          backgroundColor: Color(0xff024578),
+                                          backgroundColor: kNewAppBarColor,
                                           foregroundColor: Colors.white,
                                           child: Icon(Icons.groups),
                                         ),

@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tranzac/pages/abstract.dart';
+import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/signup.dart';
+
 
 logIn(email, password, context) async {
   try {
@@ -87,7 +89,15 @@ class _LoginState extends State<Login> {
                     bottomLeft: Radius.circular(50.0),
                     bottomRight: Radius.circular(50.0),
                   ),
-                  color: Color(0xFF024578),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      kNewAppBarColor,
+                      kGradientChange,
+                    ],
+                    stops: [0.35, 1],
+                  ),
                 ),
                 height: 300,
                 child: Column(
@@ -196,7 +206,7 @@ class _LoginState extends State<Login> {
                         ElevatedButton(
                             style: ButtonStyle(
                                 backgroundColor: MaterialStateColor.resolveWith(
-                                    (states) => const Color(0xFF024578)),
+                                    (states) => kNewAppBarColor),
                                 foregroundColor: MaterialStateColor.resolveWith(
                                     (states) => Colors.white)),
                             onPressed: () {
@@ -250,7 +260,7 @@ class _LoginState extends State<Login> {
                                       ));
                             },
                             child: const Text("Forgot Password?",
-                                style: TextStyle(color: Color(0xFF024578)))),
+                                style: TextStyle(color: kNewAppBarColor))),
                         TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -260,7 +270,7 @@ class _LoginState extends State<Login> {
                             },
                             child: const Text(
                               "Don't have an account?",
-                              style: TextStyle(color: Color(0xFF024578)),
+                              style: TextStyle(color: kNewAppBarColor),
                             ))
                       ],
                     ),

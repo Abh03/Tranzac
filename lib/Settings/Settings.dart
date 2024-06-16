@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tranzac/pages/Login.dart';
+import 'package:tranzac/constants.dart';
+
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -15,7 +17,7 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Settings"),
-          backgroundColor: const Color(0xff024578),
+          backgroundColor: kNewAppBarColor,
           foregroundColor: Colors.white,
         ),
         body: ListView.builder(

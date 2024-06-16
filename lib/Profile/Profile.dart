@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/login.dart';
+import 'package:tranzac/constants.dart';
 
 final user = FirebaseAuth.instance;
 final collref = FirebaseFirestore.instance.collection('Users');
@@ -20,7 +21,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffd7dee8),
+      backgroundColor: kBackgroundColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -57,7 +58,7 @@ class _ProfileState extends State<Profile> {
                   margin: const EdgeInsets.symmetric(horizontal: 16),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: kActiveIconColor,
+                    color: kNewAppBarColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Column(
@@ -106,7 +107,7 @@ class _ProfileState extends State<Profile> {
                 Container(
                     margin: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: kActiveIconColor,
+                      color: kNewAppBarColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: StreamBuilder(

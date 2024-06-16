@@ -7,6 +7,7 @@ import 'package:tranzac/Splitwise/Split.dart';
 import 'package:tranzac/Statement/Statement.dart';
 import 'package:tranzac/pages/Homepage.dart';
 import 'package:tranzac/pages/QR.dart';
+import 'package:tranzac/constants.dart';
 
 class Abstract extends StatefulWidget {
   const Abstract({super.key});
@@ -30,9 +31,9 @@ class _MyWidgetState extends State<Abstract> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFD7DEE8),
+      backgroundColor: const  Color(0xfffd7dee8),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF024578),
+        backgroundColor: kNewAppBarColor,
         leading: IconButton(
           onPressed: () {
             Navigator.push(context,
@@ -81,10 +82,10 @@ class _MyWidgetState extends State<Abstract> {
       body: PageStorage(bucket: pgB, child: currentScreen),
       floatingActionButton: FloatingActionButton(
           shape: const CircleBorder(),
-          backgroundColor: const Color(0xFF024578),
+          backgroundColor:  kNewAppBarColor,
           child: const Icon(
             Icons.qr_code_scanner,
-            color: Colors.grey,
+            color: Colors.white70,
           ),
           onPressed: () {
             Navigator.push(
@@ -92,7 +93,7 @@ class _MyWidgetState extends State<Abstract> {
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        color: const Color(0xFF024578),
+        color: kNewAppBarColor,
         shape: const CircularNotchedRectangle(),
         notchMargin: 9,
         child: SizedBox(
@@ -116,12 +117,12 @@ class _MyWidgetState extends State<Abstract> {
                         children: [
                           Icon(Icons.home,
                               color:
-                                  currentTab == 0 ? Colors.white : Colors.grey),
+                                  currentTab == 0 ? Colors.white : Colors.white70),
                           Text("Home",
                               style: TextStyle(
                                   color: currentTab == 0
                                       ? Colors.white
-                                      : Colors.grey))
+                                      : Colors.white70))
                         ],
                       )),
                   MaterialButton(
@@ -137,12 +138,12 @@ class _MyWidgetState extends State<Abstract> {
                         children: [
                           Icon(Icons.sticky_note_2,
                               color:
-                                  currentTab == 1 ? Colors.white : Colors.grey),
+                                  currentTab == 1 ? Colors.white : Colors.white70),
                           Text("Statement",
                               style: TextStyle(
                                   color: currentTab == 1
                                       ? Colors.white
-                                      : Colors.grey))
+                                      : Colors.white70))
                         ],
                       )),
                   const SizedBox(height: 50, width: 40),
@@ -159,12 +160,12 @@ class _MyWidgetState extends State<Abstract> {
                         children: [
                           Icon(Icons.wallet,
                               color:
-                                  currentTab == 2 ? Colors.white : Colors.grey),
+                                  currentTab == 2 ? Colors.white : Colors.white70),
                           Text("Budget",
                               style: TextStyle(
                                   color: currentTab == 2
                                       ? Colors.white
-                                      : Colors.grey))
+                                      : Colors.white70))
                         ],
                       )),
                   MaterialButton(
@@ -180,12 +181,12 @@ class _MyWidgetState extends State<Abstract> {
                         children: [
                           Icon(Icons.vertical_split,
                               color:
-                                  currentTab == 3 ? Colors.white : Colors.grey),
+                                  currentTab == 3 ? Colors.white : Colors.white70),
                           Text("Split",
                               style: TextStyle(
                                   color: currentTab == 3
                                       ? Colors.white
-                                      : Colors.grey))
+                                      : Colors.white70))
                         ],
                       ))
                 ],
