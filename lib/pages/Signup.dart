@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/abstract.dart';
 
-
 FirebaseAuth _auth = FirebaseAuth.instance;
 final collref = FirebaseFirestore.instance;
 
@@ -66,19 +65,19 @@ class _SignUpState extends State<SignUp> {
                   height: height * 0.35,
                   width: width * 0.95,
                   decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(50.0),
-                        bottomRight: Radius.circular(50.0),
-                      ),
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          kNewAppBarColor,
-                          kGradientChange,
-                        ],
-                        stops: [0.35, 1],
-                      ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50.0),
+                      bottomRight: Radius.circular(50.0),
+                    ),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        kNewAppBarColor,
+                        kGradientChange,
+                      ],
+                      stops: [0.35, 1],
+                    ),
                   ),
                   child: Container(
                     margin: const EdgeInsets.fromLTRB(10, 15, 0, 0),
@@ -479,7 +478,7 @@ class _SignUpState extends State<SignUp> {
                                               backgroundColor:
                                                   MaterialStateColor
                                                       .resolveWith((states) =>
-                                                  kNewAppBarColor),
+                                                          kNewAppBarColor),
                                               foregroundColor:
                                                   MaterialStateColor
                                                       .resolveWith((states) =>
@@ -503,11 +502,11 @@ class _SignUpState extends State<SignUp> {
                                                       .collection('Users')
                                                       .doc(email.text)
                                                       .set({
-                                                    'Name.first':
+                                                    'Name first':
                                                         fn.text.trim(),
-                                                    'Name.middle':
+                                                    'Name middle':
                                                         mn.text.trim(),
-                                                    'Name.last': ln.text.trim(),
+                                                    'Name last': ln.text.trim(),
                                                     'Date of birth':
                                                         dob.text.trim(),
                                                     'Gender': gr.text.trim(),
@@ -517,9 +516,9 @@ class _SignUpState extends State<SignUp> {
                                                         ms.text.trim(),
                                                     'Mobile number':
                                                         pn.text.trim(),
-                                                    'Address.current':
+                                                    'Address current':
                                                         ca.text.trim(),
-                                                    'Address.permanent':
+                                                    'Address permanent':
                                                         pa.text.trim(),
                                                     'Email': email.text.trim(),
                                                   }).whenComplete(() {
