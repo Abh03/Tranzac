@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/function/esewa_backend.dart';
+import 'package:tranzac/function/khalti.dart';
 
 class SendMoney extends StatefulWidget {
   const SendMoney({Key? key}) : super(key: key);
@@ -13,7 +14,19 @@ class _SendMoneyState extends State<SendMoney> {
   final TextEditingController mobileNumberController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
 
-  List<String> categories = ['Food', 'Education', 'Household', 'Social Life', 'Pets', 'Transportation', 'Health', 'Beauty', 'Apparel', 'Electronics and Appliances', 'Others' ]; // Your list of categories
+  List<String> categories = [
+    'Food',
+    'Education',
+    'Household',
+    'Social Life',
+    'Pets',
+    'Transportation',
+    'Health',
+    'Beauty',
+    'Apparel',
+    'Electronics and Appliances',
+    'Others'
+  ]; // Your list of categories
   String? selectedCategory;
 
   // Map to store icons for each category
@@ -48,7 +61,8 @@ class _SendMoneyState extends State<SendMoney> {
 
   @override
   Widget build(BuildContext context) {
-    final String? esewa_id = ModalRoute.of(context)?.settings.arguments as String?;
+    final String? esewa_id =
+        ModalRoute.of(context)?.settings.arguments as String?;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -117,7 +131,8 @@ class _SendMoneyState extends State<SendMoney> {
                           SizedBox(height: 1),
                           Text(
                             'Available Balance',
-                            style: TextStyle(color: klightTextColor, fontSize: 16),
+                            style:
+                                TextStyle(color: klightTextColor, fontSize: 16),
                           ),
                         ],
                       ),
@@ -215,11 +230,13 @@ class _SendMoneyState extends State<SendMoney> {
                               return DropdownMenuItem<String>(
                                 value: category,
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
                                   child: Row(
                                     children: [
                                       Icon(
-                                        categoryIcons[category], // Icon for each category
+                                        categoryIcons[
+                                            category], // Icon for each category
                                         color: kNewAppBarColor, // Icon color
                                       ),
                                       SizedBox(width: 10),
@@ -234,12 +251,21 @@ class _SendMoneyState extends State<SendMoney> {
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: sendToEsewaBackend,
+                        onPressed: () {
+                          payCheck(context, mobileNumberController,
+                              amountController);
+                        },
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor),
-                          textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(color: Colors.white)),
-                          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(kNewAppBarColor),
+                          textStyle: MaterialStateProperty.all<TextStyle>(
+                              const TextStyle(color: Colors.white)),
+                          padding:
+                              MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                  const EdgeInsets.symmetric(
+                                      vertical: 15, horizontal: 20)),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
@@ -263,6 +289,89 @@ class _SendMoneyState extends State<SendMoney> {
         ],
       ),
     );
+  }
+
+  void payCheck(
+    BuildContext context,
+    TextEditingController mobileController,
+    TextEditingController amountController,
+  ) {
+    String mobileNumber = mobileController.text.trim();
+    String amountText = amountController.text.trim();
+    int amountInPaisa = int.tryParse(amountText) ?? 0;
+    double amountInRupees = amountInPaisa * 100;
+
+    // Perform validation
+    if (mobileNumber.isEmpty && amountInPaisa > 0) {
+      showValidationErrorDialog(context, 'Please enter mobile number.');
+      return;
+    } else if (mobileNumber.isEmpty && amountInPaisa <= 0) {
+      showValidationErrorDialog(
+          context, 'Please enter mobile number and amount.');
+      return;
+    } else {
+      showModalBottomSheet(
+          backgroundColor: Colors.transparent,
+          context: context,
+          builder: (context) {
+            return Container(
+              color: Colors.transparent,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(20),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        payWithKhaltiApp(
+                          context,
+                          mobileNumberController,
+                          amountController,
+                        );
+                      },
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.purple),
+                        foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                      ),
+                      child: const Text('Pay with Khalti'),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(20),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        sendToEsewaBackend();
+                      },
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.lightGreen),
+                        foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                      ),
+                      child: const Text('Pay with Esewa'),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          });
+    }
   }
 }
 
