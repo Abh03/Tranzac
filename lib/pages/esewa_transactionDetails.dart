@@ -22,7 +22,6 @@ class TransactionDetailsPage extends StatelessWidget {
             Text('Product Name: ${transaction.productName}'),
             Text('Total Amount: ${transaction.totalAmount}'),
             Text('Environment: ${transaction.environment}'),
-            Text('Merchant Name: ${transaction.merchantName}'),
             Text('Date: ${transaction.date}'),
             Text('Status: ${transaction.status}'),
             Text('Reference ID: ${transaction.refId}'),
