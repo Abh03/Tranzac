@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:esewa_flutter_sdk/esewa_payment_success_result.dart';
-import 'package:tranzac/function/esewa_backend.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 
 class TransactionDetailsPage extends StatelessWidget {
   final EsewaPaymentSuccessResult transaction;
