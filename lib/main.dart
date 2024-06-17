@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:tranzac/pages/Homepage.dart';
 import 'package:tranzac/pages/splash.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
-import 'package:tranzac/function/esewa_backend.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -18,16 +17,7 @@ void main() async {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           home: const Splash(),
-          // initialRoute: '/splash',
-          // routes: {
-          //   '/splash': (context) => const Splash(),
-          //   '/login': (context) => const Login(),
-          //   '/signup': (context) => const SignUp(),
-          //   '/homepage': (context) => const HomePage(),
-          //   '/abstract': (context) => const Abstract(),
-          //   '/budget': (context) => const Budget_History()
-          // },
-          navigatorKey: navigatorKey,
+          navigatorKey: navKey,
           localizationsDelegates: const [KhaltiLocalizations.delegate],
         );
       },

@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Row(
+                child: const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -93,7 +93,8 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           'Available Balance',
                           style:
-                              TextStyle(color: klightTextColor, fontSize: 16),
+                              TextStyle(color: Colors.green
+                                  , fontSize: 16),
                         ),
                       ],
                     ),
@@ -159,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                                       fontSize: 16, color: Colors.white),
                                 ),
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               // Adjust spacing between buttons
                               ElevatedButton.icon(
                                 onPressed: () {
@@ -170,8 +171,8 @@ class _HomePageState extends State<HomePage> {
                                       MaterialStateProperty.all<Color>(
                                           kNewAppBarColor),
                                 ),
-                                icon: Icon(Icons.add, size: 28, color: Colors.white,),
-                                label: Text(
+                                icon: const Icon(Icons.add, size: 28, color: Colors.white,),
+                                label: const Text(
                                   'Add Expense',
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white),
@@ -205,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -308,7 +309,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -411,7 +412,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -514,7 +515,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -617,7 +618,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -720,7 +721,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -823,7 +824,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -926,7 +927,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -1029,7 +1030,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -1132,7 +1133,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -1235,7 +1236,7 @@ class _HomePageState extends State<HomePage> {
                                 gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF80bce8), // Starting color
-                                    Color(0xFFa5d5fa), // Lighter shade
+                                    Color(0xFFb8dffc), // Lighter shade
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
