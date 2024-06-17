@@ -13,17 +13,17 @@ class Budget extends StatefulWidget {
 }
 
 List chartData = [
-  [9, 'Household', const Color.fromRGBO(121, 220, 241, 1.0)],
-  [15, 'Food', const Color.fromRGBO(71, 154, 161, 1.0)],
-  [22, 'Education', const Color.fromRGBO(96, 211, 211, 1.0)],
-  [4, 'Transportation', const Color.fromRGBO(148, 214, 224, 1.0)],
-  [11, 'Social Life', const Color.fromRGBO(49, 136, 162, 1.0)],
-  [9, 'Health', const Color.fromRGBO(14, 209, 238, 1.0)],
-  [5, 'Pets', const Color.fromRGBO(14, 89, 101, 1.0)],
-  [6, 'Beauty', const Color.fromRGBO(127, 189, 197, 1.0)],
-  [9, 'Apparel', const Color.fromRGBO(17, 111, 140, 1.0)],
-  [6, 'Electronics and Appliances', const Color.fromRGBO(1, 72, 100, 1.0)],
-  [3, 'Others', const Color.fromRGBO(36, 196, 190, 1.0)],
+  [9, 'Household', const Color.fromRGBO(30, 192, 206, 1.0)],
+  [15, 'Food', const Color.fromRGBO(177, 113, 246, 1.0)],
+  [22, 'Education', const Color.fromRGBO(218, 213, 118, 1.0)],
+  [4, 'Transportation', const Color.fromRGBO(134, 187, 26, 1.0)],
+  [11, 'Social Life', const Color.fromRGBO(50, 196, 162, 1.0)],
+  [9, 'Health', const Color.fromRGBO(203, 179, 245, 1.0)],
+  [5, 'Pets', const Color.fromRGBO(26, 147, 68, 1.0)],
+  [6, 'Beauty', const Color.fromRGBO(63, 143, 208, 1.0)],
+  [9, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
+  [6, 'Electronics and Appliances', const Color.fromRGBO(203, 120, 142, 1.0)],
+  [3, 'Others', const Color.fromRGBO(239, 171, 250, 1.0)],
 ];
 
 class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
