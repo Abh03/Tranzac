@@ -12,27 +12,27 @@ class HomePage extends StatefulWidget {
 }
 
 List Data = [
-  [40, 'Food', const Color.fromRGBO(71, 154, 161, 1.0)],
+  [40, 'Food', const Color.fromRGBO(177, 113, 246, 1.0)],
   [60, "Rest", const Color(0XFFBBBBBB)],
-  [70, 'Household', const Color.fromRGBO(121, 220, 241, 1.0)],
+  [70, 'Household', const Color.fromRGBO(30, 192, 206, 1.0)],
   [30, "Rest", const Color(0XFFBBBBBB)],
-  [40, 'Health', const Color.fromRGBO(14, 209, 238, 1.0)],
+  [40, 'Health', const Color.fromRGBO(203, 179, 245, 1.0)],
   [60, "Rest", const Color(0XFFBBBBBB)],
-  [35, 'Education', const Color.fromRGBO(96, 211, 211, 1.0)],
+  [35, 'Education', const Color.fromRGBO(218, 213, 118, 1.0)],
   [65, "Rest", const Color(0XFFBBBBBB)],
-  [6, 'Transportation', const Color.fromRGBO(148, 214, 224, 1.0)],
+  [6, 'Transportation', const Color.fromRGBO(134, 187, 26, 1.0)],
   [94, "Rest", const Color(0XFFBBBBBB)],
-  [50, 'Pets', const Color.fromRGBO(14, 89, 101, 1.0)],
+  [50, 'Pets', const Color.fromRGBO(26, 147, 68, 1.0)],
   [50, "Rest", const Color(0XFFBBBBBB)],
-  [45, 'Beauty', const Color.fromRGBO(127, 189, 197, 1.0)],
+  [45, 'Beauty', const Color.fromRGBO(63, 143, 208, 1.0)],
   [55, "Rest", const Color(0XFFBBBBBB)],
-  [92, 'Apparel', const Color.fromRGBO(17, 111, 140, 1.0)],
+  [92, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
   [8, "Rest", const Color(0XFFBBBBBB)],
-  [40, 'Electronics and Appliances', const Color.fromRGBO(1, 72, 100, 1.0)],
+  [40, 'Electronics and Appliances', const Color.fromRGBO(203, 120, 142, 1.0)],
   [60, "Rest", const Color(0XFFBBBBBB)],
-  [35, 'Social Life', const Color.fromRGBO(49, 136, 162, 1.0)],
+  [35, 'Social Life', const Color.fromRGBO(50, 196, 162, 1.0)],
   [65, "Rest", const Color(0XFFBBBBBB)],
-  [7, 'Others', const Color.fromRGBO(36, 196, 190, 1.0)],
+  [7, 'Others', const Color.fromRGBO(239, 171, 250, 1.0)],
   [93, "Rest", const Color(0XFFBBBBBB)],
 ];
 
@@ -134,45 +134,38 @@ class _HomePageState extends State<HomePage> {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Icon(
-                                CupertinoIcons.money_dollar_circle,
-                                size: 28,
-                                color: Colors.white,
-                              ),
-                              SizedBox(width: 2),
-                              ElevatedButton(
+                              ElevatedButton.icon(
                                 onPressed: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SendMoney()),
+                                        builder: (context) => const SendMoney()),
                                   );
                                 },
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          kNewAppBarColor),
+                                  backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor),
                                 ),
-                                child: const Text(
+                                icon: const Icon(
+                                  CupertinoIcons.money_dollar_circle,
+                                  size: 26,
+                                  color: Colors.white,
+                                ),
+                                label: const Text(
                                   'Send Money',
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white),
                                 ),
                               ),
-                              const SizedBox(width: 10),
-                              // Adjust spacing between buttons
+                              SizedBox(width: 10), // Adjust spacing between buttons
                               ElevatedButton.icon(
                                 onPressed: () {
                                   // Implement onPressed for Add Expense button
                                 },
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          kNewAppBarColor),
+                                  backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor),
                                 ),
-                                icon: const Icon(Icons.add, size: 28, color: Colors.white,),
-                                label: const Text(
+                                icon: Icon(Icons.add, size: 26, color: Colors.white,),
+                                label: Text(
                                   'Add Expense',
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white),
