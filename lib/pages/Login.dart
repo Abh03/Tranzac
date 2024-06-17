@@ -4,44 +4,6 @@ import 'package:tranzac/pages/abstract.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/signup.dart';
 
-
-logIn(email, password, context) async {
-  try {
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password)
-        .whenComplete(
-            () => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  backgroundColor: Colors.green,
-                  content: Center(
-                      child: Text("Logged in successfully",
-                          style: TextStyle(fontFamily: 'FiraSans'))),
-                  duration: Duration(seconds: 3),
-                )))
-        .then((value) => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const Abstract())));
-  } catch (e) {
-    debugPrint("Some error occured");
-  }
-}
-
-reset(email, context) {
-  try {
-    FirebaseAuth.instance
-        .sendPasswordResetEmail(email: email)
-        .whenComplete(
-            () => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  backgroundColor: Colors.green,
-                  content: Center(
-                      child: Text("Link sent successfully",
-                          style: TextStyle(fontFamily: 'FiraSans'))),
-                  duration: Duration(seconds: 3),
-                )))
-        .then((value) => Navigator.pop(context));
-  } catch (e) {
-    debugPrint("Some error occured");
-  }
-}
-
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -55,6 +17,7 @@ class _LoginState extends State<Login> {
   final email = TextEditingController();
   final pwd = TextEditingController();
   final fmail = TextEditingController();
+  String? errorMessage;
 
   @override
   void dispose() {
@@ -62,6 +25,90 @@ class _LoginState extends State<Login> {
     pwd.dispose();
     fmail.dispose();
     super.dispose();
+  }
+
+// Function to handle login
+  void logIn(String email, String password, BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Navigate to the Abstract screen upon successful login
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Abstract()),
+      );
+
+      // Show success message or perform other actions
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.green,
+          content: Center(
+            child: Text(
+              "Logged in successfully",
+              style: TextStyle(fontFamily: 'FiraSans'),
+            ),
+          ),
+          duration: Duration(seconds: 3),
+        ),
+      );
+    } catch (e) {
+      // Handle specific authentication errors
+      if (e is FirebaseAuthException) {
+        if (e.code == 'user-not-found') {
+          setState(() {
+            errorMessage = "User not found. Please check your email.";
+          });
+        } else if (e.code == 'wrong-password') {
+          setState(() {
+            errorMessage = "Wrong password. Please try again.";
+          });
+        } else {
+          // Handle other FirebaseAuthException errors
+          setState(() {
+            errorMessage = "Error logging in. Please try again later.";
+          });
+        }
+      } else {
+        // Handle generic errors
+        setState(() {
+          errorMessage = "Error logging in. Please try again later.";
+        });
+      }
+
+      // Show error message in SnackBar
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Center(
+            child: Text(
+              errorMessage!,
+              style: TextStyle(fontFamily: 'FiraSans'),
+            ),
+          ),
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }
+  }
+
+  void reset(String email, BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.green,
+        content: Center(
+            child: Text("Link sent successfully",
+                style: TextStyle(fontFamily: 'FiraSans'))),
+        duration: Duration(seconds: 3),
+      ));
+      Navigator.pop(context);
+    } catch (e) {
+      debugPrint("Some error occurred");
+    }
   }
 
   @override
@@ -159,7 +206,7 @@ class _LoginState extends State<Login> {
                 height: 333,
                 child: Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: Form(
                     key: formkey,
                     child: Column(
@@ -204,17 +251,31 @@ class _LoginState extends State<Login> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10))),
                         ),
+                        if (errorMessage != null)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Text(
+                              errorMessage!,
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
                         const SizedBox(
                           height: 15,
                         ),
                         ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateColor.resolveWith(
-                                    (states) => kNewAppBarColor),
+                                (states) => kNewAppBarColor),
                             foregroundColor: MaterialStateColor.resolveWith(
-                                    (states) => Colors.white),
+                                (states) => Colors.white),
                           ),
                           onPressed: () {
+                            setState(() {
+                              errorMessage = null; // Clear previous errors
+                            });
                             if (formkey.currentState!.validate()) {
                               logIn(email.text, pwd.text, context);
                             }
@@ -236,17 +297,17 @@ class _LoginState extends State<Login> {
                                         labelText: "Email",
                                         border: OutlineInputBorder(
                                             borderRadius:
-                                            BorderRadius.circular(10))),
+                                                BorderRadius.circular(10))),
                                   ),
                                   Center(
                                     child: ElevatedButton(
                                       style: ButtonStyle(
                                         backgroundColor:
-                                        MaterialStateColor.resolveWith(
+                                            MaterialStateColor.resolveWith(
                                                 (states) =>
-                                            const Color(0xFF024578)),
+                                                    const Color(0xFF024578)),
                                         foregroundColor:
-                                        MaterialStateColor.resolveWith(
+                                            MaterialStateColor.resolveWith(
                                                 (states) => Colors.white),
                                       ),
                                       onPressed: () {

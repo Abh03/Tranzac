@@ -1,15 +1,20 @@
+import 'dart:developer';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/function/esewa_backend.dart';
-import 'package:tranzac/constants.dart';
+import 'package:tranzac/function/khalti.dart';
 
 class QrSewa extends StatefulWidget {
   final String mobile;
-  const QrSewa({Key? key, required this.mobile}) : super(key: key);
+  final String?
+      paymentType; // Added paymentType to distinguish between eSewa and Khalti
+  const QrSewa({Key? key, required this.mobile, this.paymentType})
+      : super(key: key);
 
-    @override
-    _QrSewaState createState() => _QrSewaState();
-  }
+  @override
+  _QrSewaState createState() => _QrSewaState();
+}
 
 class _QrSewaState extends State<QrSewa> {
   late TextEditingController mobileNumberController = TextEditingController();
@@ -24,21 +29,26 @@ class _QrSewaState extends State<QrSewa> {
   @override
   void dispose() {
     mobileNumberController.dispose();
-      amountController.dispose();
+    amountController.dispose();
     super.dispose();
   }
 
-  void sendToEsewaBackend() {
+  void initiatePayment() {
     final String mobileNumber = mobileNumberController.text;
     final String amount = amountController.text;
-    Esewa esewa = Esewa();
-    // Call your esewa backend function here with the input values
-    esewa.pay(mobileNumber, amount);
+
+    if (widget.paymentType == 'esewa') {
+      Esewa esewa = Esewa();
+      esewa.pay(mobileNumber, amount);
+    } else if (widget.paymentType == 'khalti') {
+      payWithKhaltiApp(context, mobileNumberController, amountController);
+    } else {
+      log('Invalid payment type provided: ${widget.paymentType}');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: kLightGreyColor,
@@ -99,7 +109,10 @@ class _QrSewaState extends State<QrSewa> {
                           SizedBox(height: 1),
                           Text(
                             'Available Balance',
-                            style: TextStyle(color: klightTextColor, fontSize: 16), // Decreased font size
+                            style: TextStyle(
+                              color: klightTextColor,
+                              fontSize: 16,
+                            ),
                           ),
                         ],
                       ),
@@ -108,7 +121,7 @@ class _QrSewaState extends State<QrSewa> {
                 ),
                 const SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -146,7 +159,7 @@ class _QrSewaState extends State<QrSewa> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 10), // Added space here
+                      const SizedBox(height: 10),
                       TextField(
                         controller: amountController,
                         decoration: InputDecoration(
@@ -165,16 +178,28 @@ class _QrSewaState extends State<QrSewa> {
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: sendToEsewaBackend,
+                        onPressed: initiatePayment,
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor), // Background color
-                          textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(color: Colors.white)), // Text color
-                          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)), // Padding
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(kNewAppBarColor),
+                          textStyle: MaterialStateProperty.all<TextStyle>(
+                            const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          padding:
+                              MaterialStateProperty.all<EdgeInsetsGeometry>(
+                            const EdgeInsets.symmetric(
+                              vertical: 15,
+                              horizontal: 20,
+                            ),
+                          ),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
-                          ), // Button shape
+                          ),
                         ),
                         child: const Text(
                           'Continue',

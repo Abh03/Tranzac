@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:tranzac/constants.dart';
-import 'package:tranzac/pages/Homepage.dart'; // Import for date formatting
+import 'package:tranzac/pages/Homepage.dart';
+import 'package:tranzac/pages/sendmoney.dart'; // Import for date formatting
 
 class PaymentDetailsPage extends StatelessWidget {
   final String recipientMobileNumber;
@@ -71,7 +72,7 @@ class PaymentDetailsPage extends StatelessWidget {
                         MaterialPageRoute(
                             builder: ((context) => const HomePage())));
                   },
-                  child: Text('Go Back To Home'),
+                  child: Text('Go Back'),
                 ),
               ),
             ],

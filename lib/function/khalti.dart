@@ -81,36 +81,51 @@ void payWithKhaltiApp(
   TextEditingController mobileController,
   TextEditingController amountController,
 ) {
-  String recipientMobileNumber = mobileController.text.trim();
-  String amountText = amountController.text.trim();
-  double amountInRupees = double.tryParse(amountText) ?? 0;
+  try {
+    String recipientMobileNumber = mobileController.text.trim();
+    String amountText = amountController.text.trim();
+    double amountInRupees = double.tryParse(amountText) ?? 0;
 
-  // Perform validation
-  if (amountInRupees > 200) {
-    showValidationErrorDialog(context, 'More than 200 can\'t be transferred');
-    return;
+    if (recipientMobileNumber.isEmpty) {
+      showValidationErrorDialog(context, 'Please enter a mobile number.');
+      return;
+    }
+
+    if (amountInRupees <= 0) {
+      showValidationErrorDialog(context, 'Please enter a valid amount.');
+      return;
+    }
+
+    if (amountInRupees > 200) {
+      showValidationErrorDialog(context, 'More than 200 can\'t be transferred');
+      return;
+    }
+
+    int amountInPaisa = (amountInRupees * 100).toInt();
+
+    KhaltiScope.of(context).pay(
+      config: PaymentConfig(
+        amount: amountInPaisa,
+        productIdentity: 'unique-id-for-transaction',
+        productName: 'Sending money to $recipientMobileNumber',
+      ),
+      preferences: [
+        PaymentPreference.khalti,
+      ],
+      onSuccess: (success) => onSuccess(
+        success,
+        context,
+        recipientMobileNumber,
+        amountInPaisa,
+      ),
+      onFailure: (failure) => onFailure(failure, context),
+      onCancel: onCancel,
+    );
+  } catch (e, stackTrace) {
+    debugPrint('Error occurred in payWithKhaltiApp: $e');
+    debugPrint('$stackTrace');
+    showPaymentFailureDialog(context, 'An unexpected error occurred.');
   }
-
-  int amountInPaisa = (amountInRupees * 100).toInt();
-
-  KhaltiScope.of(context).pay(
-    config: PaymentConfig(
-      amount: amountInPaisa,
-      productIdentity: 'unique-id-for-transaction',
-      productName: 'Sending money to $recipientMobileNumber',
-    ),
-    preferences: [
-      PaymentPreference.khalti,
-    ],
-    onSuccess: (success) => onSuccess(
-      success,
-      context,
-      recipientMobileNumber,
-      amountInPaisa,
-    ),
-    onFailure: (failure) => onFailure(failure, context),
-    onCancel: onCancel,
-  );
 }
 
 void onSuccess(
