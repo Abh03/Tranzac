@@ -23,7 +23,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.all(5),
         child: Stack(children: [
           Column(
             children: [
@@ -34,25 +34,79 @@ class _ProfileState extends State<Profile> {
                   backgroundImage: AssetImage('assests/images/splash2.png'),
                 ),
               ),
-              const SizedBox(height: 8),
-              Text(
-                '${user.currentUser!.displayName}',
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold),
+              SizedBox(
+                height: 200,
+                child: StreamBuilder(
+                    stream: collref
+                        .where("Email", isEqualTo: user.currentUser!.email)
+                        .snapshots(),
+                    builder: ((context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.active) {
+                        if (snapshot.hasData) {
+                          return Container(
+                            color: kBackgroundColor,
+                            child: ListView.builder(
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: ((context, index) {
+                                  return Column(
+                                    children: [
+                                      ListTile(
+                                        title: Center(
+                                          child: Text(
+                                              "${snapshot.data!.docs[index]["Name first"]} ${snapshot.data!.docs[index]["Name middle"]} ${snapshot.data!.docs[index]["Name last"]}"),
+                                        ),
+                                      ),
+                                      ListTile(
+                                        title: Center(
+                                          child: Text(
+                                              "${snapshot.data!.docs[index]["Mobile number"]}"),
+                                        ),
+                                      ),
+                                      ListTile(
+                                        title: Center(
+                                          child: Text(
+                                              "${snapshot.data!.docs[index]["Email"]}"),
+                                        ),
+                                      )
+                                    ],
+                                  );
+                                })),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text(snapshot.hasError.toString()),
+                          );
+                        } else {
+                          return const Center(
+                            child: Text("No data"),
+                          );
+                        }
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: kBackgroundColor,
+                          ),
+                        );
+                      }
+                    })),
               ),
-              const SizedBox(height: 1),
-              Text(
-                '${user.currentUser!.phoneNumber}',
-                style: const TextStyle(color: Colors.black, fontSize: 18),
-              ),
-              const SizedBox(height: 1),
-              Text(
-                '${user.currentUser!.email}',
-                style: const TextStyle(color: Colors.black, fontSize: 18),
-              ),
-              const SizedBox(height: 10),
+              // Text(
+              //   '${user.currentUser!.displayName}',
+              //   style: const TextStyle(
+              //       color: Colors.black,
+              //       fontSize: 22,
+              //       fontWeight: FontWeight.bold),
+              // ),
+              // const SizedBox(height: 1),
+              // Text(
+              //   '${user.currentUser!.phoneNumber}',
+              //   style: const TextStyle(color: Colors.black, fontSize: 18),
+              // ),
+              // const SizedBox(height: 1),
+              // Text(
+              //   '${user.currentUser!.email}',
+              //   style: const TextStyle(color: Colors.black, fontSize: 18),
+              // ),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 padding: const EdgeInsets.all(16),

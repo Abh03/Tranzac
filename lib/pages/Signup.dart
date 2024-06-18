@@ -491,12 +491,7 @@ class _SignUpState extends State<SignUp> {
                                                   await _auth
                                                       .createUserWithEmailAndPassword(
                                                           email: email.text,
-                                                          password: pwd.text)
-                                                      .then((value) => Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  const Abstract())));
+                                                          password: pwd.text);
 
                                                   await collref
                                                       .collection('Users')
@@ -537,7 +532,11 @@ class _SignUpState extends State<SignUp> {
                                                       duration:
                                                           Duration(seconds: 3),
                                                     ));
-                                                  });
+                                                  }).then((value) => Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  const Abstract())));
                                                 } catch (e) {
                                                   debugPrint(
                                                       "Some error occured");
