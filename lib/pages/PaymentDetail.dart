@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:tranzac/constants.dart';
+import 'package:tranzac/pages/Abstract.dart';
 import 'package:tranzac/pages/Homepage.dart';
 import 'package:tranzac/pages/sendmoney.dart'; // Import for date formatting
 
@@ -67,10 +68,11 @@ class PaymentDetailsPage extends StatelessWidget {
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => const HomePage())));
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Abstract()),
+                      (Route<dynamic> route) => false,
+                    );
                   },
                   child: Text('Go Back'),
                 ),

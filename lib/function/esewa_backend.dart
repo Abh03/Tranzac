@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:esewa_flutter_sdk/esewa_flutter_sdk.dart';
 import 'package:esewa_flutter_sdk/esewa_config.dart';
@@ -8,10 +10,13 @@ import 'package:tranzac/main.dart';
 
 import '../pages/esewa_transactionDetails.dart';
 
-
+final user = FirebaseAuth.instance;
+final transref = FirebaseFirestore.instance
+    .collection('Users')
+    .doc(user.currentUser!.email)
+    .collection('Transactions');
 
 class Esewa {
-
   void pay(String mobileNumber, String amount) {
     String product_id = mobileNumber;
     String product_price = amount;
@@ -31,7 +36,6 @@ class Esewa {
         onPaymentSuccess: (EsewaPaymentSuccessResult result) {
           debugPrint('SUCCESS');
           verify(result);
-
         },
         onPaymentFailure: () {
           debugPrint('FAILURE');
@@ -46,6 +50,11 @@ class Esewa {
   }
 
   void verify(EsewaPaymentSuccessResult result) {
+    transref.doc(result.refId).set({
+      'Mobile number': result.productId,
+      'Total amount': result.totalAmount,
+      'Date': result.date,
+    });
 
     // TODO: after success, call this function to verify transaction
     navigatorKey.currentState?.push(

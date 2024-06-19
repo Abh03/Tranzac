@@ -92,9 +92,7 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(height: 5),
                         Text(
                           'Available Balance',
-                          style:
-                              TextStyle(color: Colors.green
-                                  , fontSize: 16),
+                          style: TextStyle(color: Colors.green, fontSize: 16),
                         ),
                       ],
                     ),
@@ -139,11 +137,14 @@ class _HomePageState extends State<HomePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const SendMoney()),
+                                        builder: (context) =>
+                                            const SendMoney()),
                                   );
                                 },
                                 style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          kNewAppBarColor),
                                 ),
                                 icon: const Icon(
                                   CupertinoIcons.money_dollar_circle,
@@ -156,15 +157,22 @@ class _HomePageState extends State<HomePage> {
                                       fontSize: 16, color: Colors.white),
                                 ),
                               ),
-                              SizedBox(width: 10), // Adjust spacing between buttons
+                              SizedBox(
+                                  width: 10), // Adjust spacing between buttons
                               ElevatedButton.icon(
                                 onPressed: () {
                                   // Implement onPressed for Add Expense button
                                 },
                                 style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(kNewAppBarColor),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          kNewAppBarColor),
                                 ),
-                                icon: Icon(Icons.add, size: 26, color: Colors.white,),
+                                icon: Icon(
+                                  Icons.add,
+                                  size: 26,
+                                  color: Colors.white,
+                                ),
                                 label: Text(
                                   'Add Expense',
                                   style: TextStyle(

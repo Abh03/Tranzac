@@ -1,7 +1,13 @@
-import 'dart:ui';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
+
+final user = FirebaseAuth.instance;
+final transref = FirebaseFirestore.instance
+    .collection('Users')
+    .doc(user.currentUser!.email)
+    .collection('Transactions');
 
 class Statement extends StatefulWidget {
   const Statement({super.key});
@@ -75,8 +81,12 @@ class _StatementState extends State<Statement> {
                               _selectedFilter = newValue!;
                             });
                           },
-                          items: <String>['Filter', '7 days', '14 days', '30 days']
-                              .map<DropdownMenuItem<String>>((String value) {
+                          items: <String>[
+                            'Filter',
+                            '7 days',
+                            '14 days',
+                            '30 days'
+                          ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Row(
@@ -103,210 +113,249 @@ class _StatementState extends State<Statement> {
             const SizedBox(
               height: 5,
             ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-              child: const Text(
-                'Fri , Mar 29',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: kNewAppBarColor),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.all(20),
-              width: MediaQuery.of(context).size.width,
-              height: 130,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.white),
-              child: const Column(
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: 120,
-                          child: Text(
-                            'Transferred  to Karib Maharjan',
-                            style: TextStyle(fontSize: 15),
+            Expanded(
+                child: StreamBuilder(
+                    stream: transref.snapshots(),
+                    builder: ((context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.active) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: ((context, index) {
+                                return Card(
+                                  child: ListTile(
+                                    title: Text(
+                                        "${snapshot.data!.docs[index]["Mobile number"]}"),
+                                    subtitle: Text(
+                                        "${snapshot.data!.docs[index]["Date"]}"),
+                                    trailing: Text(
+                                        "RS ${snapshot.data!.docs[index]["Total amount"]}"),
+                                  ),
+                                );
+                              }));
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text(snapshot.hasError.toString()),
+                          );
+                        } else {
+                          return const Center(
+                            child: Text("No data"),
+                          );
+                        }
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: kNewAppBarColor,
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: 150,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Rs.300',
-                                style: TextStyle(fontSize: 15, color: kRedColor),
-                              ),
-                              Text(
-                                'Balance: Rs. 4200',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(8.0, 2, 8, 0),
-                    child: Divider(
-                      height: 2,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: 120,
-                          child: Text(
-                            'Transferred from Nabil Bank Ltd.',
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: 150,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Rs.2500',
-                                style:
-                                TextStyle(fontSize: 15, color: kGreenColor),
-                              ),
-                              Text(
-                                'Balance: Rs. 4500',
-                                style:
-                                TextStyle(fontSize: 15, color: Colors.black),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-              child: const Text(
-                'Thu , Mar 28',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: kNewAppBarColor),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.all(20),
-              width: MediaQuery.of(context).size.width,
-              height: 130,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.white),
-              child: const Column(
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: 120,
-                          child: Text(
-                            'Transferred  to Karib Maharjan',
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: 150,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Rs.300',
-                                style: TextStyle(fontSize: 15, color: kRedColor),
-                              ),
-                              Text(
-                                'Balance: Rs. 4200',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(8.0, 2, 8, 0),
-                    child: Divider(
-                      height: 2,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: 120,
-                          child: Text(
-                            'Transferred from Nabil Bank Ltd.',
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: 150,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Rs.2500',
-                                style:
-                                TextStyle(fontSize: 15, color: kGreenColor),
-                              ),
-                              Text(
-                                'Balance: Rs. 4500',
-                                style:
-                                TextStyle(fontSize: 15, color: Colors.black),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+                        );
+                      }
+                    })))
+            // Container(
+            //   margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+            //   child: const Text(
+            //     'Fri , Mar 29',
+            //     style: TextStyle(
+            //         fontWeight: FontWeight.bold,
+            //         fontSize: 16,
+            //         color: kNewAppBarColor),
+            //   ),
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.all(20),
+            //   width: MediaQuery.of(context).size.width,
+            //   height: 130,
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(20), color: Colors.white),
+            //   child: const Column(
+            //     children: [
+            //       Row(
+            //         children: [
+            //           Padding(
+            //             padding: EdgeInsets.all(10.0),
+            //             child: SizedBox(
+            //               width: 120,
+            //               child: Text(
+            //                 'Transferred  to Karib Maharjan',
+            //                 style: TextStyle(fontSize: 15),
+            //               ),
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             width: 40,
+            //           ),
+            //           Padding(
+            //             padding: EdgeInsets.all(10.0),
+            //             child: SizedBox(
+            //               width: 150,
+            //               child: Column(
+            //                 crossAxisAlignment: CrossAxisAlignment.end,
+            //                 children: [
+            //                   Text(
+            //                     'Rs.300',
+            //                     style: TextStyle(fontSize: 15, color: kRedColor),
+            //                   ),
+            //                   Text(
+            //                     'Balance: Rs. 4200',
+            //                     style: TextStyle(
+            //                         fontSize: 15, color: Colors.black),
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Padding(
+            //         padding: EdgeInsets.fromLTRB(8.0, 2, 8, 0),
+            //         child: Divider(
+            //           height: 2,
+            //         ),
+            //       ),
+            //       Row(
+            //         children: [
+            //           Padding(
+            //             padding: EdgeInsets.all(10.0),
+            //             child: SizedBox(
+            //               width: 120,
+            //               child: Text(
+            //                 'Transferred from Nabil Bank Ltd.',
+            //                 style: TextStyle(fontSize: 15),
+            //               ),
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             width: 40,
+            //           ),
+            //           Padding(
+            //             padding: EdgeInsets.all(10.0),
+            //             child: SizedBox(
+            //               width: 150,
+            //               child: Column(
+            //                 crossAxisAlignment: CrossAxisAlignment.end,
+            //                 children: [
+            //                   Text(
+            //                     'Rs.2500',
+            //                     style:
+            //                     TextStyle(fontSize: 15, color: kGreenColor),
+            //                   ),
+            //                   Text(
+            //                     'Balance: Rs. 4500',
+            //                     style:
+            //                     TextStyle(fontSize: 15, color: Colors.black),
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+            //   child: const Text(
+            //     'Thu , Mar 28',
+            //     style: TextStyle(
+            //         fontWeight: FontWeight.bold,
+            //         fontSize: 16,
+            //         color: kNewAppBarColor),
+            //   ),
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.all(20),
+            //   width: MediaQuery.of(context).size.width,
+            //   height: 130,
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(20), color: Colors.white),
+            //   child: const Column(
+            //     children: [
+            //       Row(
+            //         children: [
+            //           Padding(
+            //             padding: EdgeInsets.all(10.0),
+            //             child: SizedBox(
+            //               width: 120,
+            //               child: Text(
+            //                 'Transferred  to Karib Maharjan',
+            //                 style: TextStyle(fontSize: 15),
+            //               ),
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             width: 40,
+            //           ),
+            //           Padding(
+            //             padding: EdgeInsets.all(10.0),
+            //             child: SizedBox(
+            //               width: 150,
+            //               child: Column(
+            //                 crossAxisAlignment: CrossAxisAlignment.end,
+            //                 children: [
+            //                   Text(
+            //                     'Rs.300',
+            //                     style: TextStyle(fontSize: 15, color: kRedColor),
+            //                   ),
+            //                   Text(
+            //                     'Balance: Rs. 4200',
+            //                     style: TextStyle(
+            //                         fontSize: 15, color: Colors.black),
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Padding(
+            //         padding: EdgeInsets.fromLTRB(8.0, 2, 8, 0),
+            //         child: Divider(
+            //           height: 2,
+            //         ),
+            //       ),
+            //       Row(
+            //         children: [
+            //           Padding(
+            //             padding: EdgeInsets.all(10.0),
+            //             child: SizedBox(
+            //               width: 120,
+            //               child: Text(
+            //                 'Transferred from Nabil Bank Ltd.',
+            //                 style: TextStyle(fontSize: 15),
+            //               ),
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             width: 40,
+            //           ),
+            //           Padding(
+            //             padding: EdgeInsets.all(10.0),
+            //             child: SizedBox(
+            //               width: 150,
+            //               child: Column(
+            //                 crossAxisAlignment: CrossAxisAlignment.end,
+            //                 children: [
+            //                   Text(
+            //                     'Rs.2500',
+            //                     style:
+            //                     TextStyle(fontSize: 15, color: kGreenColor),
+            //                   ),
+            //                   Text(
+            //                     'Balance: Rs. 4500',
+            //                     style:
+            //                     TextStyle(fontSize: 15, color: Colors.black),
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -314,8 +363,8 @@ class _StatementState extends State<Statement> {
   }
 }
 
-void main() {
-  runApp(const MaterialApp(
-    home: Statement(),
-  ));
-}
+// void main() {
+//   runApp(const MaterialApp(
+//     home: Statement(),
+//   ));
+// }

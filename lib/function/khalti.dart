@@ -1,6 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:tranzac/pages/PaymentDetail.dart';
+
+final user = FirebaseAuth.instance;
+final transref = FirebaseFirestore.instance
+    .collection('Users')
+    .doc(user.currentUser!.email)
+    .collection('Transactions');
 
 void showPaymentSuccessDialog(
   BuildContext context,
@@ -142,6 +150,12 @@ void onSuccess(
 
   String message =
       'Payment of NPR${amountInPaisa / 100} to $recipientMobileNumber was successful';
+
+  transref.doc(transactionId).set({
+    'Mobile number': recipientMobileNumber,
+    'Total amount': amountInPaisa / 100,
+    'Date': paymentTime,
+  });
 
   showPaymentSuccessDialog(
     context,

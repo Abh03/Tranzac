@@ -13,13 +13,14 @@ final transactionref = FirebaseFirestore.instance
 class TransactionDetailsPage extends StatelessWidget {
   final EsewaPaymentSuccessResult transaction;
 
-  const TransactionDetailsPage({Key? key, required this.transaction}) : super(key: key);
+  const TransactionDetailsPage({Key? key, required this.transaction})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transaction Details'),
+        title: const Text('Transaction Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
