@@ -67,7 +67,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
     try {
       // Android notification details
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
-          AndroidNotificationDetails(
+      AndroidNotificationDetails(
         'basic_channel',
         'Basic Notifications',
         channelDescription: 'Description of Basic Notifications',
@@ -99,7 +99,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
     try {
       // Android notification details
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
-          AndroidNotificationDetails(
+      AndroidNotificationDetails(
         'basic_channel',
         'Basic Notifications',
         channelDescription: 'Description of Basic Notifications',
@@ -495,7 +495,7 @@ class _DetailPageState extends State<DetailPage> {
                                       color: kNewAppBarColor),
                                   iconSize: 24,
                                   style:
-                                      const TextStyle(color: kNewAppBarColor),
+                                  const TextStyle(color: kNewAppBarColor),
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       _selectedFilter = newValue!;
@@ -507,12 +507,12 @@ class _DetailPageState extends State<DetailPage> {
                                     '14 days',
                                     '30 days'
                                   ].map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
                                 ),
                               ),
                             ],
@@ -568,7 +568,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: kRedColor),
+                                TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -612,7 +612,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.2500',
                                 style:
-                                    TextStyle(fontSize: 15, color: kGreenColor),
+                                TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
@@ -671,7 +671,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: kRedColor),
+                                TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -715,7 +715,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.2500',
                                 style:
-                                    TextStyle(fontSize: 15, color: kGreenColor),
+                                TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
