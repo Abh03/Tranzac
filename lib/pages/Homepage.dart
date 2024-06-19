@@ -38,6 +38,7 @@ List Data = [
 ];
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController incomeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -175,7 +176,53 @@ class _HomePageState extends State<HomePage> {
                               // Add Income Button
                               ElevatedButton(
                                 onPressed: () {
-                                  // Implement onPressed for Add Income button
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Center(child: Text("Add Income")),
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          TextFormField(
+                                            controller: incomeController,
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration(
+                                              hintText: "Enter income amount",
+                                              labelText: "Income",
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      actions: [
+                                        Center(
+                                          child: ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      kActiveIconColor),
+                                            ),
+                                            onPressed: () {
+                                              // Perform action on "Add" button press
+                                              String income =
+                                                  incomeController.text;
+                                              // Handle income submission or validation here
+                                              Navigator.of(context)
+                                                  .pop(); // Close the dialog
+                                            },
+                                            child: Text(
+                                              'Add',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -184,7 +231,7 @@ class _HomePageState extends State<HomePage> {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       Size(100, 100)),
                                 ),
-                                child: const Column(
+                                child: Column(
                                   children: [
                                     Icon(
                                       Icons.wallet_outlined,
