@@ -1,121 +1,87 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:tranzac/pages/login.dart';
-import 'package:tranzac/pages/Signup.dart';
+import 'package:tranzac/pages/Login.dart';
 import 'package:tranzac/constants.dart';
 
-class Splash extends StatelessWidget {
-  const Splash({super.key});
+class Splash extends StatefulWidget {
+  @override
+  State <Splash> createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash>{
+  @override
+  void initState() {
+    super.initState();
+
+    Timer(Duration(seconds: 2), (){
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(
+          builder: (context) => const Login(),
+      ));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     EdgeInsets marginWelcome = EdgeInsets.only(top: height * 0.15);
     EdgeInsets marginButtons = EdgeInsets.only(top: height * 0.7);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       extendBodyBehindAppBar: true,
-      body: SizedBox(
+      body: Container(
         width: width,
         height: height,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              kNewAppBarColor,
+              kGradientChange,
+            ],
+          ),
+        ),
         child: Stack(
+          alignment: Alignment.center,
           children: [
-            Image.asset(
-              'assests/images/splash2.png',
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-            ),
-            Center(
+            // Background gradient
+            Positioned.fill(
               child: Container(
-                alignment: Alignment.center,
-                margin: marginWelcome,
-                width: 250,
-                child: const Text(
-                  "Welcome to Tranzac",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white, fontSize: 28),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      kNewAppBarColor,
+                      kGradientChange,
+                    ],
+                  ),
                 ),
               ),
             ),
-            Container(
-              margin: marginButtons,
-              alignment: Alignment.topCenter,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    width: 150,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Login()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: kSecondBackgroundColor,
-                        padding: const EdgeInsets.all(07),
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(10), // Button border radius
-                        ),
-                      ),
-                      child: const Text(
-                        "Log In",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 25),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 150,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignUp()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: kSecondBackgroundColor,
-                        padding: const EdgeInsets.all(07),
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(10), // Button border radius
-                        ),
-                      ),
-                      child: const Text(
-                        "Sign up ",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 25),
-                      ),
-                    ),
-                  )
-                ],
+            // Image at the center
+            Positioned(
+              top: height * 0.3, // Adjust position as per your requirement
+              child: Image.asset(
+                'assests/images/logo1.png', // Replace with your image path
+                height: height * 0.45, // Adjust height as needed
               ),
-            )
+            ),
           ],
         ),
       ),
     );
-    // return Scaffold(
-    //   body: StreamBuilder(
-    //       stream: FirebaseAuth.instance.authStateChanges(),
-    //       builder: (context, snapshot) {
-    //         if (snapshot.hasData) {
-    //           return const Abstract();
-    //         } else {
-
-    //         }
-    //       }),
-    // );
   }
 }

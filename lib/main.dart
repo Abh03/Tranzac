@@ -16,7 +16,7 @@ void main() async {
       builder: (context, navKey) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: const Splash(),
+          home: Splash(),
           navigatorKey: navKey,
           localizationsDelegates: const [KhaltiLocalizations.delegate],
         );
