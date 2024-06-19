@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/login.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final user = FirebaseAuth.instance;
 final collref = FirebaseFirestore.instance.collection('Users');
@@ -27,12 +28,32 @@ class _ProfileState extends State<Profile> {
         child: Stack(children: [
           Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundImage: AssetImage('assests/images/splash2.png'),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: kActiveIconColor,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(
+                          context); // Navigate back to previous screen
+                    },
+                  ),
+                  SizedBox(
+                    width: 80,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      top: 30,
+                    ),
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundImage: AssetImage('assests/images/splash2.png'),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 200,

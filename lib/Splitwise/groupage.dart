@@ -32,7 +32,7 @@ class Groupage extends StatelessWidget {
                   children: [
                     const CircleAvatar(
                       radius: 70,
-                      backgroundColor: Color(0xFF024578),
+                      backgroundColor: kActiveIconColor,
                       child: Icon(
                         Icons.person,
                         color: Colors.white,
@@ -51,11 +51,10 @@ class Groupage extends StatelessWidget {
                         // ),
                         ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateColor.resolveWith(
-                                  (states) => const Color(0xFF024578)),
-                              foregroundColor: MaterialStateColor.resolveWith(
-                                  (states) => Colors.white),
-                            ),
+                                foregroundColor: MaterialStateColor.resolveWith(
+                                    (states) => Colors.white),
+                                backgroundColor: MaterialStateProperty.all(
+                                    kActiveIconColor)),
                             onPressed: () {},
                             child: const Text(
                               "Settle Up",
@@ -79,7 +78,7 @@ class Groupage extends StatelessWidget {
                               itemCount: snapshots.data!.docs.length,
                               itemBuilder: (context, index) {
                                 return Card(
-                                  color: Color(0xff024578),
+                                  color: kActiveIconColor,
                                   child: ListTile(
                                     textColor: Colors.white,
                                     leading: Icon(
@@ -111,7 +110,7 @@ class Groupage extends StatelessWidget {
                       } else {
                         return const Center(
                           child: CircularProgressIndicator(
-                            color: Color(0xff024578),
+                            color: kActiveIconColor,
                           ),
                         );
                       }

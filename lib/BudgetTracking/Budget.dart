@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:tranzac/constants.dart';
-import 'package:tranzac/constants.dart';
+import 'package:tranzac/main.dart';
+import 'package:tranzac/BudgetTracking/Budget_Edit.dart';
 
 class Budget extends StatefulWidget {
   const Budget({super.key});
@@ -21,7 +25,7 @@ List chartData = [
   [5, 'Pets', const Color.fromRGBO(26, 147, 68, 1.0)],
   [6, 'Beauty', const Color.fromRGBO(63, 143, 208, 1.0)],
   [9, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
-  [6, 'Electronics and Appliances', const Color.fromRGBO(203, 120, 142, 1.0)],
+  [6, 'Electronics', const Color.fromRGBO(203, 120, 142, 1.0)],
   [3, 'Others', const Color.fromRGBO(239, 171, 250, 1.0)],
 ];
 
@@ -37,8 +41,95 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
   @override
   void dispose() {
     _tabController.dispose();
+    checkBudgetAndNotify();
     super.dispose();
   }
+
+  void checkBudgetAndNotify() {
+    // Here make the comparsion and give output
+    // if (money_spent > 0.5*budget){
+    //   BudgetNotification();
+
+    // }
+    if ("apple" == "applerr") {
+      BudgetExceedsNotification();
+    }
+    if ("apple" == "apple") {
+      BudgetFinishNotification();
+    }
+
+    //  if (money_spent >= budget)
+    // {
+    //BudgetFinishNotification();
+    // }
+  }
+
+  Future<void> BudgetExceedsNotification() async {
+    try {
+      // Android notification details
+      const AndroidNotificationDetails androidPlatformChannelSpecifics =
+      AndroidNotificationDetails(
+        'basic_channel',
+        'Basic Notifications',
+        channelDescription: 'Description of Basic Notifications',
+        importance: Importance.high,
+        priority: Priority.high,
+        showWhen: true,
+      );
+
+      // Combine platform-specific details
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+      );
+
+      // Show notification
+      await flutterLocalNotificationsPlugin.show(
+        0,
+        'Budget Exceeded!',
+        //Change this statement :
+        'Your total budget is Rs. 200, which exceeds half of the budget.',
+        platformChannelSpecifics,
+        payload: 'Budget Exceeded',
+      );
+    } catch (e) {
+      print('Failed to create notification: $e');
+    }
+  }
+
+  Future<void> BudgetFinishNotification() async {
+    try {
+      // Android notification details
+      const AndroidNotificationDetails androidPlatformChannelSpecifics =
+      AndroidNotificationDetails(
+        'basic_channel',
+        'Basic Notifications',
+        channelDescription: 'Description of Basic Notifications',
+        importance: Importance.high,
+        priority: Priority.high,
+        showWhen: true,
+      );
+
+      // Combine platform-specific details
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+      );
+
+      // Show notification
+      await flutterLocalNotificationsPlugin.show(
+        0,
+        'Budget Exceeded!',
+        //Change this statement :
+        'You have exceeded your budget .',
+        platformChannelSpecifics,
+        payload: 'Budget Exceeded',
+      );
+    } catch (e) {
+      print('Failed to create notification: $e');
+    }
+  }
+
+
+
 
   List<PieChartSectionData> getSections() {
     return chartData.map((data) {
@@ -72,22 +163,56 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
       appBar: AppBar(
         backgroundColor: kBackgroundColor,
         elevation: 0,
-        title: const Text(
-          'My Expenses',
-          style: TextStyle(
-            color: kNewAppBarColor,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'My Expenses',
+              style: TextStyle(
+                color: kNewAppBarColor,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                      const Budget_Edit()),
+                );// Implement edit functionality here
+              },
+              child: const Text(
+                'Edit Budget',
+                style: TextStyle(
+                  color: kNewAppBarColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+          ],
+        ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: kActiveIconColor,
           ),
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to previous screen
+          },
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+
             Container(
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
@@ -105,7 +230,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -301,8 +426,18 @@ class _DetailPageState extends State<DetailPage> {
         automaticallyImplyLeading: false,
         backgroundColor: kNewAppBarColor,
         foregroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to previous screen
+          },
+        ),
         title: Center(child: Text(widget.category)),
       ),
+
       body: Container(
         color: kBackgroundColor,
         child: Column(
@@ -361,7 +496,7 @@ class _DetailPageState extends State<DetailPage> {
                                       color: kNewAppBarColor),
                                   iconSize: 24,
                                   style:
-                                      const TextStyle(color: kNewAppBarColor),
+                                  const TextStyle(color: kNewAppBarColor),
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       _selectedFilter = newValue!;
@@ -373,12 +508,12 @@ class _DetailPageState extends State<DetailPage> {
                                     '14 days',
                                     '30 days'
                                   ].map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
                                 ),
                               ),
                             ],
@@ -434,7 +569,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: kRedColor),
+                                TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -478,7 +613,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.2500',
                                 style:
-                                    TextStyle(fontSize: 15, color: kGreenColor),
+                                TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
@@ -537,7 +672,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.300',
                                 style:
-                                    TextStyle(fontSize: 15, color: kRedColor),
+                                TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -581,7 +716,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.2500',
                                 style:
-                                    TextStyle(fontSize: 15, color: kGreenColor),
+                                TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
