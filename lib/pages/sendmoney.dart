@@ -63,7 +63,7 @@ class _SendMoneyState extends State<SendMoney> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: kLightGreyColor,
+      backgroundColor: kBackgroundColor,
       body: Stack(
         children: [
           Positioned(
