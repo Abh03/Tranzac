@@ -124,15 +124,15 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           decoration: const BoxDecoration(
                             color: kNewAppBarColor,
-                            // Background color of the container
-                            borderRadius: BorderRadius.all(Radius.circular(35)),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
                           ),
                           padding: const EdgeInsets.symmetric(
                               vertical: 2, horizontal: 10),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              ElevatedButton.icon(
+                              // Send Money Button
+                              ElevatedButton(
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -145,21 +145,69 @@ class _HomePageState extends State<HomePage> {
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
                                           kNewAppBarColor),
+                                  minimumSize: MaterialStateProperty.all<Size>(
+                                      Size(100, 100)),
                                 ),
-                                icon: const Icon(
-                                  CupertinoIcons.money_dollar_circle,
-                                  size: 26,
-                                  color: Colors.white,
-                                ),
-                                label: const Text(
-                                  'Send Money',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                child: const Column(
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.money_dollar_circle,
+                                      size: 26,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text.rich(
+                                      TextSpan(
+                                        children: [
+                                          TextSpan(text: 'Send\n'),
+                                          TextSpan(text: 'Money'),
+                                        ],
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 16, color: Colors.white),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              SizedBox(
-                                  width: 10), // Adjust spacing between buttons
-                              ElevatedButton.icon(
+                              const SizedBox(width: 18),
+                              // Add Income Button
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Implement onPressed for Add Income button
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          kNewAppBarColor),
+                                  minimumSize: MaterialStateProperty.all<Size>(
+                                      Size(100, 100)),
+                                ),
+                                child: const Column(
+                                  children: [
+                                    Icon(
+                                      Icons.wallet_outlined,
+                                      size: 26,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text.rich(
+                                      TextSpan(
+                                        children: [
+                                          TextSpan(text: 'Add\n'),
+                                          TextSpan(text: 'Income'),
+                                        ],
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 16, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 18),
+                              // Add Expense Button
+                              ElevatedButton(
                                 onPressed: () {
                                   // Implement onPressed for Add Expense button
                                 },
@@ -167,16 +215,29 @@ class _HomePageState extends State<HomePage> {
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
                                           kNewAppBarColor),
+                                  minimumSize: MaterialStateProperty.all<Size>(
+                                      Size(100, 100)),
                                 ),
-                                icon: Icon(
-                                  Icons.add,
-                                  size: 26,
-                                  color: Colors.white,
-                                ),
-                                label: Text(
-                                  'Add Expense',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                child: const Column(
+                                  children: [
+                                    Icon(
+                                      Icons.add_circle_outline,
+                                      size: 26,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text.rich(
+                                      TextSpan(
+                                        children: [
+                                          TextSpan(text: 'Add\n'),
+                                          TextSpan(text: 'Expense'),
+                                        ],
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 16, color: Colors.white),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -189,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         'Expenses',
                         style: TextStyle(
-                            color: kNewAppBarColor,
+                            color: kActiveIconColor,
                             fontSize: 22,
                             fontWeight: FontWeight.bold),
                       ),
@@ -219,32 +280,19 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Food",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
-                                          ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
                                           ),
                                         ],
                                       ),
@@ -322,32 +370,19 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Household",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
-                                          ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
                                           ),
                                         ],
                                       ),
@@ -425,32 +460,19 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Education",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
-                                          ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
                                           ),
                                         ],
                                       ),
@@ -528,32 +550,19 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Transportation",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
-                                          ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
                                           ),
                                         ],
                                       ),
@@ -631,33 +640,20 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Pets",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -734,33 +730,20 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Beauty",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -837,33 +820,20 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Health",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -940,33 +910,20 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Apparel",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -1043,33 +1000,20 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Electronics and Appliances",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -1146,32 +1090,19 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Social Life",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
-                                          ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
                                           ),
                                         ],
                                       ),
@@ -1249,32 +1180,19 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 15, 15, 2),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Others",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
-                                          ),
-                                          Container(
-                                            width: 30,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: kNewAppBarColor,
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
                                           ),
                                         ],
                                       ),
