@@ -20,6 +20,35 @@ class _QrSewaState extends State<QrSewa> {
   late TextEditingController mobileNumberController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
 
+  List<String> categories = [
+    'Food',
+    'Education',
+    'Household',
+    'Social Life',
+    'Pets',
+    'Transportation',
+    'Health',
+    'Beauty',
+    'Apparel',
+    'Electronics and Appliances',
+    'Others'
+  ];
+  String? selectedCategory;
+
+  Map<String, IconData> categoryIcons = {
+    'Food': Icons.fastfood,
+    'Education': Icons.school,
+    'Household': Icons.house_outlined,
+    'Beauty': Icons.face,
+    'Social Life': Icons.people,
+    'Pets': Icons.pets,
+    'Transportation': Icons.emoji_transportation,
+    'Health': Icons.favorite,
+    'Apparel': Icons.backpack,
+    'Electronics and Appliances': Icons.phone_android,
+    'Others': Icons.category,
+  };
+
   @override
   void initState() {
     super.initState();
@@ -36,12 +65,13 @@ class _QrSewaState extends State<QrSewa> {
   void initiatePayment() {
     final String mobileNumber = mobileNumberController.text;
     final String amount = amountController.text;
+    final String? category = selectedCategory;
 
     if (widget.paymentType == 'esewa') {
       Esewa esewa = Esewa();
-      esewa.pay(mobileNumber, amount);
+      esewa.pay(mobileNumber, amount, category);
     } else if (widget.paymentType == 'khalti') {
-      payWithKhaltiApp(context, mobileNumberController, amountController);
+      payWithKhaltiApp(context, mobileNumberController, amountController, selectedCategory);
     } else {
       log('Invalid payment type provided: ${widget.paymentType}');
     }
@@ -173,6 +203,57 @@ class _QrSewaState extends State<QrSewa> {
                           contentPadding: const EdgeInsets.symmetric(
                             vertical: 15,
                             horizontal: 20,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      const Text(
+                        'Categories',
+                        style: TextStyle(
+                          color: kNewAppBarColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            isExpanded: true,
+                            value: selectedCategory,
+                            hint: const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Text('Select Category'),
+                            ),
+                            onChanged: (newValue) {
+                              setState(() {
+                                selectedCategory = newValue;
+                              });
+                            },
+                            items: categories.map((category) {
+                              return DropdownMenuItem<String>(
+                                value: category,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        categoryIcons[category]!,
+                                        color: kNewAppBarColor,
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(category),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }).toList(),
                           ),
                         ),
                       ),

@@ -88,6 +88,7 @@ void payWithKhaltiApp(
   BuildContext context,
   TextEditingController mobileController,
   TextEditingController amountController,
+  String? category
 ) {
   try {
     String recipientMobileNumber = mobileController.text.trim();
@@ -104,10 +105,7 @@ void payWithKhaltiApp(
       return;
     }
 
-    if (amountInRupees > 200) {
-      showValidationErrorDialog(context, 'More than 200 can\'t be transferred');
-      return;
-    }
+
 
     int amountInPaisa = (amountInRupees * 100).toInt();
 
@@ -125,6 +123,7 @@ void payWithKhaltiApp(
         context,
         recipientMobileNumber,
         amountInPaisa,
+        category
       ),
       onFailure: (failure) => onFailure(failure, context),
       onCancel: onCancel,
@@ -141,6 +140,7 @@ void onSuccess(
   BuildContext context,
   String recipientMobileNumber,
   int amountInPaisa,
+  String? category
 ) {
   String senderMobileNumber =
       success.additionalData?['mobile_number']?.toString() ?? 'N/A';
@@ -155,6 +155,7 @@ void onSuccess(
     'Mobile number': recipientMobileNumber,
     'Total amount': amountInPaisa / 100,
     'Date': paymentTime,
+    'Category': category,
   });
 
   showPaymentSuccessDialog(

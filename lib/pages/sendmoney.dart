@@ -6,7 +6,7 @@ import 'package:tranzac/function/khalti.dart';
 import 'package:tranzac/main.dart';
 
 class SendMoney extends StatefulWidget {
-  const SendMoney({Key? key}) : super(key: key);
+  const SendMoney({super.key});
 
   @override
   _SendMoneyState createState() => _SendMoneyState();
@@ -15,6 +15,7 @@ class SendMoney extends StatefulWidget {
 class _SendMoneyState extends State<SendMoney> {
   final TextEditingController mobileNumberController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
+
 
   List<String> categories = [
     'Food',
@@ -55,8 +56,9 @@ class _SendMoneyState extends State<SendMoney> {
   void sendToEsewaBackend() {
     final String mobileNumber = mobileNumberController.text;
     final String amount = amountController.text;
+    final String? category = selectedCategory;
     Esewa esewa = Esewa();
-    esewa.pay(mobileNumber, amount);
+    esewa.pay(mobileNumber, amount, category);
   }
 
   @override
@@ -238,7 +240,7 @@ class _SendMoneyState extends State<SendMoney> {
                                           categoryIcons[category]!,
                                           color: kNewAppBarColor,
                                         ),
-                                        SizedBox(width: 10),
+                                        const SizedBox(width: 10),
                                         Text(category),
                                       ],
                                     ),
@@ -284,6 +286,7 @@ class _SendMoneyState extends State<SendMoney> {
   }
 
   void payCheck(BuildContext context) {
+    String? category = selectedCategory;
     String mobileNumber = mobileNumberController.text.trim();
     String amountText = amountController.text.trim();
     double amountInRupees = double.tryParse(amountText) ?? 0;
@@ -298,11 +301,7 @@ class _SendMoneyState extends State<SendMoney> {
       return;
     }
 
-    if (amountInRupees > 200) {
-      showValidationErrorDialog(
-          context, 'Amount cannot exceed 200 for Khalti payments.');
-      return;
-    }
+
 
     int amountInPaisa = (amountInRupees * 100).toInt();
 
@@ -320,7 +319,7 @@ class _SendMoneyState extends State<SendMoney> {
                 child: ElevatedButton(
                   onPressed: () {
                     payWithKhaltiApp(
-                        context, mobileNumberController, amountController);
+                        context, mobileNumberController, amountController, selectedCategory);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
@@ -362,7 +361,7 @@ class _SendMoneyState extends State<SendMoney> {
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: SendMoney(),
     ),
   );

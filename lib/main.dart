@@ -4,7 +4,7 @@ import 'package:tranzac/pages/Homepage.dart';
 import 'package:tranzac/pages/splash.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +16,7 @@ void main() async {
       builder: (context, navKey) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: const Splash(),
+          home: Splash(),
           navigatorKey: navKey,
           localizationsDelegates: const [KhaltiLocalizations.delegate],
         );
