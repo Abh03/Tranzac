@@ -49,18 +49,18 @@ class Esewa {
     }
   }
 
-  void verify(EsewaPaymentSuccessResult result) {
-    transref.doc(result.refId).set({
-      'Mobile number': result.productId,
-      'Total amount': result.totalAmount,
-      'Date': result.date,
-    });
+    void verify(EsewaPaymentSuccessResult result) {
+      transref.doc(result.refId).set({
+        'Mobile number': result.productId,
+        'Total amount': result.totalAmount,
+        'Date': result.date,
+      });
 
-    // TODO: after success, call this function to verify transaction
-    navigatorKey.currentState?.push(
-      MaterialPageRoute(
-        builder: (context) => TransactionDetailsPage(transaction: result),
-      ),
-    );
+      // TODO: after success, call this function to verify transaction
+      navKey.currentState?.push(
+        MaterialPageRoute(
+          builder: (context) => TransactionDetailsPage(transaction: result),
+        ),
+      );
   }
 }
