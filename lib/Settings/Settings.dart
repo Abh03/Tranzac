@@ -54,10 +54,37 @@ class _SettingsState extends State<Settings> {
                     title: const Text("About us"),
                     onTap: () {
                       showDialog(
-                          context: context,
-                          builder: (context) => const AlertDialog(
-                                actions: [Text("This is about us. lol")],
-                              ));
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("About Tranzac"),
+                          content: SingleChildScrollView(
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '"Tranzac" is a cutting-edge mobile app developed by Kathmandu University\'s Department of Computer Science and Engineering students to streamline personal finance management. It integrates Nepali payment gateways like Esewa and Khalti for secure in-app transactions. ',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    'Beyond payments, "Tranzac" offers real-time budget tracking across spending categories, tools for managing borrowing and lending, and promotes financial transparency. Designed with Flutter for a seamless user experience, it uses Firebase for secure storage of user profiles and transaction histories. ',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('Close'),
+                            ),
+                          ],
+                        ),
+                      );
                     },
                   ),
                   const Divider(),
@@ -107,24 +134,23 @@ class _SettingsState extends State<Settings> {
                                               MaterialStateColor.resolveWith(
                                                   (states) => Colors.white)),
                                       onPressed: () {
-                                        user.sendPasswordResetEmail(
-                                            email: pwdemail.text.trim()).whenComplete(() {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                            const SnackBar(
-                                                      backgroundColor:
-                                                          Colors.green,
-                                                      content: Center(
-                                                          child: Text(
-                                                              "Email sent successfully",
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      'FiraSans'))),
-                                                      duration:
-                                                          Duration(seconds: 3),
-                                                    ));
-                                                  }).then((value) => Navigator.pop(context));
+                                        user
+                                            .sendPasswordResetEmail(
+                                                email: pwdemail.text.trim())
+                                            .whenComplete(() {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                            backgroundColor: Colors.green,
+                                            content: Center(
+                                                child: Text(
+                                                    "Email sent successfully",
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            'FiraSans'))),
+                                            duration: Duration(seconds: 3),
+                                          ));
+                                        }).then((value) =>
+                                                Navigator.pop(context));
                                       },
                                       child: const Text("Send link")),
                                 )
