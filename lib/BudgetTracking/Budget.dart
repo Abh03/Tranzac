@@ -3,9 +3,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:tranzac/constants.dart';
-import 'package:tranzac/constants.dart';
 import 'package:tranzac/main.dart';
 import 'package:tranzac/BudgetTracking/Budget_Edit.dart';
+
 
 class Budget extends StatefulWidget {
   const Budget({super.key});
@@ -127,6 +127,9 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
     }
   }
 
+
+
+
   List<PieChartSectionData> getSections() {
     return chartData.map((data) {
       return PieChartSectionData(
@@ -191,6 +194,15 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
               ),
             ),
           ],
+        ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: kActiveIconColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to previous screen
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -413,8 +425,18 @@ class _DetailPageState extends State<DetailPage> {
         automaticallyImplyLeading: false,
         backgroundColor: kNewAppBarColor,
         foregroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to previous screen
+          },
+        ),
         title: Center(child: Text(widget.category)),
       ),
+
       body: Container(
         color: kBackgroundColor,
         child: Column(

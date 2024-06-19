@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tranzac/constants.dart';
-import 'package:tranzac/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:tranzac/constants.dart';
 
 class Notify extends StatefulWidget {
-  const Notify({super.key});
+  const Notify({Key? key}) : super(key: key);
 
   @override
   State<Notify> createState() => _NotifyState();
@@ -13,44 +13,44 @@ class Notify extends StatefulWidget {
 class _NotifyState extends State<Notify> {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      context,
+      designSize: Size(360, 690),
+    );
+
     return Scaffold(
-        body: Container(
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-        decoration: const BoxDecoration(
-          color: Color(0xFFD7DEE8),
-        ),
+      body: Container(
+        color: Color(0xFFD7DEE8),
         child: Column(
           children: [
-            Container(
-              child: const Padding(
-                padding: EdgeInsets.all(5.0),
-                child: Row(
-                  children: [
-                    Icon(
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 30.sp, 0, 0),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
                       Icons.arrow_back,
                       color: Color(0xFF3C6E98),
-                      size: 30,
+                      size: 30.sp,
                     ),
-                    SizedBox(
-                      width: 100,
-                    ),
-                    Text(
-                      'Notifications',
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(width: 100.w),
+                  Text(
+                    'Notifications',
+                    style:
+                        TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
+                  )
+                ],
               ),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.8,
-              padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  gradient: const LinearGradient(
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.all(20.w),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
@@ -59,148 +59,70 @@ class _NotifyState extends State<Notify> {
                     ],
                     stops: [0.35, 1],
                   ),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                          child: const Text(
-                            "30 March, Saturday, 9:15 AM",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: const Padding(
-                            padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Dear Aavash,"),
-                                Text(
-                                    "You have successfully transferred Rs. 500 to 9748283348.")
-                              ],
-                            ),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
-                              child: Text(
-                                "30 March, Saturday, 9:15 AM",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18),
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(20, 10, 10, 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Dear Aavash,"),
-                                    Text(
-                                        "You have successfully transferred Rs. 500 to 9748283348.")
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                  borderRadius: BorderRadius.circular(15.w),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildNotificationItem(
+                        "30 March, Saturday, 9:15 AM",
+                        "You have successfully transferred Rs. 500 to 9748283348.",
+                      ),
+                      buildNotificationItem(
+                        "30 March, Saturday, 9:15 AM",
+                        "You have successfully transferred Rs. 500 to 9748283348.",
+                      ),
+                      buildNotificationItem(
+                        "29 March, Friday, 9:15 AM",
+                        "You have successfully transferred Rs. 500 to 9748283348.",
+                      ),
+                      buildNotificationItem(
+                        "28 March, Thursday, 9:15 AM",
+                        "You have successfully transferred Rs. 500 to 9748283348.",
+                      ),
+                    ],
                   ),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
-                          child: Text(
-                            "29 March,  Friday, 9:15 AM",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: const Padding(
-                            padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Dear Aavash,"),
-                                Text(
-                                    "You have successfully transferred Rs. 500 to 9748283348.")
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(20, 10, 0, 0),
-                                child: Text(
-                                  "28 March,  Thursday, 9:15 AM",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18),
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: const Padding(
-                                  padding:
-                                      EdgeInsets.fromLTRB(20, 10, 10, 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("Dear Aavash,"),
-                                      Text(
-                                          "You have successfully transferred Rs. 500 to 9748283348.")
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
-    ));
+    );
+  }
+
+  Widget buildNotificationItem(String date, String message) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20.w, 10.h, 20.w, 10.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            date,
+            style: TextStyle(color: Colors.white, fontSize: 18.sp),
+          ),
+          SizedBox(height: 10.h),
+          Container(
+            padding: EdgeInsets.all(10.w),
+            width: 300.w, // Example width using screen_utils
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20.w),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Dear Aavash,",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(message),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
