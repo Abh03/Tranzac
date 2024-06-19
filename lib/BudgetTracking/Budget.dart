@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/constants.dart';
+import 'package:tranzac/main.dart';
 
 class Budget extends StatefulWidget {
   const Budget({super.key});
@@ -37,7 +39,91 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
   @override
   void dispose() {
     _tabController.dispose();
+    checkBudgetAndNotify();
     super.dispose();
+  }
+
+  void checkBudgetAndNotify() {
+    // Here make the comparsion and give output
+    // if (money_spent > 0.5*budget){
+    //   BudgetNotification();
+
+    // }
+    if ("apple" == "applerr") {
+      BudgetExceedsNotification();
+    }
+    if ("apple" == "apple") {
+      BudgetFinishNotification();
+    }
+
+    //  if (money_spent >= budget)
+    // {
+    //BudgetFinishNotification();
+    // }
+  }
+
+  Future<void> BudgetExceedsNotification() async {
+    try {
+      // Android notification details
+      const AndroidNotificationDetails androidPlatformChannelSpecifics =
+          AndroidNotificationDetails(
+        'basic_channel',
+        'Basic Notifications',
+        channelDescription: 'Description of Basic Notifications',
+        importance: Importance.high,
+        priority: Priority.high,
+        showWhen: true,
+      );
+
+      // Combine platform-specific details
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+      );
+
+      // Show notification
+      await flutterLocalNotificationsPlugin.show(
+        0,
+        'Budget Exceeded!',
+        //Change this statement :
+        'Your total budget is Rs. 200, which exceeds half of the budget.',
+        platformChannelSpecifics,
+        payload: 'Budget Exceeded',
+      );
+    } catch (e) {
+      print('Failed to create notification: $e');
+    }
+  }
+
+  Future<void> BudgetFinishNotification() async {
+    try {
+      // Android notification details
+      const AndroidNotificationDetails androidPlatformChannelSpecifics =
+          AndroidNotificationDetails(
+        'basic_channel',
+        'Basic Notifications',
+        channelDescription: 'Description of Basic Notifications',
+        importance: Importance.high,
+        priority: Priority.high,
+        showWhen: true,
+      );
+
+      // Combine platform-specific details
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+      );
+
+      // Show notification
+      await flutterLocalNotificationsPlugin.show(
+        0,
+        'Budget Exceeded!',
+        //Change this statement :
+        'You have exceeded your budget .',
+        platformChannelSpecifics,
+        payload: 'Budget Exceeded',
+      );
+    } catch (e) {
+      print('Failed to create notification: $e');
+    }
   }
 
   List<PieChartSectionData> getSections() {
