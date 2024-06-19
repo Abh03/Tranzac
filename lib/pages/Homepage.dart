@@ -305,6 +305,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         'Expenses',
                         style: TextStyle(
+
                             color: kActiveIconColor,
                             fontSize: 22,
                             fontWeight: FontWeight.bold),
