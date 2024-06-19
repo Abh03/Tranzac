@@ -57,25 +57,11 @@ class _LoginState extends State<Login> {
     } catch (e) {
       // Handle specific authentication errors
       if (e is FirebaseAuthException) {
-        if (e.code == 'user-not-found') {
-          setState(() {
-            errorMessage = "User not found. Please check your email.";
-          });
-        } else if (e.code == 'wrong-password') {
+        if (password != pwd) {
           setState(() {
             errorMessage = "Wrong password. Please try again.";
           });
-        } else {
-          // Handle other FirebaseAuthException errors
-          setState(() {
-            errorMessage = "Error logging in. Please try again later.";
-          });
         }
-      } else {
-        // Handle generic errors
-        setState(() {
-          errorMessage = "Error logging in. Please try again later.";
-        });
       }
 
       // Show error message in SnackBar
@@ -175,6 +161,8 @@ class _LoginState extends State<Login> {
                   child: Form(
                     key: formkey,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         TextFormField(
                           controller: email,
@@ -278,7 +266,8 @@ class _LoginState extends State<Login> {
                                       onPressed: () {
                                         reset(fmail.text, context);
                                       },
-                                      child: const Text("Send link"),
+                                      child: Container(
+                                          child: const Text("Send link")),
                                     ),
                                   )
                                 ],
@@ -290,19 +279,49 @@ class _LoginState extends State<Login> {
                             style: TextStyle(color: kNewAppBarColor),
                           ),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SignUp()),
-                            );
-                          },
-                          child: const Text(
-                            "Don't have an account?",
-                            style: TextStyle(color: kNewAppBarColor),
+                        Container(
+                          width: 330,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateColor.resolveWith(
+                                    (states) => kNewAppBarColor),
+                                foregroundColor: MaterialStateColor.resolveWith(
+                                    (states) => Colors.white),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ))),
+                            onPressed: () {
+                              setState(() {
+                                errorMessage = null; // Clear previous errors
+                              });
+                              if (formkey.currentState!.validate()) {
+                                logIn(email.text, pwd.text, context);
+                              }
+                            },
+                            child: const Text("Log In"),
                           ),
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Don't have an account ?"),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SignUp()),
+                                );
+                              },
+                              child: const Text(
+                                "Register Now",
+                                style: TextStyle(color: kNewAppBarColor),
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),

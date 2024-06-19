@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:tranzac/pages/Login.dart';
 import 'package:tranzac/constants.dart';
 
-
 class Settings extends StatefulWidget {
   const Settings({super.key});
 
@@ -57,7 +56,8 @@ class _SettingsState extends State<Settings> {
                     title: const Text("Log Out"),
                     onTap: () async {
                       await FirebaseAuth.instance.signOut().whenComplete(() {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           backgroundColor: Colors.green,
                           content: Center(
                             child: Text(
@@ -67,16 +67,14 @@ class _SettingsState extends State<Settings> {
                           ),
                           duration: Duration(seconds: 3),
                         ));
-                      });
-
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Login()),
+                      }).then((value) => Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Login()),
                             (Route<dynamic> route) => false,
-                      );
+                          ));
                     },
                   )
-
                 ],
               );
             }));

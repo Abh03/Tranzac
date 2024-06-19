@@ -29,7 +29,7 @@ class SettleUp extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: const Color(0xFF024578),
           foregroundColor: Colors.white,
-          title: const Center(child: Text("SETTLE UP")),
+          title: const Center(child: Text("SPLIT")),
         ),
         body: Stack(
           children: [
