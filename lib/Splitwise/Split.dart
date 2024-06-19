@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:tranzac/Splitwise/groupage.dart';
 import 'package:tranzac/Splitwise/settleup.dart';
 import 'package:tranzac/constants.dart';
 
 final user = FirebaseAuth.instance;
+final collref = FirebaseFirestore.instance.collection('Users');
 final friendref = FirebaseFirestore.instance
     .collection('Users')
     .doc(user.currentUser!.email)
@@ -23,14 +27,50 @@ class Splitwise extends StatefulWidget {
 }
 
 class _SplitState extends State<Splitwise> {
-  final friend = TextEditingController();
+  final friendmail = TextEditingController();
   final group = TextEditingController();
 
   @override
   void dispose() {
-    friend.dispose();
+    friendmail.dispose();
     group.dispose();
     super.dispose();
+  }
+
+  String? name;
+  String? eMail;
+
+  void loadata(email) {
+    if (email != null) {
+      StreamBuilder(
+          stream: collref.where("Email", isEqualTo: email).snapshots(),
+          builder: (context, snapshots) {
+            if (snapshots.connectionState == ConnectionState.active) {
+              if (snapshots.hasData) {
+                name = "${snapshots.data!.docs[1]["Name first"]}";
+                eMail = "${snapshots.data!.docs[2]["Email"]}";
+              } else if (snapshots.hasError) {
+                return Center(
+                  child: Text(snapshots.hasError.toString()),
+                );
+              } else {
+                return const Center(
+                  child: Text("No user found."),
+                );
+              }
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: kBackgroundColor,
+                ),
+              );
+            }
+            throw {};
+          });
+    } else {
+      name = "Error";
+      eMail = "Error";
+    }
   }
 
   @override
@@ -70,6 +110,7 @@ class _SplitState extends State<Splitwise> {
                             showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
+                                      scrollable: true,
                                       title: const Center(
                                           child: Text("Add friend")),
                                       actionsPadding:
@@ -77,12 +118,13 @@ class _SplitState extends State<Splitwise> {
                                               horizontal: 10, vertical: 15),
                                       actions: [
                                         TextFormField(
-                                          controller: friend,
-                                          keyboardType: TextInputType.name,
+                                          controller: friendmail,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                           decoration: InputDecoration(
                                               hintText:
-                                                  "Enter your friend's name",
-                                              labelText: "Name",
+                                                  "Enter your friend's email",
+                                              labelText: "Email",
                                               border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(
@@ -92,7 +134,7 @@ class _SplitState extends State<Splitwise> {
                                           height: 10,
                                         ),
                                         Center(
-                                          child: ElevatedButton(
+                                          child: ElevatedButton.icon(
                                               style: ButtonStyle(
                                                   backgroundColor:
                                                       MaterialStateColor
@@ -105,33 +147,18 @@ class _SplitState extends State<Splitwise> {
                                                               (states) => Colors
                                                                   .white)),
                                               onPressed: () {
-                                                friendref
-                                                    .doc(friend.text)
-                                                    .set({
-                                                      'Name':
-                                                          friend.text.trim(),
-                                                      'Total amount': 0
-                                                    })
-                                                    .whenComplete(() =>
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                const SnackBar(
-                                                          backgroundColor:
-                                                              Colors.green,
-                                                          content: Center(
-                                                              child: Text(
-                                                                  "Added successfully",
-                                                                  style: TextStyle(
-                                                                      fontFamily:
-                                                                          'FiraSans'))),
-                                                          duration: Duration(
-                                                              seconds: 3),
-                                                        )))
-                                                    .then((value) =>
-                                                        Navigator.pop(context));
+                                                loadata(friendmail.text.trim());
                                               },
-                                              child: const Text("Add")),
+                                              icon: const Icon(Icons.search),
+                                              label: const Text("Search")),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        const Divider(),
+                                        ListTile(
+                                          title: Text(name!),
+                                          subtitle: Text(eMail!),
                                         )
                                       ],
                                     ));
@@ -211,7 +238,7 @@ class _SplitState extends State<Splitwise> {
                             showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                      title: const Text("Add friend"),
+                                      title: const Text("Create group"),
                                       actionsPadding: const EdgeInsets.all(10),
                                       actions: [
                                         TextFormField(
@@ -240,37 +267,69 @@ class _SplitState extends State<Splitwise> {
                                                               (states) => Colors
                                                                   .white)),
                                               onPressed: () {
-                                                groupref
-                                                    .doc(group.text)
-                                                    .set({
-                                                      'Name': group.text.trim()
-                                                    })
-                                                    .whenComplete(() =>
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                const SnackBar(
-                                                          backgroundColor:
-                                                              Colors.green,
-                                                          content: Center(
-                                                              child: Text(
-                                                                  "Added successfully",
-                                                                  style: TextStyle(
-                                                                      fontFamily:
-                                                                          'FiraSans'))),
-                                                          duration: Duration(
-                                                              seconds: 3),
-                                                        )))
-                                                    .then((value) =>
-                                                        Navigator.pop(context));
+                                                groupref.doc(group.text).set({
+                                                  'Name': group.text.trim()
+                                                }).whenComplete(() =>
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                            const SnackBar(
+                                                      backgroundColor:
+                                                          Colors.green,
+                                                      content: Center(
+                                                          child: Text(
+                                                              "Added successfully",
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'FiraSans'))),
+                                                      duration:
+                                                          Duration(seconds: 3),
+                                                    )));
                                               },
-                                              child: const Text("Add")),
-                                        )
+                                              child: const Text("Create")),
+                                        ),
+                                        StreamBuilder(
+                                            stream: friendref.snapshots(),
+                                            builder: (context, snapshots) {
+                                              if (snapshots.connectionState ==
+                                                  ConnectionState.active) {
+                                                if (snapshots.hasData) {
+                                                  return ListView.builder(
+                                                      itemCount: snapshots
+                                                          .data!.docs.length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        return ListTile(
+                                                          title: snapshots.data!
+                                                                  .docs[index]
+                                                              ["Name"],
+                                                        );
+                                                      });
+                                                } else if (snapshots.hasError) {
+                                                  return Center(
+                                                    child: Text(snapshots
+                                                        .hasError
+                                                        .toString()),
+                                                  );
+                                                } else {
+                                                  return const Center(
+                                                    child: Text("No data"),
+                                                  );
+                                                }
+                                              } else {
+                                                return const Center(
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: kNewAppBarColor,
+                                                  ),
+                                                );
+                                              }
+                                            })
                                       ],
                                     ));
                           },
                           icon: const Icon(Icons.group_add),
-                          label: const Text("Create group")),
+                          label: const Center(child: Text("Create group"))),
                       const Divider(),
                       Expanded(
                         child: StreamBuilder(
@@ -292,7 +351,16 @@ class _SplitState extends State<Splitwise> {
                                         ),
                                         title: Text(
                                             '${snapshot.data!.docs[index]["Name"]}'),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      Groupage(
+                                                        group:
+                                                            "${snapshot.data!.docs[index]["Name"]}",
+                                                      ))));
+                                        },
                                       );
                                     },
                                     separatorBuilder: (context, index) =>
