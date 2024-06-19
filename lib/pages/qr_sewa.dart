@@ -65,12 +65,13 @@ class _QrSewaState extends State<QrSewa> {
   void initiatePayment() {
     final String mobileNumber = mobileNumberController.text;
     final String amount = amountController.text;
+    final String? category = selectedCategory;
 
     if (widget.paymentType == 'esewa') {
       Esewa esewa = Esewa();
-      esewa.pay(mobileNumber, amount);
+      esewa.pay(mobileNumber, amount, category);
     } else if (widget.paymentType == 'khalti') {
-      payWithKhaltiApp(context, mobileNumberController, amountController);
+      payWithKhaltiApp(context, mobileNumberController, amountController, selectedCategory);
     } else {
       log('Invalid payment type provided: ${widget.paymentType}');
     }
