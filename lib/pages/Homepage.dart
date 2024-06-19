@@ -4,6 +4,7 @@ import 'package:tranzac/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tranzac/pages/add_expense.dart';
 import 'package:tranzac/pages/sendmoney.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -102,7 +103,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Positioned(
-              top: 125,
+              top: 150,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width,
