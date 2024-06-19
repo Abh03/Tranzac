@@ -173,8 +173,9 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(width: 5),
+                              const SizedBox(width: 7),
                               // Add Income Button
+
                               ElevatedButton(
                                 onPressed: () {
                                   showDialog(
@@ -254,8 +255,7 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(width: 18),
-                              SizedBox(width: 5),
+                              const SizedBox(width: 7),
                               // Add Expense Button
                               ElevatedButton(
                                 onPressed: () {
