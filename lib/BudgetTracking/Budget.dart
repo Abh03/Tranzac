@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tranzac/constants.dart';
-<<<<<<< HEAD
-import 'package:tranzac/main.dart';
-=======
-import 'package:tranzac/constants.dart';
 import 'package:tranzac/BudgetTracking/Budget_Edit.dart';
-
->>>>>>> c58acefd2e7d2a1f95f2cfbb6b083906776072ed
 
 
 class Budget extends StatefulWidget {
@@ -47,7 +41,6 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-<<<<<<< HEAD
   void checkBudgetAndNotify() {
     // Your budget notification logic here
   }
@@ -60,8 +53,6 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
     // Your notification logic here
   }
 
-=======
->>>>>>> c58acefd2e7d2a1f95f2cfbb6b083906776072ed
   List<PieChartSectionData> getSections() {
     return chartData.map((data) {
       return PieChartSectionData(
@@ -128,7 +119,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
           ],
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: kActiveIconColor,
           ),
@@ -344,7 +335,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
+
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: kNewAppBarColor,
@@ -360,8 +351,7 @@ class _DetailPageState extends State<DetailPage> {
         ),
         title: Center(child: Text(widget.category)),
       ),
-=======
->>>>>>> c58acefd2e7d2a1f95f2cfbb6b083906776072ed
+
       body: Container(
         color: kBackgroundColor,
         child: Column(
