@@ -30,7 +30,7 @@ List Data = [
   [55, "Rest", const Color(0XFFBBBBBB)],
   [92, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
   [8, "Rest", const Color(0XFFBBBBBB)],
-  [40, 'Electronics and Appliances', const Color.fromRGBO(203, 120, 142, 1.0)],
+  [40, 'Electronics', const Color.fromRGBO(203, 120, 142, 1.0)],
   [60, "Rest", const Color(0XFFBBBBBB)],
   [35, 'Social Life', const Color.fromRGBO(50, 196, 162, 1.0)],
   [65, "Rest", const Color(0XFFBBBBBB)],
@@ -39,6 +39,7 @@ List Data = [
 ];
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController incomeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -103,7 +104,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Positioned(
-              top: 150,
+              top: 125,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width,
@@ -172,11 +173,57 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(width: 18),
+                              const SizedBox(width: 5),
                               // Add Income Button
                               ElevatedButton(
                                 onPressed: () {
-                                  // Implement onPressed for Add Income button
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Center(child: Text("Add Income")),
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          TextFormField(
+                                            controller: incomeController,
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration(
+                                              hintText: "Enter income amount",
+                                              labelText: "Income",
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      actions: [
+                                        Center(
+                                          child: ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      kActiveIconColor),
+                                            ),
+                                            onPressed: () {
+                                              // Perform action on "Add" button press
+                                              String income =
+                                                  incomeController.text;
+                                              // Handle income submission or validation here
+                                              Navigator.of(context)
+                                                  .pop(); // Close the dialog
+                                            },
+                                            child: const Text(
+                                              'Add',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -185,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       Size(100, 100)),
                                 ),
-                                child: const Column(
+                                child: Column(
                                   children: [
                                     Icon(
                                       Icons.wallet_outlined,
@@ -207,7 +254,7 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: 18),
+                              SizedBox(width: 5),
                               // Add Expense Button
                               ElevatedButton(
                                 onPressed: () {
@@ -1015,7 +1062,7 @@ class _HomePageState extends State<HomePage> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "Electronics and Appliances",
+                                            "Electronics",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,

@@ -27,7 +27,7 @@ class _SendMoneyState extends State<SendMoney> {
     'Health',
     'Beauty',
     'Apparel',
-    'Electronics and Appliances',
+    'Electronics',
     'Others'
   ];
   String? selectedCategory;
@@ -42,7 +42,7 @@ class _SendMoneyState extends State<SendMoney> {
     'Transportation': Icons.emoji_transportation,
     'Health': Icons.favorite,
     'Apparel': Icons.backpack,
-    'Electronics and Appliances': Icons.phone_android,
+    'Electronics': Icons.phone_android,
     'Others': Icons.category,
   };
 

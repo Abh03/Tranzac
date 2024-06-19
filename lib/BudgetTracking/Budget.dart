@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:tranzac/constants.dart';
+import 'package:tranzac/main.dart';
 import 'package:tranzac/BudgetTracking/Budget_Edit.dart';
 
 
@@ -22,7 +24,7 @@ List chartData = [
   [5, 'Pets', const Color.fromRGBO(26, 147, 68, 1.0)],
   [6, 'Beauty', const Color.fromRGBO(63, 143, 208, 1.0)],
   [9, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
-  [6, 'Electronics and Appliances', const Color.fromRGBO(203, 120, 142, 1.0)],
+  [6, 'Electronics', const Color.fromRGBO(203, 120, 142, 1.0)],
   [3, 'Others', const Color.fromRGBO(239, 171, 250, 1.0)],
 ];
 
@@ -38,20 +40,95 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
   @override
   void dispose() {
     _tabController.dispose();
+    checkBudgetAndNotify();
     super.dispose();
   }
 
   void checkBudgetAndNotify() {
-    // Your budget notification logic here
+    // Here make the comparsion and give output
+    // if (money_spent > 0.5*budget){
+    //   BudgetNotification();
+
+    // }
+    if ("apple" == "applerr") {
+      BudgetExceedsNotification();
+    }
+    if ("apple" == "apple") {
+      BudgetFinishNotification();
+    }
+
+    //  if (money_spent >= budget)
+    // {
+    //BudgetFinishNotification();
+    // }
   }
 
   Future<void> BudgetExceedsNotification() async {
-    // Your notification logic here
+    try {
+      // Android notification details
+      const AndroidNotificationDetails androidPlatformChannelSpecifics =
+      AndroidNotificationDetails(
+        'basic_channel',
+        'Basic Notifications',
+        channelDescription: 'Description of Basic Notifications',
+        importance: Importance.high,
+        priority: Priority.high,
+        showWhen: true,
+      );
+
+      // Combine platform-specific details
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+      );
+
+      // Show notification
+      await flutterLocalNotificationsPlugin.show(
+        0,
+        'Budget Exceeded!',
+        //Change this statement :
+        'Your total budget is Rs. 200, which exceeds half of the budget.',
+        platformChannelSpecifics,
+        payload: 'Budget Exceeded',
+      );
+    } catch (e) {
+      print('Failed to create notification: $e');
+    }
   }
 
   Future<void> BudgetFinishNotification() async {
-    // Your notification logic here
+    try {
+      // Android notification details
+      const AndroidNotificationDetails androidPlatformChannelSpecifics =
+      AndroidNotificationDetails(
+        'basic_channel',
+        'Basic Notifications',
+        channelDescription: 'Description of Basic Notifications',
+        importance: Importance.high,
+        priority: Priority.high,
+        showWhen: true,
+      );
+
+      // Combine platform-specific details
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+      );
+
+      // Show notification
+      await flutterLocalNotificationsPlugin.show(
+        0,
+        'Budget Exceeded!',
+        //Change this statement :
+        'You have exceeded your budget .',
+        platformChannelSpecifics,
+        payload: 'Budget Exceeded',
+      );
+    } catch (e) {
+      print('Failed to create notification: $e');
+    }
   }
+
+
+
 
   List<PieChartSectionData> getSections() {
     return chartData.map((data) {
@@ -158,7 +235,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.account_balance_wallet, color: Colors.white),
+                          Icon(Icons.account_balance_wallet,
+                              color: Colors.white),
                           SizedBox(width: 8),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,7 +251,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Rs. 4000',
-                                style: TextStyle(color: Colors.green, fontSize: 15),
+                                style: TextStyle(
+                                    color: Colors.green, fontSize: 15),
                               ),
                             ],
                           ),
@@ -181,7 +260,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                       ),
                       Row(
                         children: [
-                          Icon(CupertinoIcons.money_dollar_circle, color: Colors.white, size: 28),
+                          Icon(CupertinoIcons.money_dollar_circle,
+                              color: Colors.white, size: 28),
                           SizedBox(width: 8),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -196,7 +276,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Rs. 18000',
-                                style: TextStyle(color: Colors.white, fontSize: 15),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
                               ),
                             ],
                           ),
@@ -207,7 +288,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
-            const SizedBox(height: 2), // Space between My Expenses header and TabBar
+            const SizedBox(
+                height: 2), // Space between My Expenses header and TabBar
             Container(
               padding: const EdgeInsets.symmetric(vertical: 2),
               margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -245,7 +327,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
-            const SizedBox(height: 10), // Space between PieChart and Legend container
+            const SizedBox(
+                height: 10), // Space between PieChart and Legend container
             Container(
               padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -309,8 +392,11 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
         sectionsSpace: 2,
         pieTouchData: PieTouchData(
           touchCallback: (FlTouchEvent event, pieTouchResponse) {
-            if (event is FlTapUpEvent && pieTouchResponse != null && pieTouchResponse.touchedSection != null) {
-              final index = pieTouchResponse.touchedSection!.touchedSectionIndex;
+            if (event is FlTapUpEvent &&
+                pieTouchResponse != null &&
+                pieTouchResponse.touchedSection != null) {
+              final index =
+                  pieTouchResponse.touchedSection!.touchedSectionIndex;
               _onPieChartTapped(index);
             }
           },
@@ -335,13 +421,12 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: kNewAppBarColor,
         foregroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
@@ -400,26 +485,34 @@ class _DetailPageState extends State<DetailPage> {
                         child: DropdownButtonHideUnderline(
                           child: Row(
                             children: [
-                              const Icon(Icons.filter_list, color: kNewAppBarColor),
+                              const Icon(Icons.filter_list,
+                                  color: kNewAppBarColor),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: DropdownButton<String>(
                                   value: _selectedFilter,
-                                  icon: const Icon(Icons.arrow_drop_down, color: kNewAppBarColor),
+                                  icon: const Icon(Icons.arrow_drop_down,
+                                      color: kNewAppBarColor),
                                   iconSize: 24,
-                                  style: const TextStyle(color: kNewAppBarColor),
+                                  style:
+                                  const TextStyle(color: kNewAppBarColor),
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       _selectedFilter = newValue!;
                                     });
                                   },
-                                  items: <String>['Filter', '7 days', '14 days', '30 days']
-                                      .map<DropdownMenuItem<String>>((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
+                                  items: <String>[
+                                    'Filter',
+                                    '7 days',
+                                    '14 days',
+                                    '30 days'
+                                  ].map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
                                 ),
                               ),
                             ],
@@ -474,11 +567,13 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               Text(
                                 'Rs.300',
-                                style: TextStyle(fontSize: 15, color: kRedColor),
+                                style:
+                                TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
-                                style: TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -516,11 +611,13 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(fontSize: 15, color: kGreenColor),
+                                style:
+                                TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
-                                style: TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -573,11 +670,13 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               Text(
                                 'Rs.300',
-                                style: TextStyle(fontSize: 15, color: kRedColor),
+                                style:
+                                TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
-                                style: TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -615,11 +714,13 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(fontSize: 15, color: kGreenColor),
+                                style:
+                                TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
-                                style: TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
