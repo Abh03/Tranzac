@@ -49,6 +49,7 @@ class _Budget_EditState extends State<Budget_Edit> {
   };
 
   @override
+  @override
   void dispose() {
     _totalBudgetController.dispose();
     _categoryControllers.forEach((key, controller) => controller.dispose());
@@ -160,65 +161,33 @@ class _Budget_EditState extends State<Budget_Edit> {
                                 color: kNewAppBarColor,
                                 size: 24,
                               ),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: 10),
                               Text(
                                 entry.key,
                                 style: const TextStyle(
-                                  color: kActiveIconColor,
-                                  fontWeight: FontWeight.bold,
+                                  color: kNewAppBarColor,
                                   fontSize: 16,
+                                  fontWeight: FontWeight.bold
                                 ),
                               ),
                             ],
                           ),
                           Container(
                             width: 100,
-                            child: Stack(
-                              children: [
-                                TextField(
-                                  controller: entry.value,
-                                  keyboardType: TextInputType.number,
-                                  decoration: const InputDecoration(
-                                    hintText: '0%',
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                                    border: OutlineInputBorder(),
-                                  ),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontSize: 16),
-                                  textAlignVertical: TextAlignVertical.center,
-                                  onChanged: (value) {
-                                    // Implement onChanged if needed
-                                  },
-                                ),
-                                Positioned(
-                                  right: 0,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      IconButton(
-                                        icon: const Icon(Icons.arrow_drop_up),
-                                        onPressed: () {
-                                          setState(() {
-                                            int currentValue = int.tryParse(entry.value.text) ?? 0;
-                                            entry.value.text = (currentValue + 1).toString();
-                                          });
-                                        },
-                                      ),
-                                      IconButton(
-                                        icon: const Icon(Icons.arrow_drop_down),
-                                        onPressed: () {
-                                          setState(() {
-                                            int currentValue = int.tryParse(entry.value.text) ?? 0;
-                                            if (currentValue > 0) {
-                                              entry.value.text = (currentValue - 1).toString();
-                                            }
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                            child: TextField(
+                              controller: entry.value,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: '0%',
+                                contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                                border: OutlineInputBorder(),
+                              ),
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 16),
+                              textAlignVertical: TextAlignVertical.center,
+                              onChanged: (value) {
+                                // Implement onChanged if needed
+                              },
                             ),
                           ),
                         ],
