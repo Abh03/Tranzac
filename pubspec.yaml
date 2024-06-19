@@ -81,7 +81,9 @@ flutter:
     - assests/images/logo_tz-re.png
   #   - images/a_dot_ham.jpeg
 
+
   fonts:
-    - family: DMSerifDisplay
+    - family: Inter
       fonts:
-        - asset: fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf
+        - asset: fonts/Inter/Inter.ttf
+

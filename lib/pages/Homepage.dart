@@ -229,9 +229,9 @@ class _HomePageState extends State<HomePage> {
                                       MaterialStateProperty.all<Color>(
                                           kNewAppBarColor),
                                   minimumSize: MaterialStateProperty.all<Size>(
-                                      Size(100, 100)),
+                                      const Size(100, 100)),
                                 ),
-                                child: Column(
+                                child: const Column(
                                   children: [
                                     Icon(
                                       Icons.wallet_outlined,
@@ -253,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: 18),
+                              const SizedBox(width: 18),
                               // Add Expense Button
                               ElevatedButton(
                                 onPressed: () {
