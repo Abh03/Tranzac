@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:tranzac/constants.dart';
-import 'package:tranzac/function/esewa_backend.dart';
-import 'package:tranzac/function/khalti.dart';
-import 'package:tranzac/main.dart';
 
-class SendMoney extends StatefulWidget {
-  const SendMoney({super.key});
+
+class AddExpense extends StatefulWidget {
+  const AddExpense({super.key});
 
   @override
-  _SendMoneyState createState() => _SendMoneyState();
+  _AddExpenseState createState() => _AddExpenseState();
 }
 
-class _SendMoneyState extends State<SendMoney> {
-  final TextEditingController mobileNumberController = TextEditingController();
-  final TextEditingController amountController = TextEditingController();
+class _AddExpenseState extends State<AddExpense> {
+
 
 
   List<String> categories = [
@@ -46,20 +42,6 @@ class _SendMoneyState extends State<SendMoney> {
     'Others': Icons.category,
   };
 
-  @override
-  void dispose() {
-    mobileNumberController.dispose();
-    amountController.dispose();
-    super.dispose();
-  }
-
-  void sendToEsewaBackend() {
-    final String mobileNumber = mobileNumberController.text;
-    final String amount = amountController.text;
-    final String? category = selectedCategory;
-    Esewa esewa = Esewa();
-    esewa.pay(mobileNumber, amount, category);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +63,7 @@ class _SendMoneyState extends State<SendMoney> {
                 ),
                 const SizedBox(width: 10),
                 const Text(
-                  'Send Money',
+                  'Add Expense',
                   style: TextStyle(
                     color: kNewAppBarColor,
                     fontSize: 24,
@@ -127,13 +109,13 @@ class _SendMoneyState extends State<SendMoney> {
                             Text(
                               'Rs. 6500',
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
+                              TextStyle(color: Colors.white, fontSize: 18),
                             ),
                             SizedBox(height: 1),
                             Text(
                               'Available Balance',
                               style:
-                                  TextStyle(color: Colors.green, fontSize: 16),
+                              TextStyle(color: Colors.green, fontSize: 16),
                             ),
                           ],
                         ),
@@ -147,33 +129,6 @@ class _SendMoneyState extends State<SendMoney> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const Text(
-                          'Mobile Number',
-                          style: TextStyle(
-                            color: kNewAppBarColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        TextField(
-                          controller: mobileNumberController,
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                            hintText: 'Enter Mobile Number',
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 15,
-                              horizontal: 20,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        const Text(
                           'Amount',
                           style: TextStyle(
                             color: kNewAppBarColor,
@@ -183,10 +138,9 @@ class _SendMoneyState extends State<SendMoney> {
                         ),
                         const SizedBox(height: 10),
                         TextField(
-                          controller: amountController,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            hintText: 'Enter Amount To Pay',
+                            hintText: 'Enter Amount You Paid',
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
@@ -253,7 +207,6 @@ class _SendMoneyState extends State<SendMoney> {
                         const SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: () {
-                            payCheck(context);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: kNewAppBarColor,
@@ -284,85 +237,4 @@ class _SendMoneyState extends State<SendMoney> {
       ),
     );
   }
-
-  void payCheck(BuildContext context) {
-    String? category = selectedCategory;
-    String mobileNumber = mobileNumberController.text.trim();
-    String amountText = amountController.text.trim();
-    double amountInRupees = double.tryParse(amountText) ?? 0;
-
-    if (mobileNumber.isEmpty) {
-      showValidationErrorDialog(context, 'Please enter a mobile number.');
-      return;
-    }
-
-    if (amountInRupees <= 0) {
-      showValidationErrorDialog(context, 'Please enter a valid amount.');
-      return;
-    }
-
-
-
-    int amountInPaisa = (amountInRupees * 100).toInt();
-
-    showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (context) {
-        return Container(
-          color: Colors.transparent,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                margin: EdgeInsets.all(10),
-                child: ElevatedButton(
-                  onPressed: () {
-                    payWithKhaltiApp(
-                        context, mobileNumberController, amountController, selectedCategory);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  child: const Text(
-                    'Pay with Khalti',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(10),
-                child: ElevatedButton(
-                  onPressed: () {
-                    sendToEsewaBackend();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.lightGreen,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  child: const Text(
-                    'Pay with Esewa',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
-
-void main() {
-  runApp(
-    const MaterialApp(
-      home: SendMoney(),
-    ),
-  );
 }

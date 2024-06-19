@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tranzac/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tranzac/pages/add_expense.dart';
 import 'package:tranzac/pages/sendmoney.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,7 +30,7 @@ List Data = [
   [55, "Rest", const Color(0XFFBBBBBB)],
   [92, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
   [8, "Rest", const Color(0XFFBBBBBB)],
-  [40, 'Electronics and Appliances', const Color.fromRGBO(203, 120, 142, 1.0)],
+  [40, 'Electronics', const Color.fromRGBO(203, 120, 142, 1.0)],
   [60, "Rest", const Color(0XFFBBBBBB)],
   [35, 'Social Life', const Color.fromRGBO(50, 196, 162, 1.0)],
   [65, "Rest", const Color(0XFFBBBBBB)],
@@ -103,7 +104,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Positioned(
-              top: 150,
+              top: 125,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width,
@@ -172,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(width: 18),
+                              const SizedBox(width: 5),
                               // Add Income Button
                               ElevatedButton(
                                 onPressed: () {
@@ -213,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                                               Navigator.of(context)
                                                   .pop(); // Close the dialog
                                             },
-                                            child: Text(
+                                            child: const Text(
                                               'Add',
                                               style: TextStyle(
                                                   color: Colors.white),
@@ -254,10 +255,16 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               const SizedBox(width: 18),
+                              SizedBox(width: 5),
                               // Add Expense Button
                               ElevatedButton(
                                 onPressed: () {
-                                  // Implement onPressed for Add Expense button
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const AddExpense()),
+                                  );
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -1056,7 +1063,7 @@ class _HomePageState extends State<HomePage> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "Electronics and Appliances",
+                                            "Electronics",
                                             style: TextStyle(
                                                 color: kNewAppBarColor,
                                                 fontSize: 18,

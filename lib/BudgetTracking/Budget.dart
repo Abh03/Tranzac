@@ -24,7 +24,7 @@ List chartData = [
   [5, 'Pets', const Color.fromRGBO(26, 147, 68, 1.0)],
   [6, 'Beauty', const Color.fromRGBO(63, 143, 208, 1.0)],
   [9, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
-  [6, 'Electronics and Appliances', const Color.fromRGBO(203, 120, 142, 1.0)],
+  [6, 'Electronics', const Color.fromRGBO(203, 120, 142, 1.0)],
   [3, 'Others', const Color.fromRGBO(239, 171, 250, 1.0)],
 ];
 
@@ -196,7 +196,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
           ],
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: kActiveIconColor,
           ),
