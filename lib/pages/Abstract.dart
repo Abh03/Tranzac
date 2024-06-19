@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tranzac/BudgetTracking/budget.dart';
 import 'package:tranzac/Notification/Notification.dart';
@@ -8,6 +9,8 @@ import 'package:tranzac/Statement/Statement.dart';
 import 'package:tranzac/pages/Homepage.dart';
 import 'package:tranzac/pages/QR.dart';
 import 'package:tranzac/constants.dart';
+
+final user = FirebaseAuth.instance;
 
 class Abstract extends StatefulWidget {
   const Abstract({super.key});
@@ -31,9 +34,10 @@ class _MyWidgetState extends State<Abstract> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const  Color(0xfffd7dee8),
+      backgroundColor: const Color(0xfffd7dee8),
       appBar: AppBar(
         backgroundColor: kNewAppBarColor,
+        foregroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
             Navigator.push(context,
@@ -47,6 +51,10 @@ class _MyWidgetState extends State<Abstract> {
             Icons.person_4,
             color: Colors.white,
           ),
+        ),
+        title: Text(
+          "Hello,${user.currentUser!.email}",
+          style: const TextStyle(fontSize: 15),
         ),
         actions: [
           IconButton(
@@ -82,7 +90,7 @@ class _MyWidgetState extends State<Abstract> {
       body: PageStorage(bucket: pgB, child: currentScreen),
       floatingActionButton: FloatingActionButton(
           shape: const CircleBorder(),
-          backgroundColor:  kNewAppBarColor,
+          backgroundColor: kNewAppBarColor,
           child: const Icon(
             Icons.qr_code_scanner,
             color: Colors.white70,
@@ -116,8 +124,9 @@ class _MyWidgetState extends State<Abstract> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.home,
-                              color:
-                                  currentTab == 0 ? Colors.white : Colors.white70),
+                              color: currentTab == 0
+                                  ? Colors.white
+                                  : Colors.white70),
                           Text("Home",
                               style: TextStyle(
                                   color: currentTab == 0
@@ -137,8 +146,9 @@ class _MyWidgetState extends State<Abstract> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.sticky_note_2,
-                              color:
-                                  currentTab == 1 ? Colors.white : Colors.white70),
+                              color: currentTab == 1
+                                  ? Colors.white
+                                  : Colors.white70),
                           Text("Statement",
                               style: TextStyle(
                                   color: currentTab == 1
@@ -159,8 +169,9 @@ class _MyWidgetState extends State<Abstract> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.wallet,
-                              color:
-                                  currentTab == 2 ? Colors.white : Colors.white70),
+                              color: currentTab == 2
+                                  ? Colors.white
+                                  : Colors.white70),
                           Text("Budget",
                               style: TextStyle(
                                   color: currentTab == 2
@@ -180,8 +191,9 @@ class _MyWidgetState extends State<Abstract> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.vertical_split,
-                              color:
-                                  currentTab == 3 ? Colors.white : Colors.white70),
+                              color: currentTab == 3
+                                  ? Colors.white
+                                  : Colors.white70),
                           Text("Split",
                               style: TextStyle(
                                   color: currentTab == 3
