@@ -83,7 +83,7 @@ class _Budget_EditState extends State<Budget_Edit> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Failed to save budget data: $error'),
-          backgroundColor: Colors.red,
+          backgroundColor: kRedColor,
         ),
       );
     });
