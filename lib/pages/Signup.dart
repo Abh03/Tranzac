@@ -405,7 +405,7 @@ class _SignUpState extends State<SignUp> {
                                           controller: email,
                                           validator: (value) {
                                             if (value!.isEmpty ||
-                                                !RegExp(r'^[\w-\.]+@gmail.com')
+                                                !RegExp(r'^[\w-\.]+@+[\w-\.]+.com')
                                                     .hasMatch(value)) {
                                               return "Please enter correct email";
                                             } else {

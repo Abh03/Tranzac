@@ -255,17 +255,34 @@ class _LoginState extends State<Login> {
                             showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
+                                title: const Center(
+                                  child: Text("Reset password"),
+                                ),
                                 actionsPadding: const EdgeInsets.all(10),
                                 actions: [
                                   TextFormField(
-                                    controller: fmail,
-                                    keyboardType: TextInputType.emailAddress,
-                                    decoration: InputDecoration(
-                                        hintText: "Enter your email",
-                                        labelText: "Email",
+                                      controller: fmail,
+                                      validator: (value) {
+                                        if (value!.isEmpty ||
+                                            !RegExp(r'^[\w-\.]+@+[\w-\.]+.com')
+                                                .hasMatch(value)) {
+                                          return "Please enter correct email";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      keyboardType: TextInputType.emailAddress,
+                                      decoration: const InputDecoration(
+                                        hoverColor: kNewAppBarColor,
+                                        hintText:
+                                            "Enter email address to send link",
+                                        labelText: "Email address",
                                         border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10))),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                      )),
+                                  const SizedBox(
+                                    height: 10,
                                   ),
                                   Center(
                                     child: ElevatedButton(
