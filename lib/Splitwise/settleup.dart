@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
+import 'package:tranzac/main.dart';
 
 final user = FirebaseAuth.instance;
 final collref = FirebaseFirestore.instance
@@ -21,6 +23,73 @@ class SettleUp extends StatelessWidget {
     amt.dispose();
     rmk.dispose();
     typ.dispose();
+  }
+//if( you have given money then )
+//{
+// LendMoney();
+//}
+
+  Future<void> LendMoney() async {
+    try {
+      // Android notification details
+      const AndroidNotificationDetails androidPlatformChannelSpecifics =
+          AndroidNotificationDetails(
+        'basic_channel',
+        'Basic Notifications',
+        channelDescription: 'Description of Basic Notifications',
+        importance: Importance.high,
+        priority: Priority.high,
+        showWhen: true,
+      );
+
+      // Combine platform-specific details
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+      );
+
+      // Show notification
+      await flutterLocalNotificationsPlugin.show(
+        0,
+        'Receive money !',
+        //Change this statement :
+        'You should  get  (Rs.) money from(person name) .',
+        platformChannelSpecifics,
+        payload: 'Budget Exceeded',
+      );
+    } catch (e) {
+      print('Failed to create notification: $e');
+    }
+  }
+Future<void> SendMoney() async {
+    try {
+      // Android notification details
+      const AndroidNotificationDetails androidPlatformChannelSpecifics =
+          AndroidNotificationDetails(
+        'basic_channel',
+        'Basic Notifications',
+        channelDescription: 'Description of Basic Notifications',
+        importance: Importance.high,
+        priority: Priority.high,
+        showWhen: true,
+      );
+
+      // Combine platform-specific details
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+      );
+
+      // Show notification
+      await flutterLocalNotificationsPlugin.show(
+        0,
+        'Send money !',
+        //Change this statement :
+        'You have send  (Rs.) money to (person name) .',
+        platformChannelSpecifics,
+        payload: 'Budget Exceeded',
+      );
+    } catch (e) {
+      print('Failed to create notification: $e');
+    }
   }
 
   @override

@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     Icon(
                                       CupertinoIcons.money_dollar_circle,
-                                      size: 26,
+                                      size: 24,
                                       color: Colors.white,
                                     ),
                                     SizedBox(height: 4),
@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     Icon(
                                       Icons.wallet_outlined,
-                                      size: 26,
+                                      size: 24,
                                       color: Colors.white,
                                     ),
                                     SizedBox(height: 4),
@@ -222,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     Icon(
                                       Icons.add_circle_outline,
-                                      size: 26,
+                                      size: 24,
                                       color: Colors.white,
                                     ),
                                     SizedBox(height: 4),
