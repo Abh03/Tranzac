@@ -54,8 +54,8 @@ class _QRState extends State<QR> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text(
+                    padding: const EdgeInsets.all(20),
+                    child: const Text(
                       'Scan To Pay',
                       style: TextStyle(
                         fontSize: 30,
@@ -64,8 +64,8 @@ class _QRState extends State<QR> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(30),
-                    child: Text(
+                    padding: const EdgeInsets.all(30),
+                    child: const Text(
                       'Place the QR code in the area',
                       style: TextStyle(
                         fontSize: 18,

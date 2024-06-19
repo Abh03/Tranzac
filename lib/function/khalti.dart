@@ -104,10 +104,7 @@ void payWithKhaltiApp(
       return;
     }
 
-    if (amountInRupees > 200) {
-      showValidationErrorDialog(context, 'More than 200 can\'t be transferred');
-      return;
-    }
+
 
     int amountInPaisa = (amountInRupees * 100).toInt();
 

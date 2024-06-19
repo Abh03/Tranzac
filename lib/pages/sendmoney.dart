@@ -6,7 +6,7 @@ import 'package:tranzac/function/khalti.dart';
 import 'package:tranzac/main.dart';
 
 class SendMoney extends StatefulWidget {
-  const SendMoney({Key? key}) : super(key: key);
+  const SendMoney({super.key});
 
   @override
   _SendMoneyState createState() => _SendMoneyState();
@@ -298,11 +298,7 @@ class _SendMoneyState extends State<SendMoney> {
       return;
     }
 
-    if (amountInRupees > 200) {
-      showValidationErrorDialog(
-          context, 'Amount cannot exceed 200 for Khalti payments.');
-      return;
-    }
+
 
     int amountInPaisa = (amountInRupees * 100).toInt();
 
