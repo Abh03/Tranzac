@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/constants.dart';
 
-
 class Budget extends StatefulWidget {
   const Budget({super.key});
 
@@ -112,7 +111,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.account_balance_wallet, color: Colors.white),
+                          Icon(Icons.account_balance_wallet,
+                              color: Colors.white),
                           SizedBox(width: 8),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +127,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Rs. 4000',
-                                style: TextStyle(color: Colors.green, fontSize: 15),
+                                style: TextStyle(
+                                    color: Colors.green, fontSize: 15),
                               ),
                             ],
                           ),
@@ -135,7 +136,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                       ),
                       Row(
                         children: [
-                          Icon(CupertinoIcons.money_dollar_circle, color: Colors.white, size: 28),
+                          Icon(CupertinoIcons.money_dollar_circle,
+                              color: Colors.white, size: 28),
                           SizedBox(width: 8),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -150,7 +152,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Rs. 18000',
-                                style: TextStyle(color: Colors.white, fontSize: 15),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
                               ),
                             ],
                           ),
@@ -161,7 +164,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
-            const SizedBox(height: 2), // Space between My Expenses header and TabBar
+            const SizedBox(
+                height: 2), // Space between My Expenses header and TabBar
             Container(
               padding: const EdgeInsets.symmetric(vertical: 2),
               margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -199,7 +203,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
-            const SizedBox(height: 10), // Space between PieChart and Legend container
+            const SizedBox(
+                height: 10), // Space between PieChart and Legend container
             Container(
               padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -263,8 +268,11 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
         sectionsSpace: 2,
         pieTouchData: PieTouchData(
           touchCallback: (FlTouchEvent event, pieTouchResponse) {
-            if (event is FlTapUpEvent && pieTouchResponse != null && pieTouchResponse.touchedSection != null) {
-              final index = pieTouchResponse.touchedSection!.touchedSectionIndex;
+            if (event is FlTapUpEvent &&
+                pieTouchResponse != null &&
+                pieTouchResponse.touchedSection != null) {
+              final index =
+                  pieTouchResponse.touchedSection!.touchedSectionIndex;
               _onPieChartTapped(index);
             }
           },
@@ -289,6 +297,12 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: kNewAppBarColor,
+        foregroundColor: Colors.white,
+        title: Center(child: Text(widget.category)),
+      ),
       body: Container(
         color: kBackgroundColor,
         child: Column(
@@ -337,21 +351,29 @@ class _DetailPageState extends State<DetailPage> {
                         child: DropdownButtonHideUnderline(
                           child: Row(
                             children: [
-                              const Icon(Icons.filter_list, color: kNewAppBarColor),
+                              const Icon(Icons.filter_list,
+                                  color: kNewAppBarColor),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: DropdownButton<String>(
                                   value: _selectedFilter,
-                                  icon: const Icon(Icons.arrow_drop_down, color: kNewAppBarColor),
+                                  icon: const Icon(Icons.arrow_drop_down,
+                                      color: kNewAppBarColor),
                                   iconSize: 24,
-                                  style: const TextStyle(color: kNewAppBarColor),
+                                  style:
+                                      const TextStyle(color: kNewAppBarColor),
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       _selectedFilter = newValue!;
                                     });
                                   },
-                                  items: <String>['Filter', '7 days', '14 days', '30 days']
-                                      .map<DropdownMenuItem<String>>((String value) {
+                                  items: <String>[
+                                    'Filter',
+                                    '7 days',
+                                    '14 days',
+                                    '30 days'
+                                  ].map<DropdownMenuItem<String>>(
+                                      (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Text(value),
@@ -411,11 +433,13 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               Text(
                                 'Rs.300',
-                                style: TextStyle(fontSize: 15, color: kRedColor),
+                                style:
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
-                                style: TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -453,11 +477,13 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(fontSize: 15, color: kGreenColor),
+                                style:
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
-                                style: TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -510,11 +536,13 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               Text(
                                 'Rs.300',
-                                style: TextStyle(fontSize: 15, color: kRedColor),
+                                style:
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
-                                style: TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),
@@ -552,11 +580,13 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               Text(
                                 'Rs.2500',
-                                style: TextStyle(fontSize: 15, color: kGreenColor),
+                                style:
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
-                                style: TextStyle(fontSize: 15, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
                               ),
                             ],
                           ),

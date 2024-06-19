@@ -37,42 +37,6 @@ class _SplitState extends State<Splitwise> {
     super.dispose();
   }
 
-  String? name;
-  String? eMail;
-
-  void loadata(email) {
-    if (email != null) {
-      StreamBuilder(
-          stream: collref.where("Email", isEqualTo: email).snapshots(),
-          builder: (context, snapshots) {
-            if (snapshots.connectionState == ConnectionState.active) {
-              if (snapshots.hasData) {
-                name = "${snapshots.data!.docs[1]["Name first"]}";
-                eMail = "${snapshots.data!.docs[2]["Email"]}";
-              } else if (snapshots.hasError) {
-                return Center(
-                  child: Text(snapshots.hasError.toString()),
-                );
-              } else {
-                return const Center(
-                  child: Text("No user found."),
-                );
-              }
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: kBackgroundColor,
-                ),
-              );
-            }
-            throw {};
-          });
-    } else {
-      name = "Error";
-      eMail = "Error";
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -147,7 +111,8 @@ class _SplitState extends State<Splitwise> {
                                                               (states) => Colors
                                                                   .white)),
                                               onPressed: () {
-                                                loadata(friendmail.text.trim());
+                                                String eMail =
+                                                    friendmail.text.trim();
                                               },
                                               icon: const Icon(Icons.search),
                                               label: const Text("Search")),
@@ -155,11 +120,44 @@ class _SplitState extends State<Splitwise> {
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        const Divider(),
-                                        ListTile(
-                                          title: Text(name!),
-                                          subtitle: Text(eMail!),
-                                        )
+                                        StreamBuilder(
+                                            stream: collref
+                                                .where("Email",
+                                                    isEqualTo:
+                                                        friendmail.text.trim())
+                                                .snapshots(),
+                                            builder: (context, snapshots) {
+                                              if (snapshots.connectionState ==
+                                                  ConnectionState.active) {
+                                                if (snapshots.hasData) {
+                                                  return ListView.builder(
+                                                      itemCount: snapshots
+                                                          .data!.docs.length,
+                                                      itemBuilder:
+                                                          ((context, index) {
+                                                        return ListTile();
+                                                      }));
+                                                } else if (snapshots.hasError) {
+                                                  return Center(
+                                                    child: Text(snapshots
+                                                        .hasError
+                                                        .toString()),
+                                                  );
+                                                } else {
+                                                  return const Center(
+                                                    child:
+                                                        Text("No user found."),
+                                                  );
+                                                }
+                                              } else {
+                                                return const Center(
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: kBackgroundColor,
+                                                  ),
+                                                );
+                                              }
+                                            }),
                                       ],
                                     ));
                           },
