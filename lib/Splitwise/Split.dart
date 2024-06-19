@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:tranzac/Splitwise/addfriends.dart';
 import 'package:tranzac/Splitwise/groupage.dart';
 import 'package:tranzac/Splitwise/settleup.dart';
 import 'package:tranzac/constants.dart';
@@ -27,12 +26,14 @@ class Splitwise extends StatefulWidget {
 }
 
 class _SplitState extends State<Splitwise> {
-  final friendmail = TextEditingController();
+  final friend = TextEditingController();
   final group = TextEditingController();
+
+  String eMail = "";
 
   @override
   void dispose() {
-    friendmail.dispose();
+    friend.dispose();
     group.dispose();
     super.dispose();
   }
@@ -73,93 +74,68 @@ class _SplitState extends State<Splitwise> {
                           onPressed: () {
                             showDialog(
                                 context: context,
-                                builder: (context) => AlertDialog(
-                                      scrollable: true,
-                                      title: const Center(
-                                          child: Text("Add friend")),
-                                      actionsPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 15),
-                                      actions: [
-                                        TextFormField(
-                                          controller: friendmail,
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          decoration: InputDecoration(
-                                              hintText:
-                                                  "Enter your friend's email",
-                                              labelText: "Email",
-                                              border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10))),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Center(
-                                          child: ElevatedButton.icon(
-                                              style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStateColor
-                                                          .resolveWith((states) =>
-                                                              const Color(
-                                                                  0xFF024578)),
-                                                  foregroundColor:
-                                                      MaterialStateColor
-                                                          .resolveWith(
-                                                              (states) => Colors
-                                                                  .white)),
-                                              onPressed: () {
-                                                String eMail =
-                                                    friendmail.text.trim();
-                                              },
-                                              icon: const Icon(Icons.search),
-                                              label: const Text("Search")),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        StreamBuilder(
-                                            stream: collref
-                                                .where("Email",
-                                                    isEqualTo:
-                                                        friendmail.text.trim())
-                                                .snapshots(),
-                                            builder: (context, snapshots) {
-                                              if (snapshots.connectionState ==
-                                                  ConnectionState.active) {
-                                                if (snapshots.hasData) {
-                                                  return ListView.builder(
-                                                      itemCount: snapshots
-                                                          .data!.docs.length,
-                                                      itemBuilder:
-                                                          ((context, index) {
-                                                        return ListTile();
-                                                      }));
-                                                } else if (snapshots.hasError) {
-                                                  return Center(
-                                                    child: Text(snapshots
-                                                        .hasError
-                                                        .toString()),
-                                                  );
-                                                } else {
-                                                  return const Center(
-                                                    child:
-                                                        Text("No user found."),
-                                                  );
-                                                }
-                                              } else {
-                                                return const Center(
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    color: kBackgroundColor,
-                                                  ),
-                                                );
-                                              }
-                                            }),
-                                      ],
-                                    ));
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title:
+                                        const Center(child: Text("Add friend")),
+                                    actionsPadding: const EdgeInsets.all(10),
+                                    actions: [
+                                      TextFormField(
+                                        controller: friend,
+                                        keyboardType: TextInputType.name,
+                                        decoration: InputDecoration(
+                                            hintText:
+                                                "Enter your friend's name",
+                                            labelText: "Name",
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10))),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Center(
+                                        child: ElevatedButton(
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateColor
+                                                        .resolveWith((states) =>
+                                                            const Color(
+                                                                0xFF024578)),
+                                                foregroundColor:
+                                                    MaterialStateColor
+                                                        .resolveWith((states) =>
+                                                            Colors.white)),
+                                            onPressed: () {
+                                              friendref
+                                                  .doc(friend.text)
+                                                  .set({
+                                                    'Name': friend.text.trim()
+                                                  })
+                                                  .whenComplete(() =>
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                              const SnackBar(
+                                                        backgroundColor:
+                                                            Colors.green,
+                                                        content: Center(
+                                                            child: Text(
+                                                                "Added successfully",
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'FiraSans'))),
+                                                        duration: Duration(
+                                                            seconds: 3),
+                                                      )))
+                                                  .then((value) =>
+                                                      Navigator.pop(context));
+                                            },
+                                            child: const Text("Add")),
+                                      ),
+                                    ],
+                                  );
+                                });
                           },
                           icon: const Icon(Icons.person_add_alt_1),
                           label: const Text("Add friends")),
@@ -236,7 +212,8 @@ class _SplitState extends State<Splitwise> {
                             showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                      title: const Text("Create group"),
+                                      title: const Center(
+                                          child: Text("Create group")),
                                       actionsPadding: const EdgeInsets.all(10),
                                       actions: [
                                         TextFormField(
@@ -250,6 +227,9 @@ class _SplitState extends State<Splitwise> {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10))),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
                                         ),
                                         Center(
                                           child: ElevatedButton(
@@ -265,64 +245,40 @@ class _SplitState extends State<Splitwise> {
                                                               (states) => Colors
                                                                   .white)),
                                               onPressed: () {
-                                                groupref.doc(group.text).set({
-                                                  'Name': group.text.trim()
-                                                }).whenComplete(() =>
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                            const SnackBar(
-                                                      backgroundColor:
-                                                          Colors.green,
-                                                      content: Center(
-                                                          child: Text(
-                                                              "Added successfully",
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      'FiraSans'))),
-                                                      duration:
-                                                          Duration(seconds: 3),
-                                                    )));
+                                                groupref
+                                                    .doc(group.text)
+                                                    .set({
+                                                      'Name': group.text.trim()
+                                                    })
+                                                    .whenComplete(() =>
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                const SnackBar(
+                                                          backgroundColor:
+                                                              Colors.green,
+                                                          content: Center(
+                                                              child: Text(
+                                                                  "Created successfully",
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          'FiraSans'))),
+                                                          duration: Duration(
+                                                              seconds: 3),
+                                                        )))
+                                                    .then((value) =>
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Addfriends(
+                                                                          group:
+                                                                              group.text,
+                                                                        ))));
                                               },
                                               child: const Text("Create")),
                                         ),
-                                        StreamBuilder(
-                                            stream: friendref.snapshots(),
-                                            builder: (context, snapshots) {
-                                              if (snapshots.connectionState ==
-                                                  ConnectionState.active) {
-                                                if (snapshots.hasData) {
-                                                  return ListView.builder(
-                                                      itemCount: snapshots
-                                                          .data!.docs.length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return ListTile(
-                                                          title: snapshots.data!
-                                                                  .docs[index]
-                                                              ["Name"],
-                                                        );
-                                                      });
-                                                } else if (snapshots.hasError) {
-                                                  return Center(
-                                                    child: Text(snapshots
-                                                        .hasError
-                                                        .toString()),
-                                                  );
-                                                } else {
-                                                  return const Center(
-                                                    child: Text("No data"),
-                                                  );
-                                                }
-                                              } else {
-                                                return const Center(
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    color: kNewAppBarColor,
-                                                  ),
-                                                );
-                                              }
-                                            })
                                       ],
                                     ));
                           },
