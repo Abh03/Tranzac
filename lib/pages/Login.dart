@@ -215,26 +215,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateColor.resolveWith(
-                                    (states) => kNewAppBarColor),
-                            foregroundColor: MaterialStateColor.resolveWith(
-                                    (states) => Colors.white),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              errorMessage = null; // Clear previous errors
-                            });
-                            if (formkey.currentState!.validate()) {
-                              logIn(email.text, pwd.text, context);
-                            }
-                          },
-                          child: const Text("Log In"),
-                        ),
+
                         TextButton(
                           onPressed: () {
                             showDialog(
