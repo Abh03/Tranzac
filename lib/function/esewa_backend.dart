@@ -17,9 +17,10 @@ final transref = FirebaseFirestore.instance
     .collection('Transactions');
 
 class Esewa {
-  void pay(String mobileNumber, String amount) {
+  void pay(String mobileNumber, String amount, String? areas) {
     String product_id = mobileNumber;
     String product_price = amount;
+    String? category = areas;
     try {
       EsewaFlutterSdk.initPayment(
         esewaConfig: EsewaConfig(
@@ -35,7 +36,7 @@ class Esewa {
         ),
         onPaymentSuccess: (EsewaPaymentSuccessResult result) {
           debugPrint('SUCCESS');
-          verify(result);
+          verify(result, category);
         },
         onPaymentFailure: () {
           debugPrint('FAILURE');
@@ -49,12 +50,13 @@ class Esewa {
     }
   }
 
-    void verify(EsewaPaymentSuccessResult result) {
+    void verify(EsewaPaymentSuccessResult result, String? category) {
 
       transref.doc(result.refId).set({
         'Mobile number': result.productId,
         'Total amount': result.totalAmount,
         'Date': result.date,
+        'Category': category
       });
 
       // TODO: after success, call this function to verify transaction
