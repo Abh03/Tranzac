@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tranzac/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final user = FirebaseAuth.instance;
+final collref = FirebaseFirestore.instance.collection('Users');
+final budgetref = FirebaseFirestore.instance
+    .collection('Users')
+    .doc(user.currentUser!.email)
+    .collection('Budget');
 
 class Budget_Edit extends StatefulWidget {
   const Budget_Edit({super.key});
@@ -48,7 +57,7 @@ class _Budget_EditState extends State<Budget_Edit> {
 
   void _saveChanges() {
     // Implement your save changes logic here
-    // Example: Print category names and their respective budget allocations
+
     _categoryControllers.forEach((key, controller) {
       print('$key: ${controller.text}');
     });
