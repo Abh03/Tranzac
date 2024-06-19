@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tranzac/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tranzac/pages/add_expense.dart';
 import 'package:tranzac/pages/sendmoney.dart';
 
 class HomePage extends StatefulWidget {
@@ -209,7 +210,12 @@ class _HomePageState extends State<HomePage> {
                               // Add Expense Button
                               ElevatedButton(
                                 onPressed: () {
-                                  // Implement onPressed for Add Expense button
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const AddExpense()),
+                                  );
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:
