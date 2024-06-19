@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tranzac/BudgetTracking/Budget.dart';
 import 'package:tranzac/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final user = FirebaseAuth.instance;
-final collref = FirebaseFirestore.instance.collection('Users');
 final budgetref = FirebaseFirestore.instance
     .collection('Users')
     .doc(user.currentUser!.email)
@@ -54,15 +54,41 @@ class _Budget_EditState extends State<Budget_Edit> {
     _categoryControllers.forEach((key, controller) => controller.dispose());
     super.dispose();
   }
+  // _categoryControllers.forEach((key, controller) {
+  // print('$key: ${controller.text}');
 
   void _saveChanges() {
-    // Implement your save changes logic here
-
+    // Collect all the category data into a single map
+    Map<String, String> categoryData = {};
     _categoryControllers.forEach((key, controller) {
-      print('$key: ${controller.text}');
+      categoryData[key] = controller.text;
     });
-    print('Total Budget: ${_totalBudgetController.text}');
+
+    // Create the document data including total budget and category allocations
+    Map<String, dynamic> budgetData = {
+      'TotalBudget': _totalBudgetController.text,
+      'CategoryBudgets': categoryData,
+    };
+
+    // Save the data to Firestore in a single document
+    budgetref.doc('BudgetData').set(budgetData).then((_) {
+      // Navigate to the Budget page after successful save
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const Budget()),
+            (Route<dynamic> route) => false,
+      );
+    }).catchError((error) {
+      // Handle any errors here
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to save budget data: $error'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
