@@ -3,6 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/constants.dart';
+import 'package:tranzac/BudgetTracking/Budget_Edit.dart';
 
 
 class Budget extends StatefulWidget {
@@ -73,22 +74,47 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
       appBar: AppBar(
         backgroundColor: kBackgroundColor,
         elevation: 0,
-        title: const Text(
-          'My Expenses',
-          style: TextStyle(
-            color: kNewAppBarColor,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'My Expenses',
+              style: TextStyle(
+                color: kNewAppBarColor,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                      const Budget_Edit()),
+                );// Implement edit functionality here
+              },
+              child: const Text(
+                'Edit Budget',
+                style: TextStyle(
+                  color: kNewAppBarColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+
             Container(
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
@@ -106,7 +132,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
