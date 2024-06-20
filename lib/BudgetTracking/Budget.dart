@@ -68,7 +68,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
     try {
       // Android notification details
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
-      AndroidNotificationDetails(
+          AndroidNotificationDetails(
         'basic_channel',
         'Basic Notifications',
         channelDescription: 'Description of Basic Notifications',
@@ -100,7 +100,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
     try {
       // Android notification details
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
-      AndroidNotificationDetails(
+          AndroidNotificationDetails(
         'basic_channel',
         'Basic Notifications',
         channelDescription: 'Description of Basic Notifications',
@@ -127,9 +127,6 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
       print('Failed to create notification: $e');
     }
   }
-
-
-
 
   List<PieChartSectionData> getSections() {
     return chartData.map((data) {
@@ -179,10 +176,8 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                      const Budget_Edit()),
-                );// Implement edit functionality here
+                  MaterialPageRoute(builder: (context) => const Budget_Edit()),
+                ); // Implement edit functionality here
               },
               child: const Text(
                 'Edit Budget',
@@ -210,7 +205,6 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-
             Container(
               padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.all(10),
@@ -437,7 +431,6 @@ class _DetailPageState extends State<DetailPage> {
         ),
         title: Center(child: Text(widget.category)),
       ),
-
       body: Container(
         color: kBackgroundColor,
         child: Column(
@@ -496,7 +489,7 @@ class _DetailPageState extends State<DetailPage> {
                                       color: kNewAppBarColor),
                                   iconSize: 24,
                                   style:
-                                  const TextStyle(color: kNewAppBarColor),
+                                      const TextStyle(color: kNewAppBarColor),
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       _selectedFilter = newValue!;
@@ -508,12 +501,12 @@ class _DetailPageState extends State<DetailPage> {
                                     '14 days',
                                     '30 days'
                                   ].map<DropdownMenuItem<String>>(
-                                          (String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      }).toList(),
+                                      (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
                                 ),
                               ),
                             ],
@@ -569,7 +562,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.300',
                                 style:
-                                TextStyle(fontSize: 15, color: kRedColor),
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -613,7 +606,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.2500',
                                 style:
-                                TextStyle(fontSize: 15, color: kGreenColor),
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',
@@ -672,7 +665,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.300',
                                 style:
-                                TextStyle(fontSize: 15, color: kRedColor),
+                                    TextStyle(fontSize: 15, color: kRedColor),
                               ),
                               Text(
                                 'Balance: Rs. 4200',
@@ -716,7 +709,7 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 'Rs.2500',
                                 style:
-                                TextStyle(fontSize: 15, color: kGreenColor),
+                                    TextStyle(fontSize: 15, color: kGreenColor),
                               ),
                               Text(
                                 'Balance: Rs. 4500',

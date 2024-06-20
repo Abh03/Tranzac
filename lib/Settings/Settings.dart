@@ -5,14 +5,14 @@ import 'package:tranzac/constants.dart';
 
 final user = FirebaseAuth.instance;
 
-class Settings extends StatefulWidget {
-  const Settings({super.key});
+class Sttgs extends StatefulWidget {
+  const Sttgs({super.key});
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<Sttgs> createState() => _SettingsState();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsState extends State<Sttgs> {
   final pwdemail = TextEditingController();
 
   @override
