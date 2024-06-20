@@ -59,17 +59,15 @@ class _Budget_EditState extends State<Budget_Edit> {
   // print('$key: ${controller.text}');
 
   void _saveChanges() {
-    // Collect all the category data into a single map
-    Map<String, String> categoryData = {};
-    _categoryControllers.forEach((key, controller) {
-      categoryData[key] = controller.text;
-    });
-
     // Create the document data including total budget and category allocations
     Map<String, dynamic> budgetData = {
-      'TotalBudget': _totalBudgetController.text,
-      'CategoryBudgets': categoryData,
+      'TotalBudget': _totalBudgetController.text, // Store total budget as string
     };
+
+    // Add each category budget to the budgetData map
+    _categoryControllers.forEach((key, controller) {
+      budgetData['${key.toLowerCase()}Budget'] = controller.text;
+    });
 
     // Save the data to Firestore in a single document
     budgetref.doc('BudgetData').set(budgetData).then((_) {

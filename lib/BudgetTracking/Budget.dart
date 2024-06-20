@@ -8,34 +8,129 @@ import 'package:tranzac/constants.dart';
 import 'package:tranzac/main.dart';
 import 'package:tranzac/BudgetTracking/Budget_Edit.dart';
 
+final user = FirebaseAuth.instance;
+
+
+
+
 class Budget extends StatefulWidget {
   const Budget({super.key});
+
 
   @override
   State<Budget> createState() => _BudgetState();
 }
 
-List chartData = [
-  [9, 'Household', const Color.fromRGBO(30, 192, 206, 1.0)],
-  [15, 'Food', const Color.fromRGBO(177, 113, 246, 1.0)],
-  [22, 'Education', const Color.fromRGBO(218, 213, 118, 1.0)],
-  [4, 'Transportation', const Color.fromRGBO(134, 187, 26, 1.0)],
-  [11, 'Social Life', const Color.fromRGBO(50, 196, 162, 1.0)],
-  [9, 'Health', const Color.fromRGBO(203, 179, 245, 1.0)],
-  [5, 'Pets', const Color.fromRGBO(26, 147, 68, 1.0)],
-  [6, 'Beauty', const Color.fromRGBO(63, 143, 208, 1.0)],
-  [9, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
-  [6, 'Electronics', const Color.fromRGBO(203, 120, 142, 1.0)],
-  [3, 'Others', const Color.fromRGBO(239, 171, 250, 1.0)],
-];
+
 
 class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+
+  late String totalBudget;
+  late String foodBudget;
+  late String educationBudget;
+  late String householdBudget;
+  late String transportationBudget;
+  late String socialLifeBudget;
+  late String healthBudget;
+  late String petsBudget;
+  late String beautyBudget;
+  late String apparelBudget;
+  late String electronicsBudget;
+  late String othersBudget;
+
+  List chartDatas = [];
+  Future<Map<String, dynamic>?> get_data() async {
+    DocumentSnapshot document = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(user.currentUser!.email)
+        .collection('Budget')
+        .doc('BudgetData')
+        .get();
+
+    if (document.exists) {
+      print(document.data());
+      Map<String, dynamic>? data = document.data() as Map<String, dynamic>?;
+
+      if (data != null &&
+          data.containsKey('TotalBudget') &&
+          data.containsKey('foodBudget') &&
+          data.containsKey('educationBudget') &&
+          data.containsKey('householdBudget') &&
+          data.containsKey('transportationBudget') &&
+          data.containsKey('social lifeBudget') && // Note: key with space
+          data.containsKey('healthBudget') &&
+          data.containsKey('petsBudget') &&
+          data.containsKey('beautyBudget') &&
+          data.containsKey('apparelBudget') &&
+          data.containsKey('electronicsBudget') &&
+          data.containsKey('othersBudget')) {
+
+        // Assign values, handling potential empty strings or nulls
+        final totalBudget = double.tryParse(data['TotalBudget']) ?? 0.0;
+        final foodBudget = double.tryParse(data['foodBudget']) ?? 0.0;
+        final educationBudget = double.tryParse(data['educationBudget']) ?? 0.0;
+        final householdBudget = double.tryParse(data['householdBudget']) ?? 0.0;
+        final transportationBudget = double.tryParse(data['transportationBudget']) ?? 0.0;
+        final socialLifeBudget = double.tryParse(data['social lifeBudget']) ?? 0.0; // Note: key with space
+        final healthBudget = double.tryParse(data['healthBudget']) ?? 0.0;
+        final petsBudget = double.tryParse(data['petsBudget'])?.toString() ?? 0.0; // Convert to string to ensure valid chart data
+        final beautyBudget = double.tryParse(data['beautyBudget']) ?? 0.0;
+        final apparelBudget = double.tryParse(data['apparelBudget']) ?? 0.0;
+        final electronicsBudget = double.tryParse(data['electronicsBudget']) ?? 0.0;
+        final othersBudget = double.tryParse(data['othersBudget'])?.toString() ?? "0"; // Convert to string to ensure valid chart data
+        chartDatas = [
+          [householdBudget, 'Household', const Color.fromRGBO(30, 192, 206, 1.0)],
+          [foodBudget, 'Food', const Color.fromRGBO(177, 113, 246, 1.0)],
+          [educationBudget, 'Education', const Color.fromRGBO(218, 213, 118, 1.0)],
+          [transportationBudget, 'Transportation', const Color.fromRGBO(134, 187, 26, 1.0)],
+          [socialLifeBudget, 'Social Life', const Color.fromRGBO(50, 196, 162, 1.0)],
+          [healthBudget, 'Health', const Color.fromRGBO(203, 179, 245, 1.0)],
+          [petsBudget, 'Pets', const Color.fromRGBO(26, 147, 68, 1.0)],
+          [beautyBudget, 'Beauty', const Color.fromRGBO(63, 143, 208, 1.0)],
+          [apparelBudget, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
+          [electronicsBudget, 'Electronics', const Color.fromRGBO(203, 120, 142, 1.0)],
+          [int.parse(othersBudget), 'Others', const Color.fromRGBO(239, 171, 250, 1.0)],
+        ];
+        return data;
+
+      } else {
+        // Handle case where some expected fields are missing or null
+        print('Data fields are missing or null');
+        return null;
+      }
+    }
+
+    // Handle case when document does not exist
+    print('Document does not exist');
+    return null;
+  }
+
+
+
+
+
+
+
+  List chartData = [
+    [9, 'Household', const Color.fromRGBO(30, 192, 206, 1.0)],
+    [15, 'Food', const Color.fromRGBO(177, 113, 246, 1.0)],
+    [22, 'Education', const Color.fromRGBO(218, 213, 118, 1.0)],
+    [4, 'Transportation', const Color.fromRGBO(134, 187, 26, 1.0)],
+    [11, 'Social Life', const Color.fromRGBO(50, 196, 162, 1.0)],
+    [9, 'Health', const Color.fromRGBO(203, 179, 245, 1.0)],
+    [5, 'Pets', const Color.fromRGBO(26, 147, 68, 1.0)],
+    [6, 'Beauty', const Color.fromRGBO(63, 143, 208, 1.0)],
+    [9, 'Apparel', const Color.fromRGBO(201, 141, 92, 1.0)],
+    [6, 'Electronics', const Color.fromRGBO(203, 120, 142, 1.0)],
+    [3, 'Others', const Color.fromRGBO(239, 171, 250, 1.0)],
+  ];
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    //get_data();
   }
 
   @override
@@ -132,7 +227,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
 
 
   List<PieChartSectionData> getSections() {
-    return chartData.map((data) {
+    return chartDatas.map((data) {
       return PieChartSectionData(
         color: data[2],
         value: data[0].toDouble(),
@@ -319,13 +414,27 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
             const SizedBox(height: 5), // Space between TabBar and PieChart
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.38,
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  _buildPieChart(),
-                  _buildPieChart(),
-                  _buildPieChart(),
-                ],
+              child: FutureBuilder<Map<String, dynamic>?>(
+                future: get_data(),
+                builder: (context, AsyncSnapshot<Map<String, dynamic>?> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else if (!snapshot.hasData || snapshot.data == null) {
+                    return Center(child: Text('No data available'));
+                  } else {
+                    // Assuming _buildPieChart returns a Widget and you pass the snapshot.data
+                    return TabBarView(
+                      controller: _tabController,
+                      children: [
+                        _buildPieChart(),
+                        _buildPieChart(),
+                        _buildPieChart(),
+                      ],
+                    );
+                  }
+                },
               ),
             ),
             const SizedBox(
@@ -349,31 +458,45 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 5,
-                    children: [
-                      for (var data in chartData)
-                        Row(
-                          children: [
-                            Container(
-                              width: 10,
-                              height: 10,
-                              color: data[2],
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              data[1],
-                              style: const TextStyle(color: Colors.black),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              '${data[0]}%',
-                              style: const TextStyle(color: Colors.black),
-                            ),
-                          ],
-                        ),
-                    ],
+                  FutureBuilder<Map<String, dynamic>?>(
+                    future: get_data(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      } else if (!snapshot.hasData || snapshot.data == null) {
+                        return Center(child: Text('No data available'));
+                      } else {
+                        // Assuming _buildPieChart returns a Widget and you pass the snapshot.data
+                        return Wrap(
+    spacing: 10,
+    runSpacing: 5,
+    children: [
+    for (var data in chartDatas)
+    Row(
+    children: [
+    Container(
+    width: 10,
+    height: 10,
+    color: data[2],
+    ),
+    const SizedBox(width: 8),
+    Text(
+    data[1],
+    style: const TextStyle(color: Colors.black),
+    ),
+    const SizedBox(width: 8),
+    Text(
+    '${data[0]}%',
+    style: const TextStyle(color: Colors.black),
+    ),
+    ],
+    ),
+    ],
+    );
+    }
+                    }
                   ),
                 ],
               ),
@@ -386,23 +509,37 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildPieChart() {
+    return FutureBuilder<Map<String, dynamic>?>(
+      future: get_data(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData || snapshot.data == null) {
+          return Center(child: Text('No data available'));
+        } else {
+          // Assuming _buildPieChart returns a Widget and you pass the snapshot.data
     return PieChart(
-      PieChartData(
-        sections: getSections(),
-        centerSpaceRadius: 50,
-        sectionsSpace: 2,
-        pieTouchData: PieTouchData(
-          touchCallback: (FlTouchEvent event, pieTouchResponse) {
-            if (event is FlTapUpEvent &&
-                pieTouchResponse != null &&
-                pieTouchResponse.touchedSection != null) {
-              final index =
-                  pieTouchResponse.touchedSection!.touchedSectionIndex;
-              _onPieChartTapped(index);
-            }
-          },
-        ),
-      ),
+    PieChartData(
+    sections: getSections(),
+    centerSpaceRadius: 50,
+    sectionsSpace: 2,
+    pieTouchData: PieTouchData(
+    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+    if (event is FlTapUpEvent &&
+    pieTouchResponse != null &&
+    pieTouchResponse.touchedSection != null) {
+    final index =
+    pieTouchResponse.touchedSection!.touchedSectionIndex;
+    _onPieChartTapped(index);
+    }
+    },
+    ),
+    ),
+    );
+    }
+      }
     );
   }
 }
