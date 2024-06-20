@@ -321,7 +321,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                 ),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Column(
+              child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -346,7 +346,7 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                                 ),
                               ),
                               Text(
-                                'Rs. 4000',
+                                'Rs. 0',
                                 style: TextStyle(
                                     color: Colors.green, fontSize: 15),
                               ),
@@ -370,10 +370,24 @@ class _BudgetState extends State<Budget> with SingleTickerProviderStateMixin {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Text(
-                                'Rs. 18000',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
+                              FutureBuilder<Map<String, dynamic>?>(
+                                  future: get_data(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.waiting) {
+                                    return Center(child: CircularProgressIndicator());
+                                  } else if (snapshot.hasError) {
+                                    return Center(child: Text('Error: ${snapshot.error}'));
+                                  } else if (!snapshot.hasData || snapshot.data == null) {
+                                    return Center(child: Text('No data available'));
+                                  } else {
+                                    // Assuming _buildPieChart returns a Widget and you pass the snapshot.data
+                                    return Text(
+                                               'Rs. ${snapshot.data!['TotalBudget']}',
+                                              style: TextStyle(
+                                                color: Colors.white, fontSize: 15),
+                                                );
+                                              }
+                                }
                               ),
                             ],
                           ),
