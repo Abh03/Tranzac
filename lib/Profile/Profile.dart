@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/login.dart';
+import 'package:tranzac/pages/Homepage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final user = FirebaseAuth.instance;
 final collref = FirebaseFirestore.instance.collection('Users');
@@ -15,6 +17,8 @@ class Profile extends StatefulWidget {
   @override
   State<Profile> createState() => _ProfileState();
 }
+
+
 
 class _ProfileState extends State<Profile> {
   @override

@@ -350,5 +350,6 @@ class _SplitState extends State<Splitwise> {
             ],
           ),
         ));
+
   }
 }

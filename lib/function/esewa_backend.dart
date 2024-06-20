@@ -50,20 +50,19 @@ class Esewa {
     }
   }
 
-    void verify(EsewaPaymentSuccessResult result, String? category) {
+  void verify(EsewaPaymentSuccessResult result, String? category) {
+    transref.doc(result.refId).set({
+      'Mobile number': result.productId,
+      'Total amount': result.totalAmount,
+      'Date': result.date,
+      'Category': category
+    });
 
-      transref.doc(result.refId).set({
-        'Mobile number': result.productId,
-        'Total amount': result.totalAmount,
-        'Date': result.date,
-        'Category': category
-      });
-
-      // TODO: after success, call this function to verify transaction
-      navKey.currentState?.push(
-        MaterialPageRoute(
-          builder: (context) => TransactionDetailsPage(transaction: result),
-        ),
-      );
+    // TODO: after success, call this function to verify transaction
+    navKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (context) => TransactionDetailsPage(transaction: result),
+      ),
+    );
   }
 }
