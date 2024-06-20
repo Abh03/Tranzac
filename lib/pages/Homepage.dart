@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:tranzac/BudgetTracking/Budget.dart';
 import 'package:tranzac/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tranzac/pages/add_expense.dart';
@@ -263,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                        const AddExpense()),
+                                            const AddExpense()),
                                   );
                                 },
                                 style: ButtonStyle(
@@ -305,7 +306,6 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         'Expenses',
                         style: TextStyle(
-
                             color: kActiveIconColor,
                             fontSize: 22,
                             fontWeight: FontWeight.bold),
@@ -332,79 +332,92 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Food",
-                                            style: TextStyle(
-                                                color: kNewAppBarColor,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailPage(
+                                          category:
+                                              'Food'), // Adjust as per your implementation
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 0,
-                                  ),
-                                  SizedBox(
-                                    height: 120,
-                                    width: 300,
-                                    child: SfCircularChart(
-                                      series: [
-                                        DoughnutSeries(
-                                          dataSource: Data.sublist(0, 2),
-                                          yValueMapper: (data, _) => data[0],
-                                          xValueMapper: (data, _) => data[1],
-                                          radius: '70%',
-                                          innerRadius: '85%',
-                                          explode: true,
-                                          pointColorMapper: (data, _) =>
-                                              data[2],
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(15, 15, 15, 2),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "Food",
+                                              style: TextStyle(
+                                                  color: kNewAppBarColor,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Rs.800 left",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                fontWeight: FontWeight.w700),
+                                    const SizedBox(
+                                      height: 0,
+                                    ),
+                                    SizedBox(
+                                      height: 120,
+                                      width: 300,
+                                      child: SfCircularChart(
+                                        series: [
+                                          DoughnutSeries(
+                                            dataSource: Data.sublist(0, 2),
+                                            yValueMapper: (data, _) => data[0],
+                                            xValueMapper: (data, _) => data[1],
+                                            radius: '70%',
+                                            innerRadius: '85%',
+                                            explode: true,
+                                            pointColorMapper: (data, _) =>
+                                                data[2],
                                           ),
-                                          Text(
-                                            "Out of Rs.3000",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                letterSpacing: 1,
-                                                fontWeight: FontWeight.w700),
-                                          )
                                         ],
                                       ),
                                     ),
-                                  )
-                                ],
+                                    Container(
+                                      child: const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(5, 05, 90, 10),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Rs.800 left",
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: kNewAppBarColor,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                            Text(
+                                              "Out of Rs.3000",
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: kNewAppBarColor,
+                                                  letterSpacing: 1,
+                                                  fontWeight: FontWeight.w700),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -422,79 +435,99 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Household",
-                                            style: TextStyle(
-                                                color: kNewAppBarColor,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailPage(
+                                          category:
+                                              'Household'), // Adjust as per your implementation
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 15, 15, 2),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Household",
+                                                style: TextStyle(
+                                                    color: kNewAppBarColor,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 0,
-                                  ),
-                                  SizedBox(
-                                    height: 120,
-                                    width: 300,
-                                    child: SfCircularChart(
-                                      series: [
-                                        DoughnutSeries(
-                                          dataSource: Data.sublist(1, 3),
-                                          yValueMapper: (data, _) => data[0],
-                                          xValueMapper: (data, _) => data[1],
-                                          radius: '70%',
-                                          innerRadius: '85%',
-                                          explode: true,
-                                          pointColorMapper: (data, _) =>
-                                              data[2],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Rs.120 left",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                fontWeight: FontWeight.w700),
+                                      const SizedBox(
+                                        height: 0,
+                                      ),
+                                      SizedBox(
+                                        height: 120,
+                                        width: 300,
+                                        child: SfCircularChart(
+                                          series: [
+                                            DoughnutSeries(
+                                              dataSource: Data.sublist(1, 3),
+                                              yValueMapper: (data, _) =>
+                                                  data[0],
+                                              xValueMapper: (data, _) =>
+                                                  data[1],
+                                              radius: '70%',
+                                              innerRadius: '85%',
+                                              explode: true,
+                                              pointColorMapper: (data, _) =>
+                                                  data[2],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              5, 05, 90, 10),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Rs.120 left",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                              Text(
+                                                "Out of Rs.4000",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    letterSpacing: 1,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              )
+                                            ],
                                           ),
-                                          Text(
-                                            "Out of Rs.4000",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                letterSpacing: 1,
-                                                fontWeight: FontWeight.w700),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -512,79 +545,99 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Education",
-                                            style: TextStyle(
-                                                color: kNewAppBarColor,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailPage(
+                                          category:
+                                              'Education'), // Adjust as per your implementation
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 15, 15, 2),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Education",
+                                                style: TextStyle(
+                                                    color: kNewAppBarColor,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 0,
-                                  ),
-                                  SizedBox(
-                                    height: 120,
-                                    width: 300,
-                                    child: SfCircularChart(
-                                      series: [
-                                        DoughnutSeries(
-                                          dataSource: Data.sublist(4, 6),
-                                          yValueMapper: (data, _) => data[0],
-                                          xValueMapper: (data, _) => data[1],
-                                          radius: '70%',
-                                          innerRadius: '85%',
-                                          explode: true,
-                                          pointColorMapper: (data, _) =>
-                                              data[2],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Rs.0 left",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                fontWeight: FontWeight.w700),
+                                      const SizedBox(
+                                        height: 0,
+                                      ),
+                                      SizedBox(
+                                        height: 120,
+                                        width: 300,
+                                        child: SfCircularChart(
+                                          series: [
+                                            DoughnutSeries(
+                                              dataSource: Data.sublist(4, 6),
+                                              yValueMapper: (data, _) =>
+                                                  data[0],
+                                              xValueMapper: (data, _) =>
+                                                  data[1],
+                                              radius: '70%',
+                                              innerRadius: '85%',
+                                              explode: true,
+                                              pointColorMapper: (data, _) =>
+                                                  data[2],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              5, 05, 90, 10),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Rs.0 left",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                              Text(
+                                                "Out of Rs.42000",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    letterSpacing: 1,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              )
+                                            ],
                                           ),
-                                          Text(
-                                            "Out of Rs.42000",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                letterSpacing: 1,
-                                                fontWeight: FontWeight.w700),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -602,79 +655,99 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Transportation",
-                                            style: TextStyle(
-                                                color: kNewAppBarColor,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailPage(
+                                          category:
+                                              'Transportation'), // Adjust as per your implementation
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 15, 15, 2),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Transportation",
+                                                style: TextStyle(
+                                                    color: kNewAppBarColor,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 0,
-                                  ),
-                                  SizedBox(
-                                    height: 120,
-                                    width: 300,
-                                    child: SfCircularChart(
-                                      series: [
-                                        DoughnutSeries(
-                                          dataSource: Data.sublist(6, 8),
-                                          yValueMapper: (data, _) => data[0],
-                                          xValueMapper: (data, _) => data[1],
-                                          radius: '70%',
-                                          innerRadius: '85%',
-                                          explode: true,
-                                          pointColorMapper: (data, _) =>
-                                              data[2],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Rs.100 left",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                fontWeight: FontWeight.w700),
+                                      const SizedBox(
+                                        height: 0,
+                                      ),
+                                      SizedBox(
+                                        height: 120,
+                                        width: 300,
+                                        child: SfCircularChart(
+                                          series: [
+                                            DoughnutSeries(
+                                              dataSource: Data.sublist(6, 8),
+                                              yValueMapper: (data, _) =>
+                                                  data[0],
+                                              xValueMapper: (data, _) =>
+                                                  data[1],
+                                              radius: '70%',
+                                              innerRadius: '85%',
+                                              explode: true,
+                                              pointColorMapper: (data, _) =>
+                                                  data[2],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              5, 05, 90, 10),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Rs.100 left",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                              Text(
+                                                "Out of Rs.400",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    letterSpacing: 1,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              )
+                                            ],
                                           ),
-                                          Text(
-                                            "Out of Rs.400",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                letterSpacing: 1,
-                                                fontWeight: FontWeight.w700),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -692,79 +765,99 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Pets",
-                                            style: TextStyle(
-                                                color: kNewAppBarColor,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailPage(
+                                          category:
+                                              'Pets'), // Adjust as per your implementation
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 15, 15, 2),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Pets",
+                                                style: TextStyle(
+                                                    color: kNewAppBarColor,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 0,
-                                  ),
-                                  SizedBox(
-                                    height: 120,
-                                    width: 300,
-                                    child: SfCircularChart(
-                                      series: [
-                                        DoughnutSeries(
-                                          dataSource: Data.sublist(1, 3),
-                                          yValueMapper: (data, _) => data[0],
-                                          xValueMapper: (data, _) => data[1],
-                                          radius: '70%',
-                                          innerRadius: '85%',
-                                          explode: true,
-                                          pointColorMapper: (data, _) =>
-                                              data[2],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Rs.120 left",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                fontWeight: FontWeight.w700),
+                                      const SizedBox(
+                                        height: 0,
+                                      ),
+                                      SizedBox(
+                                        height: 120,
+                                        width: 300,
+                                        child: SfCircularChart(
+                                          series: [
+                                            DoughnutSeries(
+                                              dataSource: Data.sublist(1, 3),
+                                              yValueMapper: (data, _) =>
+                                                  data[0],
+                                              xValueMapper: (data, _) =>
+                                                  data[1],
+                                              radius: '70%',
+                                              innerRadius: '85%',
+                                              explode: true,
+                                              pointColorMapper: (data, _) =>
+                                                  data[2],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              5, 05, 90, 10),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Rs.120 left",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                              Text(
+                                                "Out of Rs.4000",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    letterSpacing: 1,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              )
+                                            ],
                                           ),
-                                          Text(
-                                            "Out of Rs.4000",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                letterSpacing: 1,
-                                                fontWeight: FontWeight.w700),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -782,79 +875,99 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20)),
                             width: 200,
                             height: 215,
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(15, 15, 15, 2),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Beauty",
-                                            style: TextStyle(
-                                                color: kNewAppBarColor,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailPage(
+                                          category:
+                                              'Beauty'), // Adjust as per your implementation
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 15, 15, 2),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Beauty",
+                                                style: TextStyle(
+                                                    color: kNewAppBarColor,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 0,
-                                  ),
-                                  SizedBox(
-                                    height: 120,
-                                    width: 300,
-                                    child: SfCircularChart(
-                                      series: [
-                                        DoughnutSeries(
-                                          dataSource: Data.sublist(1, 3),
-                                          yValueMapper: (data, _) => data[0],
-                                          xValueMapper: (data, _) => data[1],
-                                          radius: '70%',
-                                          innerRadius: '85%',
-                                          explode: true,
-                                          pointColorMapper: (data, _) =>
-                                              data[2],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(5, 05, 90, 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Rs.120 left",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                fontWeight: FontWeight.w700),
+                                      const SizedBox(
+                                        height: 0,
+                                      ),
+                                      SizedBox(
+                                        height: 120,
+                                        width: 300,
+                                        child: SfCircularChart(
+                                          series: [
+                                            DoughnutSeries(
+                                              dataSource: Data.sublist(1, 3),
+                                              yValueMapper: (data, _) =>
+                                                  data[0],
+                                              xValueMapper: (data, _) =>
+                                                  data[1],
+                                              radius: '70%',
+                                              innerRadius: '85%',
+                                              explode: true,
+                                              pointColorMapper: (data, _) =>
+                                                  data[2],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              5, 05, 90, 10),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Rs.120 left",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                              Text(
+                                                "Out of Rs.4000",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: kNewAppBarColor,
+                                                    letterSpacing: 1,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              )
+                                            ],
                                           ),
-                                          Text(
-                                            "Out of Rs.4000",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: kNewAppBarColor,
-                                                letterSpacing: 1,
-                                                fontWeight: FontWeight.w700),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
