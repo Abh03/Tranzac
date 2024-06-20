@@ -54,7 +54,7 @@ class _MyWidgetState extends State<Abstract> {
             color: Colors.white,
           ),
         ),
-        title: Container(
+        title: SizedBox(
           height: 30,
           child: StreamBuilder(
               stream: collref
@@ -67,7 +67,6 @@ class _MyWidgetState extends State<Abstract> {
                       itemBuilder: (context, index) {
                         String fname =
                             "${snapshot.data!.docs[index]["Name first"]}";
-                        String name= "${snapshot.data!.docs[index]["Name first"]} ${snapshot.data!.docs[index]["Name middle"]} ${snapshot.data!.docs[index]["Name first"]}";
                         return Text("Hi, $fname");
                       });
                 } else {

@@ -4,6 +4,8 @@ import 'package:tranzac/pages/Login.dart';
 import 'package:tranzac/constants.dart';
 
 class Splash extends StatefulWidget {
+  const Splash({super.key});
+
   @override
   State <Splash> createState() => _SplashState();
 }
@@ -13,7 +15,7 @@ class _SplashState extends State<Splash>{
   void initState() {
     super.initState();
 
-    Timer(Duration(seconds: 2), (){
+    Timer(const Duration(seconds: 2), (){
       Navigator.pushReplacement(context,
           MaterialPageRoute(
           builder: (context) => const Login(),

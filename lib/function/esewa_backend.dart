@@ -18,8 +18,8 @@ final transref = FirebaseFirestore.instance
 
 class Esewa {
   void pay(String mobileNumber, String amount, String? areas) {
-    String product_id = mobileNumber;
-    String product_price = amount;
+    String productId = mobileNumber;
+    String productPrice = amount;
     String? category = areas;
     try {
       EsewaFlutterSdk.initPayment(
@@ -29,9 +29,9 @@ class Esewa {
           secretId: kEsewaSecretKey,
         ),
         esewaPayment: EsewaPayment(
-          productId: product_id,
-          productName: product_id,
-          productPrice: product_price,
+          productId: productId,
+          productName: productId,
+          productPrice: productPrice,
           callbackUrl: '',
         ),
         onPaymentSuccess: (EsewaPaymentSuccessResult result) {

@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/function/esewa_backend.dart';
 import 'package:tranzac/function/khalti.dart';
-import 'package:tranzac/main.dart';
 
-class SendMoney extends StatefulWidget {
-  const SendMoney({super.key});
+class Sendmoney extends StatefulWidget {
+  const Sendmoney({super.key});
 
   @override
   _SendMoneyState createState() => _SendMoneyState();
 }
 
-class _SendMoneyState extends State<SendMoney> {
+class _SendMoneyState extends State<Sendmoney> {
   final TextEditingController mobileNumberController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
-
 
   List<String> categories = [
     'Food',
@@ -301,8 +298,6 @@ class _SendMoneyState extends State<SendMoney> {
       return;
     }
 
-
-
     int amountInPaisa = (amountInRupees * 100).toInt();
 
     showModalBottomSheet(
@@ -315,11 +310,11 @@ class _SendMoneyState extends State<SendMoney> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: ElevatedButton(
                   onPressed: () {
-                    payWithKhaltiApp(
-                        context, mobileNumberController, amountController, selectedCategory);
+                    payWithKhaltiApp(context, mobileNumberController,
+                        amountController, selectedCategory);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
@@ -334,7 +329,7 @@ class _SendMoneyState extends State<SendMoney> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: ElevatedButton(
                   onPressed: () {
                     sendToEsewaBackend();
@@ -362,7 +357,7 @@ class _SendMoneyState extends State<SendMoney> {
 void main() {
   runApp(
     const MaterialApp(
-      home: SendMoney(),
+      home: Sendmoney(),
     ),
   );
 }

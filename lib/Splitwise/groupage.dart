@@ -81,19 +81,19 @@ class Groupage extends StatelessWidget {
                                   color: kActiveIconColor,
                                   child: ListTile(
                                     textColor: Colors.white,
-                                    leading: Icon(
+                                    leading: const Icon(
                                       Icons.money,
                                       color: Colors.white,
                                     ),
                                     title: Text(
                                       "${snapshots.data!.docs[index]["Remarks"]} (${snapshots.data!.docs[index]["Type"]})",
-                                      style: TextStyle(fontSize: 20),
+                                      style: const TextStyle(fontSize: 20),
                                     ),
                                     subtitle: Text(
                                         "${snapshots.data!.docs[index]["DateTime"]}"),
                                     trailing: Text(
                                       "RS ${snapshots.data!.docs[index]["Amount"]}",
-                                      style: TextStyle(fontSize: 15),
+                                      style: const TextStyle(fontSize: 15),
                                     ),
                                   ),
                                 );

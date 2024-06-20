@@ -6,7 +6,7 @@ import 'package:tranzac/pages/qr_sewa.dart'; // Import your QrSewa page
 import 'package:tranzac/constants.dart';
 
 class QR extends StatefulWidget {
-  const QR({Key? key}) : super(key: key);
+  const QR({super.key});
 
   @override
   State<QR> createState() => _QRState();

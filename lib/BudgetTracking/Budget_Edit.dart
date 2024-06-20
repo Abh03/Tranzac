@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:tranzac/BudgetTracking/Budget.dart';
 import 'package:tranzac/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -172,7 +171,7 @@ class _Budget_EditState extends State<Budget_Edit> {
                               ),
                             ],
                           ),
-                          Container(
+                          SizedBox(
                             width: 100,
                             child: TextField(
                               controller: entry.value,

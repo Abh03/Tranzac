@@ -56,8 +56,8 @@ class _SettingsState extends State<Sttgs> {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: Text("About Tranzac"),
-                          content: SingleChildScrollView(
+                          title: const Text("About Tranzac"),
+                          content: const SingleChildScrollView(
                             child: Center(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +80,7 @@ class _SettingsState extends State<Sttgs> {
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Text('Close'),
+                              child: const Text('Close'),
                             ),
                           ],
                         ),

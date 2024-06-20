@@ -6,7 +6,6 @@ import 'package:tranzac/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tranzac/pages/add_expense.dart';
 import 'package:tranzac/pages/sendmoney.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final user = FirebaseAuth.instance;
 final collref = FirebaseFirestore.instance.collection('Users');
@@ -140,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const SendMoney()),
+                                            const Sendmoney()),
                                   );
                                 },
                                 style: ButtonStyle(
@@ -148,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                                       MaterialStateProperty.all<Color>(
                                           kNewAppBarColor),
                                   minimumSize: MaterialStateProperty.all<Size>(
-                                      Size(100, 100)),
+                                      const Size(100, 100)),
                                 ),
                                 child: const Column(
                                   children: [
@@ -179,7 +178,8 @@ class _HomePageState extends State<HomePage> {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
-                                      title: Center(child: Text("Add Income")),
+                                      title: const Center(
+                                          child: Text("Add Income")),
                                       content: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -254,7 +254,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               const SizedBox(width: 18),
-                              SizedBox(width: 5),
+                              const SizedBox(width: 5),
                               // Add Expense Button
                               ElevatedButton(
                                 onPressed: () {
@@ -270,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                                       MaterialStateProperty.all<Color>(
                                           kNewAppBarColor),
                                   minimumSize: MaterialStateProperty.all<Size>(
-                                      Size(100, 100)),
+                                      const Size(100, 100)),
                                 ),
                                 child: const Column(
                                   children: [

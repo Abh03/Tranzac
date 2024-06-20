@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/Abstract.dart';
-import 'package:tranzac/pages/Homepage.dart';
-import 'package:tranzac/pages/sendmoney.dart'; // Import for date formatting
+// Import for date formatting
 
 class PaymentDetailsPage extends StatelessWidget {
   final String recipientMobileNumber;
@@ -12,7 +10,7 @@ class PaymentDetailsPage extends StatelessWidget {
   final String transactionId;
   final DateTime paymentTime;
 
-  PaymentDetailsPage({
+  const PaymentDetailsPage({super.key, 
     required this.recipientMobileNumber,
     required this.amountInPaisa,
     required this.transactionId,
@@ -26,31 +24,31 @@ class PaymentDetailsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Details'),
+        title: const Text('Payment Details'),
       ),
       body: Center(
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(
+              const Icon(
                 Icons.check_circle_outline,
                 color: Colors.green,
                 size: 100,
               ),
-              SizedBox(height: 20.0),
-              Text(
+              const SizedBox(height: 20.0),
+              const Text(
                 'Payment Successful!',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 80.0),
+              const SizedBox(height: 80.0),
               _buildDetailRow('Transaction ID', transactionId),
               _buildDetailRow('Recipient Mobile', recipientMobileNumber),
               _buildDetailRow('Amount', formattedAmount),
               _buildDetailRow('Payment Time', formattedTime),
               _buildDetailRow('Status', "SUCCESS"),
-              SizedBox(height: 40.0),
+              const SizedBox(height: 40.0),
               Container(
                 width: 300,
                 height: 40,
@@ -74,7 +72,7 @@ class PaymentDetailsPage extends StatelessWidget {
                       (Route<dynamic> route) => false,
                     );
                   },
-                  child: Text('Go Back'),
+                  child: const Text('Go Back'),
                 ),
               ),
             ],
@@ -86,17 +84,17 @@ class PaymentDetailsPage extends StatelessWidget {
 
   Widget _buildDetailRow(String label, String value) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             label,
-            style: TextStyle(fontSize: 18.0),
+            style: const TextStyle(fontSize: 18.0),
           ),
           Text(
             value,
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
         ],
       ),

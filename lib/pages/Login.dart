@@ -73,10 +73,10 @@ class _LoginState extends State<Login> {
           content: Center(
             child: Text(
               errorMessage!,
-              style: TextStyle(fontFamily: 'FiraSans'),
+              style: const TextStyle(fontFamily: 'FiraSans'),
             ),
           ),
-          duration: Duration(seconds: 3),
+          duration: const Duration(seconds: 3),
         ),
       );
     }
@@ -211,7 +211,7 @@ class _LoginState extends State<Login> {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Text(
                               errorMessage!,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.red,
                                 fontSize: 14,
                               ),
@@ -279,7 +279,7 @@ class _LoginState extends State<Login> {
                             style: TextStyle(color: kNewAppBarColor),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 330,
                           child: ElevatedButton(
                             style: ButtonStyle(
@@ -306,7 +306,7 @@ class _LoginState extends State<Login> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Don't have an account ?"),
+                            const Text("Don't have an account ?"),
                             TextButton(
                               onPressed: () {
                                 Navigator.push(
