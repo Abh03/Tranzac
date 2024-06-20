@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:tranzac/BudgetTracking/Budget.dart';
 import 'package:tranzac/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -75,7 +74,7 @@ class _Budget_EditState extends State<Budget_Edit> {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const Budget()),
-            (Route<dynamic> route) => false,
+        (Route<dynamic> route) => false,
       );
     }).catchError((error) {
       // Handle any errors here
@@ -88,18 +87,18 @@ class _Budget_EditState extends State<Budget_Edit> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
+        foregroundColor: Colors.white,
         backgroundColor: kNewAppBarColor,
         elevation: 0,
         title: const Text(
           'Edit Budget',
           style: TextStyle(
-            color: kActiveIconColor,
+            color: Colors.white,
             fontSize: 24,
             fontWeight: FontWeight.bold,
             letterSpacing: 0.5,
@@ -163,21 +162,21 @@ class _Budget_EditState extends State<Budget_Edit> {
                               Text(
                                 entry.key,
                                 style: const TextStyle(
-                                  color: kNewAppBarColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold
-                                ),
+                                    color: kNewAppBarColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
-                          Container(
+                          SizedBox(
                             width: 100,
                             child: TextField(
                               controller: entry.value,
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: '0%',
-                                contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
                                 border: OutlineInputBorder(),
                               ),
                               textAlign: TextAlign.center,
@@ -199,7 +198,8 @@ class _Budget_EditState extends State<Budget_Edit> {
                 child: ElevatedButton(
                   onPressed: _saveChanges,
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(kActiveIconColor),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(kActiveIconColor),
                   ),
                   child: const Text(
                     'Save Changes',

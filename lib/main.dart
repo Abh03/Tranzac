@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:tranzac/pages/Homepage.dart';
 import 'package:tranzac/pages/splash.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +15,7 @@ void main() async {
   // Initialize flutter_local_notifications
   const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
   // final IOSInitializationSettings initializationSettingsIOS = IOSInitializationSettings();
-  final InitializationSettings initializationSettings = InitializationSettings(
+  const InitializationSettings initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
   );
 
@@ -28,11 +27,11 @@ void main() async {
       enabledDebugging: true,
       builder: (context, navKey) {
         return ScreenUtilInit(
-          designSize: Size(375, 812), // Set the design size as per your design
+          designSize: const Size(375, 812), // Set the design size as per your design
           builder: (context, child) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              home: Splash(),
+              home: const Splash(),
               navigatorKey: navKey,
               localizationsDelegates: const [KhaltiLocalizations.delegate],
             );

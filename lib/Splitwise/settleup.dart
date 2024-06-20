@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:tranzac/main.dart';
+import 'package:tranzac/pages/sendmoney.dart';
 
 final user = FirebaseAuth.instance;
 final collref = FirebaseFirestore.instance
@@ -60,7 +61,8 @@ class SettleUp extends StatelessWidget {
       print('Failed to create notification: $e');
     }
   }
-Future<void> SendMoney() async {
+
+  Future<void> SendMoney() async {
     try {
       // Android notification details
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
@@ -135,7 +137,13 @@ Future<void> SendMoney() async {
                                 foregroundColor: MaterialStateColor.resolveWith(
                                     (states) => Colors.white),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const Sendmoney()));
+                              },
                               child: const Text(
                                 "Settle Up",
                               ))
@@ -145,6 +153,15 @@ Future<void> SendMoney() async {
                   ),
                 ),
                 const Divider(),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Center(
+                  child: Text(
+                    "Expense history",
+                    style: TextStyle(fontSize: 20,),
+                  ),
+                ),
                 Expanded(
                   child: StreamBuilder(
                       stream: collref
@@ -161,22 +178,22 @@ Future<void> SendMoney() async {
                                 itemCount: snapshots.data!.docs.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Color(0xff024578),
+                                    color: const Color(0xff024578),
                                     child: ListTile(
                                       textColor: Colors.white,
-                                      leading: Icon(
+                                      leading: const Icon(
                                         Icons.money,
                                         color: Colors.white,
                                       ),
                                       title: Text(
                                         "${snapshots.data!.docs[index]["Remarks"]} (${snapshots.data!.docs[index]["Type"]})",
-                                        style: TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 20),
                                       ),
                                       subtitle: Text(
                                           "${snapshots.data!.docs[index]["DateTime"]}"),
                                       trailing: Text(
                                         "RS ${snapshots.data!.docs[index]["Amount"]}",
-                                        style: TextStyle(fontSize: 15),
+                                        style: const TextStyle(fontSize: 15),
                                       ),
                                     ),
                                   );
@@ -231,8 +248,7 @@ Future<void> SendMoney() async {
                                   String>>[
                                 DropdownMenuEntry(
                                     value: "Borrowed", label: "Borrowed"),
-                                DropdownMenuEntry(
-                                    value: "Lent", label: "Lent")
+                                DropdownMenuEntry(value: "Lent", label: "Lent")
                               ]),
                           const SizedBox(
                             height: 10,

@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/function/esewa_backend.dart';
@@ -9,8 +8,7 @@ class QrSewa extends StatefulWidget {
   final String mobile;
   final String?
       paymentType; // Added paymentType to distinguish between eSewa and Khalti
-  const QrSewa({Key? key, required this.mobile, this.paymentType})
-      : super(key: key);
+  const QrSewa({super.key, required this.mobile, this.paymentType});
 
   @override
   _QrSewaState createState() => _QrSewaState();
@@ -247,7 +245,7 @@ class _QrSewaState extends State<QrSewa> {
                                         categoryIcons[category]!,
                                         color: kNewAppBarColor,
                                       ),
-                                      SizedBox(width: 10),
+                                      const SizedBox(width: 10),
                                       Text(category),
                                     ],
                                   ),

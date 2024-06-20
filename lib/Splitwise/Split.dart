@@ -110,7 +110,8 @@ class _SplitState extends State<Splitwise> {
                                               friendref
                                                   .doc(friend.text)
                                                   .set({
-                                                    'Name': friend.text.trim()
+                                                    'Name': friend.text.trim(),
+                                                    'Total amount': 0,
                                                   })
                                                   .whenComplete(() =>
                                                       ScaffoldMessenger.of(
@@ -152,6 +153,8 @@ class _SplitState extends State<Splitwise> {
                                         horizontal: 10),
                                     itemCount: snapshot.data!.docs.length,
                                     itemBuilder: (context, index) {
+                                      int tamt = snapshot.data!.docs[index]
+                                          ["Total amount"];
                                       return ListTile(
                                         leading: const CircleAvatar(
                                           backgroundColor: kNewAppBarColor,
@@ -347,5 +350,6 @@ class _SplitState extends State<Splitwise> {
             ],
           ),
         ));
+
   }
 }

@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:tranzac/constants.dart';
 import 'package:tranzac/pages/login.dart';
+import 'package:tranzac/pages/Homepage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final user = FirebaseAuth.instance;
@@ -17,6 +17,8 @@ class Profile extends StatefulWidget {
   @override
   State<Profile> createState() => _ProfileState();
 }
+
+
 
 class _ProfileState extends State<Profile> {
   @override
@@ -32,7 +34,7 @@ class _ProfileState extends State<Profile> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       color: kActiveIconColor,
                     ),
@@ -41,17 +43,21 @@ class _ProfileState extends State<Profile> {
                           context); // Navigate back to previous screen
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 80,
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(
-                      top: 30,
-                    ),
+                    padding: EdgeInsets.only(top: 30, left: 15),
                     child: CircleAvatar(
-                      radius: 60,
-                      backgroundImage: AssetImage('assests/images/splash2.png'),
-                    ),
+                        backgroundColor: kNewAppBarColor,
+                        foregroundColor: Colors.white,
+                        radius: 60,
+                        child: Center(
+                          child: Icon(
+                            Icons.person,
+                            size: 50,
+                          ),
+                        )),
                   ),
                 ],
               ),
@@ -193,7 +199,7 @@ class _ProfileState extends State<Profile> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: ListView.builder(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: ((context, index) {
                               return Column(

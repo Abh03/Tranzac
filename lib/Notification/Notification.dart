@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tranzac/constants.dart';
 
 class Notify extends StatefulWidget {
-  const Notify({Key? key}) : super(key: key);
+  const Notify({super.key});
 
   @override
   State<Notify> createState() => _NotifyState();
@@ -15,12 +15,12 @@ class _NotifyState extends State<Notify> {
   Widget build(BuildContext context) {
     ScreenUtil.init(
       context,
-      designSize: Size(360, 690),
+      designSize: const Size(360, 690),
     );
 
     return Scaffold(
       body: Container(
-        color: Color(0xFFD7DEE8),
+        color: const Color(0xFFD7DEE8),
         child: Column(
           children: [
             Padding(
@@ -33,7 +33,7 @@ class _NotifyState extends State<Notify> {
                     },
                     icon: Icon(
                       Icons.arrow_back,
-                      color: Color(0xFF3C6E98),
+                      color: const Color(0xFF3C6E98),
                       size: 30.sp,
                     ),
                   ),
@@ -50,7 +50,7 @@ class _NotifyState extends State<Notify> {
               child: Container(
                 margin: EdgeInsets.all(20.w),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
@@ -113,7 +113,7 @@ class _NotifyState extends State<Notify> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Dear Aavash,",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),

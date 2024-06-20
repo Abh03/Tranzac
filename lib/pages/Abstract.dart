@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tranzac/BudgetTracking/budget.dart';
@@ -11,6 +12,7 @@ import 'package:tranzac/pages/QR.dart';
 import 'package:tranzac/constants.dart';
 
 final user = FirebaseAuth.instance;
+final collref = FirebaseFirestore.instance.collection('Users');
 
 class Abstract extends StatefulWidget {
   const Abstract({super.key});
@@ -52,10 +54,30 @@ class _MyWidgetState extends State<Abstract> {
             color: Colors.white,
           ),
         ),
-        title: Text(
-          "Hello,${user.currentUser!.email}",
-          style: const TextStyle(fontSize: 15),
+        title: SizedBox(
+          height: 30,
+          child: StreamBuilder(
+              stream: collref
+                  .where("Email", isEqualTo: user.currentUser!.email)
+                  .snapshots(),
+              builder: ((context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.active) {
+                  return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        String fname =
+                            "${snapshot.data!.docs[index]["Name first"]}";
+                        return Text("Hi, $fname");
+                      });
+                } else {
+                  return const Text("Error");
+                }
+              })),
         ),
+        // Text(
+        //   "Hello,${user.currentUser!.email}",
+        //   style: const TextStyle(fontSize: 15),
+        // ),
         actions: [
           IconButton(
             onPressed: () {
@@ -74,7 +96,7 @@ class _MyWidgetState extends State<Abstract> {
           IconButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => const Settings())));
+                  MaterialPageRoute(builder: ((context) => const Sttgs())));
             },
             icon: const Icon(
               Icons.settings_outlined,

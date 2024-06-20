@@ -18,8 +18,8 @@ final transref = FirebaseFirestore.instance
 
 class Esewa {
   void pay(String mobileNumber, String amount, String? areas) {
-    String product_id = mobileNumber;
-    String product_price = amount;
+    String productId = mobileNumber;
+    String productPrice = amount;
     String? category = areas;
     try {
       EsewaFlutterSdk.initPayment(
@@ -29,9 +29,9 @@ class Esewa {
           secretId: kEsewaSecretKey,
         ),
         esewaPayment: EsewaPayment(
-          productId: product_id,
-          productName: product_id,
-          productPrice: product_price,
+          productId: productId,
+          productName: productId,
+          productPrice: productPrice,
           callbackUrl: '',
         ),
         onPaymentSuccess: (EsewaPaymentSuccessResult result) {
@@ -50,20 +50,19 @@ class Esewa {
     }
   }
 
-    void verify(EsewaPaymentSuccessResult result, String? category) {
+  void verify(EsewaPaymentSuccessResult result, String? category) {
+    transref.doc(result.refId).set({
+      'Mobile number': result.productId,
+      'Total amount': result.totalAmount,
+      'Date': result.date,
+      'Category': category
+    });
 
-      transref.doc(result.refId).set({
-        'Mobile number': result.productId,
-        'Total amount': result.totalAmount,
-        'Date': result.date,
-        'Category': category
-      });
-
-      // TODO: after success, call this function to verify transaction
-      navKey.currentState?.push(
-        MaterialPageRoute(
-          builder: (context) => TransactionDetailsPage(transaction: result),
-        ),
-      );
+    // TODO: after success, call this function to verify transaction
+    navKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (context) => TransactionDetailsPage(transaction: result),
+      ),
+    );
   }
 }

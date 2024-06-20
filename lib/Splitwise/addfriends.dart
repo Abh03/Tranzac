@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tranzac/Splitwise/Split.dart';
 import 'package:tranzac/constants.dart';
-import 'package:tranzac/pages/Abstract.dart';
 
 final user = FirebaseAuth.instance;
 final friendref = FirebaseFirestore.instance
