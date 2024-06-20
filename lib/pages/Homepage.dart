@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tranzac/BudgetTracking/Budget.dart';
@@ -6,6 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:tranzac/pages/add_expense.dart';
 import 'package:tranzac/pages/sendmoney.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+final user = FirebaseAuth.instance;
+final collref = FirebaseFirestore.instance.collection('Users');
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -80,23 +85,17 @@ class _HomePageState extends State<HomePage> {
                       // Example color for the profile icon
                       child: Icon(Icons.person, color: Colors.white, size: 30),
                     ),
-                    SizedBox(width: 10),
+                    SizedBox(width: 15),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Aavash Lamichhane',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                        SizedBox(height: 2),
-                        Text(
-                          'Rs. 6500',
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
+                        Text('Available Balance',
+                            style:
+                                TextStyle(color: Colors.green, fontSize: 20)),
                         SizedBox(height: 5),
                         Text(
-                          'Available Balance',
-                          style: TextStyle(color: Colors.green, fontSize: 16),
+                          'Rs. 6500',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ],
                     ),
